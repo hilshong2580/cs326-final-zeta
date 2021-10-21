@@ -43,7 +43,11 @@
     <div class="filterBar row">
         <div class="row">
             <div class="col">
+
+              <div class="mainBtrBar">
+                <div class="createPost">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Create Post</button>
+                </div>
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -90,39 +94,52 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-6">
-
+             
+            </div> 
+            <div class="sortRadioBtr">
+              
+            <!-- <div class="col-6"> -->
                 <form>
+                  <div class="row">
+                    <div class="col-md-auto">
                     <label class="radio-inline">
                       <input type="radio" name="optradio" checked> In three day
                     </label>
+                    </div>
+                    <div class="col-md-auto">
                     <label class="radio-inline">
                       <input type="radio" name="optradio"> In a week
                     </label>
+                  </div>
+                  <div class="col-md-auto">
                     <label class="radio-inline">
                       <input type="radio" name="optradio"> In a month
                     </label>
+                  </div>
+                </div>
                   </form>
-                  
+                <!-- </div> -->
             </div>
-
+            
+            <div class="sortDropDownBtr">
             <div class="col">
+             
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Dropdown button
                     </button>
+                 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Action</a></li>
                     <li><a class="dropdown-item" href="#">Another action</a></li>
                     <li> <a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
-                  </div>
+                  </div> 
+                </div>
             </div>
           </div>
-
-
+        </div>
+      </div>
     </div>
 
     <!-- a solid line to seperate the content area -->
