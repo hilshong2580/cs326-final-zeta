@@ -46,4 +46,11 @@
 
     gap: 10px;
     grid-auto-rows: minmax(1px, auto);
+
+    /* max-width: 260px; max-height: 100px; */
   }
+
+  .commentDetail{
+    max-width: 50px; max-height: 100px;
+  }
+  
