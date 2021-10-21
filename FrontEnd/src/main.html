@@ -26,7 +26,6 @@
 
 </head>
 <body>
-
     <div class="navBar">
         <nav class="navbar navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
@@ -55,15 +54,32 @@
                             <div class="modal-body">
                                 <form>
                                     <div class="mb-3">
-                                        <label class="form-label required">Name</label>
-                                        <input type="text" class="form-control">
+                                        <label class="form-label required">Destination</label>
+                                        <input type="text" class="form-control" id="destination">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label required">Email</label>
-                                        <input type="email" class="form-control">
+                                        <label class="form-label required">Outset</label>
+                                        <input type="text" class="form-control" id="outset">
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label required">Type ypur message here</label>
+                                      <label class="form-label required">Time: Start</label>
+                                      <input type="time" class="form-control" id="time_start">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="form-label required">Time: End</label>
+                                      <input type="time" class="form-control" id="time_end">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="form-label required">Date: Start</label>
+                                      <input type="date" class="form-control" id="date: start">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="form-label required">Date: End</label>
+                                      <input type="date" class="form-control" id="date: end">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label required">Description</label>
                                         <textarea class="form-control"></textarea>
                                     </div>
                                 </form>
@@ -112,6 +128,7 @@
     <!-- a solid line to seperate the content area -->
     <hr class="solid">
 
+    <div class="container">
     <!-- To show the post list -->
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
@@ -139,7 +156,6 @@
                 <a>comment2:................</a>
                 <a>comment3:................</a>
                 <a>comment4:................</a>
-
               </div>
 
 
@@ -213,7 +229,7 @@
           </div>
         </div>
       </div>
-
+    </div>
 
     <!-- boundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
