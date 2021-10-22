@@ -6,45 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/post.css" rel="stylesheet">
-    <title>Hello, world!</title>
+    <title>U-Car! Team-Zeta Project</title>
 
-  
-    <script src="dropdownbtr.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
- <!-- import the bootstrap css -->
+    <!-- import the bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
-
-   
-
 </head>
+
+
+<!-- the body part -->
 <body>
+  <!-- The fixed navbar for main page -->
     <div class="navBar">
         <nav class="navbar navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
                 <img src="../images/textIcon2.png"  alt="...">
+                <!-- the search bar -->
                 <form class="d-flex md-form form-group w-50">
                     <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <!-- the logout -->
                 <button class="btn btn-outline-success" type="submit">Logout</button>
             </div>
         </nav>
     </div>
 
-    <!-- This is create Post Button and form -->
+    <!-- This is filter row for create post, filter, drop down botton -->
     <div class="filterBar row">
         <div class="row">
             <div class="col">
-
               <div class="mainBtrBar">
+                <!-- the create post button -->
                 <div class="createPost">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Create Post</button>
                 </div>
@@ -55,36 +54,51 @@
                                 <h5 class="modal-title">Create</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
+                            <!-- the create post form -->
                             <div class="modal-body">
                                 <form>
                                     <div class="mb-3">
+                                      <label class="form-label required">Title</label>
+                                      <input type="text" class="form-control" id="createTitle">
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label required">Destination</label>
-                                        <input type="text" class="form-control" id="destination">
+                                        <input type="text" class="form-control" id="createDestination">
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label required">Outset</label>
-                                        <input type="text" class="form-control" id="outset">
+                                        <input type="text" class="form-control" id="createOutset">
                                     </div>
                                     <div class="mb-3">
                                       <label class="form-label required">Time: Start</label>
-                                      <input type="time" class="form-control" id="time_start">
+                                      <input type="time" class="form-control" id="createTime_start">
                                     </div>
                                     <div class="mb-3">
                                       <label class="form-label required">Time: End</label>
-                                      <input type="time" class="form-control" id="time_end">
+                                      <input type="time" class="form-control" id="createTime_end">
                                     </div>
                                     <div class="mb-3">
                                       <label class="form-label required">Date: Start</label>
-                                      <input type="date" class="form-control" id="date: start">
+                                      <input type="date" class="form-control" id="createDate_start">
                                     </div>
+
                                     <div class="mb-3">
                                       <label class="form-label required">Date: End</label>
-                                      <input type="date" class="form-control" id="date: end">
+                                      <input type="date" class="form-control" id="createDate_end">
+                                    </div>
+
+                                    <div class="mb-3">
+                                      <label class="form-label required">Num of people</label>
+                                      <input type="number" class="form-control" id="createNumOfPeople">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label required">Description</label>
-                                        <textarea class="form-control"></textarea>
+                                        <textarea class="form-control" id="createDescription"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                      <label class="form-label required" for="customFile">Image/Photo</label>
+                                      <input type="file" class="form-control" id="createUploadImage" />
                                     </div>
                                 </form>
                             </div>
@@ -94,11 +108,9 @@
                             </div>
                         </div>
                     </div>
-             
             </div> 
+            <!-- the filter for day week month -->
             <div class="sortRadioBtr">
-              
-            <!-- <div class="col-6"> -->
                 <form>
                   <div class="row">
                     <div class="col-md-auto">
@@ -118,7 +130,6 @@
                   </div>
                 </div>
                   </form>
-                <!-- </div> -->
             </div>
             
             <div class="sortDropDownBtr">
@@ -126,13 +137,14 @@
              
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown button
+                      Sort by
                     </button>
                  
+                    <!-- sort button -->
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li> <a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="#">Time: 8 - 12 am</a></li>
+                    <li><a class="dropdown-item" href="#">Time: 1 - 5 pm</a></li>
+                    <li><a class="dropdown-item" href="#">Time: 6 - 10 pm</a></li>
                     </ul>
                   </div> 
                 </div>
@@ -150,8 +162,18 @@
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Accordion Item #1
+            <button class="accordion-button row" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <a class="col-sm">Title: AAA BBBBB CCCCC DDDD EEE&nbsp;&nbsp;&nbsp; </a>
+              <div class="col-sm">Date:
+                <a> Outset </a>
+                <a> --> </a>
+                <a> Destination</a>
+              </div>
+              <div class="col-sm">Time: 
+                <a> Start </a>
+                <a> --> </a>
+                <a> End</a>
+              </div>
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -160,8 +182,11 @@
                 <div class=Destination> Destination: location </div>
                 <div class=picture>  <img src="../images/mappicture.png"  alt="..."> </div>
                 <div class=Outset>Outset: location</div>
-                <div class=startTime> Start: time </div>
-                <div class=endTime> End: time </div>
+                <div class=startTime> Time: 
+                  <a id="startInPost">Start</a>
+                  <a> --></a>
+                  <a id="endInPost">End</a>
+                </div>
                 <div class=numberOfPeople> Number Of People: 4 </div>
                 <div class=Date> Date:mm/dd/yyyy -> mm/dd/yyyy </div>
                 <div class=Description> Description: </div>
@@ -199,8 +224,18 @@
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Accordion Item #2
+            <button class="accordion-button collapsed row" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a class="col-sm">Title: JJ III KKK&nbsp;&nbsp;&nbsp; </a>
+              <div class="col-sm">Date:
+                <a> Outset </a>
+                <a> --> </a>
+                <a> Destination</a>
+              </div>
+              <div class="col-sm">Time: 
+                <a> Start </a>
+                <a> --> </a>
+                <a> End</a>
+              </div>
             </button>
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -210,8 +245,11 @@
                 <div class=Destination> Destination: location </div>
                 <div class=picture>  <img src="../images/mappicture.png"  alt="..."> </div>
                 <div class=Outset>Outset: location</div>
-                <div class=startTime> Start: time </div>
-                <div class=endTime> End: time </div>
+                <div class=startTime> Time: 
+                  <a id="startInPost">Start</a>
+                  <a> --></a>
+                  <a id="endInPost">End</a>
+                </div>
                 <div class=numberOfPeople> Number Of People: 4 </div>
                 <div class=Date> Date:mm/dd/yyyy -> mm/dd/yyyy </div>
                 <div class=Description> Description: </div>
@@ -248,8 +286,18 @@
         </div>
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Accordion Item #3
+            <button class="accordion-button collapsed three row" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <a class="col-sm">Title: JJ III KKK&nbsp;&nbsp;&nbsp;</a>
+              <div class="col-sm">Date:
+                <a> Outset </a>
+                <a> --> </a>
+                <a> Destination</a>
+              </div>
+              <div class="col-sm">Time: 
+                <a> Start </a>
+                <a> --> </a>
+                <a> End</a>
+              </div>
             </button>
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -260,8 +308,11 @@
                 <div class=Destination> Destination: location </div>
                 <div class=picture>  <img src="../images/mappicture.png"  alt="..."> </div>
                 <div class=Outset>Outset: location</div>
-                <div class=startTime> Start: time </div>
-                <div class=endTime> End: time </div>
+                <div class=startTime> Time: 
+                  <a id="startInPost">Start</a>
+                  <a> --></a>
+                  <a id="endInPost">End</a>
+                </div>
                 <div class=numberOfPeople> Number Of People: 4 </div>
                 <div class=Date> Date:mm/dd/yyyy -> mm/dd/yyyy </div>
                 <div class=Description> Description: </div>
