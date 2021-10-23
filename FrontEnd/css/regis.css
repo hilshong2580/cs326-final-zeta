@@ -1,7 +1,10 @@
 
 body{
     background-image:url("");
-    text-align:center
+    text-align:center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
 }
 #regis_frame {
     width: 400px;
@@ -85,7 +88,7 @@ body{
 }
  
 #registed {
-    font-size: 5px;
+    font-size: 15px;
     color: white;
     text-decoration: none;
     position: relative;
@@ -119,6 +122,6 @@ body{
 }
 
 ::placeholder {
-  font-size: 5px;
+  font-size: 15px;
   font-family: 'Times New Roman', Times, serif;
 }
