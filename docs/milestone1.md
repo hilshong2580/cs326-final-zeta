@@ -34,6 +34,7 @@ This will be the login page for U-Car. All users are starting with this page to 
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/login.PNG)
 
 As the website for UMass students, we need to create an account with UMass email. A username and password for login. An image or photo to be the icon. And the description to introduce himself/herself.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/registrate.PNG)
 
 After logging in with a valid account, the users can preview all the posts on U-Car. They can use the filter to search for what they are interested in. If students have a need who can create a post and post it on the main page. They can also see all the comments by other users and leave any comments to interact with other users. Discuss the detail and supply more info.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/main.png)
