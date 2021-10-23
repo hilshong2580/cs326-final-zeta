@@ -40,3 +40,22 @@ After logging in with a valid account, the users can preview all the posts on U-
 
 By clicking the Create Post button, a pop-up screen will appear and require the user to type in all required information like title, destination, time, date, etc. 
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/creat_post.png)
+
+## Division of labor
+
+Tingshuo Miao: 
+* Create a wireframe for login/registration page.
+* CSS & HTML for login and registration page.
+
+Shing Hong Lau:
+* Create a wireframe for main and create post page.
+* CSS & HTML for Main page & create post page.
+
+Wai Kin Yu:
+* Communicate with teamate, assembly information to finish mileston1.md
+* Create Post detail in main page and UI design
+* Check and fix the bug.
+
+
+
+
