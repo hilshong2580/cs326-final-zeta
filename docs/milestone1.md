@@ -30,4 +30,11 @@ The project ideas come from the daily needs for transportation and looking for s
 ## User Interface
 ___________________________________________________________________
 
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/FrontEnd/images/mappicture.PNG)
+This will be the login page for U-Car. All user are starting with this page to login so that they can access the main page.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/login.PNG)
+
+After logging in with a valid account, the users can preview all the post on U-Car. They can use the filter to search what they are interested. They can also create a post and post it on the main page. They can also see all the comments by other users and leave any comment to interact with other users.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/main.png)
+
+By clicking the Creat Post button, a pop-up screen will appear and require the user to type in all required information like title, destination, time, date, etc. 
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/creat_post.png)
