@@ -53,8 +53,8 @@ Shing Hong Lau:
 * CSS & HTML for Main page & create post page.
 
 Wai Kin Yu:
-* Communicate with teamate, assembly information to finish mileston1.md
-* Create Post detail in main page and UI design
+* Communicate with teamate, assembly information to keep track on the project/mileston1.md.
+* Create Post detail in main page and UI design(part of CSS & HTML).
 * Check and fix the bug.
 
 
