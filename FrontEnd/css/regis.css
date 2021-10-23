@@ -1,11 +1,11 @@
-body {
-    background-size: 100%;
-    background-repeat: no-repeat;
+
+body{
+    background-image:url("");
+    text-align:center
 }
- 
 #regis_frame {
     width: 400px;
-    height: 380px;
+    height: 500px;
     padding: 13px;
  
     position: absolute;
@@ -19,31 +19,13 @@ body {
     border-radius: 10px;
     text-align: center;
 }
- 
-form p > * {
-    display: inline-block;
-    vertical-align: middle;
-}
- 
-#image_logo {
-    margin-top: 22px;
-    width: 10px;
-    margin-left: 175px;
-}
- 
-.label_input {
-    font-size: 14px;
-    font-family: 'Times New Roman', Times, serif;
- 
-    width: 65px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
- 
-    color: white;
-    background-color: rgb(138,78,228);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+.logo{text-align:center}
+.repas_text_field {
+    width: 200px;
+    height: 55px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
 }
  
 .label_password {
@@ -61,22 +43,31 @@ form p > * {
     border-bottom-left-radius: 5px;
 }
 
+.label_input {
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+ 
+    width: 65px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+ 
+    color: white;
+    background-color: rgb(138,78,228);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
 .text_field {
-    width: 278px;
+    width: 200px;
     height: 27px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+
     border: 0;
 }
-.repas_text_field {
-    width: 278px;
-    height: 55px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border: 0;
-}
+
  
-#btn_regis {
+#btn_login {
     font-size: 14px;
     font-family: 'Times New Roman', Times, serif;
  
@@ -94,7 +85,7 @@ form p > * {
 }
  
 #registed {
-    font-size: 12px;
+    font-size: 5px;
     color: white;
     text-decoration: none;
     position: relative;
@@ -102,12 +93,32 @@ form p > * {
     top: 5px;
  
 }
- 
+ form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
 #registed:hover {
     color: blue;
     text-decoration: underline;
 }
+#btn_regis {
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
  
-#regis_control {
-    padding: 0 28px;
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+ 
+    color: white;
+    background-color: rgb(138,78,228);
+    border-radius: 6px;
+    border: 0;
+ 
+    float: left;
+}
+
+::placeholder {
+  font-size: 5px;
+  font-family: 'Times New Roman', Times, serif;
 }
