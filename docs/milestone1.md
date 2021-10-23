@@ -27,11 +27,6 @@ The project ideas come from the daily needs for transportation and looking for s
 - Chat: text for communication
 
 
-## User Wireframes
-___________________________________________________________________
-
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/loginWireframes.PNG)
-
 ## User Interface
 ___________________________________________________________________
 
