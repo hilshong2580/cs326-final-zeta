@@ -76,7 +76,7 @@ form p > * {
     border: 0;
 }
  
-#btn_login {
+#btn_regis {
     font-size: 14px;
     font-family: 'Times New Roman', Times, serif;
  
@@ -93,7 +93,7 @@ form p > * {
     float: left;
 }
  
-#forget_pwd {
+#registed {
     font-size: 12px;
     color: white;
     text-decoration: none;
@@ -103,7 +103,7 @@ form p > * {
  
 }
  
-#forget_pwd:hover {
+#registed:hover {
     color: blue;
     text-decoration: underline;
 }
