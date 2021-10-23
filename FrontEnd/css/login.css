@@ -1,11 +1,11 @@
-body {
-    background-size: 100%;
-    background-repeat: no-repeat;
+
+body{
+    background-image:url("");
+    text-align:center
 }
- 
 #login_frame {
     width: 400px;
-    height: 260px;
+    height: 310px;
     padding: 13px;
  
     position: absolute;
@@ -19,23 +19,10 @@ body {
     border-radius: 10px;
     text-align: center;
 }
- 
-form p > * {
-    display: inline-block;
-    vertical-align: middle;
-}
- 
-#image_logo {
-    margin-top: 22px;
-    width: 10px;
-    margin-left: 175px;
-}
- 
-.label_input {
-    font-size: 14px;
-    font-family: 'Times New Roman', Times, serif;
- 
-    width: 65px;
+.logo{text-align:center}
+
+#username_logo {
+    width: 30px;
     height: 28px;
     line-height: 28px;
     text-align: center;
@@ -44,14 +31,32 @@ form p > * {
     background-color: rgb(138,78,228);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+
 }
- 
-.text_field {
-    width: 278px;
+#password_logo {
+    width: 30px;
     height: 28px;
+    line-height: 28px;
+    text-align: center;
+ 
+    color: white;
+    background-color: rgb(138,78,228);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+}
+.text_field {
+    width: 200px;
+    height: 27px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+
     border: 0;
+}
+
+.login-title{
+  font-size: 19px;
+    font-family: 'Times New Roman', Times, serif;
 }
  
 #btn_login {
@@ -80,12 +85,11 @@ form p > * {
     top: 5px;
  
 }
- 
+ form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
 #forget_pwd:hover {
     color: blue;
     text-decoration: underline;
-}
- 
-#login_control {
-    padding: 0 28px;
 }
