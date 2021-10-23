@@ -33,7 +33,7 @@ ___________________________________________________________________
 This will be the login page for U-Car. All users are starting with this page to log in so that they can access the main page. If students forget the password, they can get an email to find their password. Therefore, the Username is a necessary part of the forget-password. The website should send an email based on the email which registers for that username.
 
 Wireframes:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/loginWireframes.jpg)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/regisWireframes.jpg)
 
 CSS & HTML screenshots:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/login.PNG)
@@ -41,7 +41,7 @@ CSS & HTML screenshots:
 As the website for UMass students, we need to create an account with UMass email. A username and password for login. An image or photo to be the icon. And the description to introduce himself/herself.
 
 Wireframes:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/regisWireframes.jpg)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/loginWireframes.jpg)
 
 CSS & HTML screenshots:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/registrate.PNG)
@@ -49,7 +49,7 @@ CSS & HTML screenshots:
 After logging in with a valid account, the users can preview all the posts on U-Car. They can use the filter to search for what they are interested in. If students have a need who can create a post and post it on the main page. They can also see all the comments by other users and leave any comments to interact with other users. Discuss the detail and supply more info.
 
 Wireframes:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/mainPageWireframes.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/mainPageWireframes.png)
 
 CSS & HTML screenshots:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/main.png)
@@ -57,7 +57,7 @@ CSS & HTML screenshots:
 By clicking the Create Post button, a pop-up screen will appear and require the user to type in all required information like title, destination, time, date, etc. 
 
 Wireframes:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/createPostWireframes.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/createPostWireframes.png)
 
 CSS & HTML screenshots:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot/creat_post.png)
