@@ -1,40 +1,38 @@
-'use strict';
-console.log('Server-side code running');
+"use strict";
+console.log("Server-side code running");
 
-
-let path = require('path')
-const express = require('express')
-const app = express()
-const cors = require('cors')
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const faker = require("faker");
 const port = 3000;
 
-
-app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-   app.use(cors())
+app.use(cors());
 
 app.listen(process.env.PORT || port);
 
+app.get("/", (req, res) => {
+  console.log("this is server.js");
+});
 
-app.get('/', (req, res) => {
-    res.redirect("/login")
-  });
-
-// app.get('/login', function(req, res) {
-//     res.sendFile(path.join(__dirname, '/login.html'));
-//   });
-
-// app.post('/login', (req, res) => {
-//     let username = req.body.username;
-//     let password = req.body.password;
-//   });
+//let user = faker.helpers.userCard();
+app.get("/users", (req, res) => {
+  console.log("this is server.js");
+  //return faker.helpers.userCard();
+  res.status(200).send(JSON.stringify(faker.helpers.userCard()));
+});
 
 
 //import createPost router
-const userRouter = require('./routes/createPost')
-app.use("/createPost", userRouter)
+const createPostRouter = require("./routes/createPost");
+app.use("/createPost", createPostRouter);
 
 //import login router
-const userLogin = require('./routes/login')
-app.use("/login", userLogin)
+const userLogin = require("./routes/login");
+app.use("/login", userLogin);
+
+//import main router
+const mainRouter = require("./routes/main");
+app.use("/main", mainRouter);
