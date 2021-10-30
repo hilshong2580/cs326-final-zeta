@@ -8,7 +8,9 @@ Install the Express.js for the project
 3. npm i faker
 install the fake data 
 
-4. npm i --save-dev nodemon
+4. npm i cors
+
+5. npm i --save-dev nodemon
 install the live server for server.js
 You can change the package.json 
   "scripts": {
