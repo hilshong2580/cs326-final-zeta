@@ -1,0 +1,17 @@
+{
+  "userInfo": [
+    {
+      "username": "username",
+      "password": "password123",
+      "email": "testEmail@umass.edu",
+      "phone": 1234567890
+    }
+  ],
+
+  "postInfo": [
+    { "email": "testEmail@umass.edu", 
+      "title": "aaaa", 
+      "destination": "bbb" 
+    }
+  ]
+}
