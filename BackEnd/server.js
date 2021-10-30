@@ -19,15 +19,10 @@ app.get("/", (req, res) => {
 
 //let user = faker.helpers.userCard();
 app.get("/users", (req, res) => {
-  console.log("this is server.js");
-  //return faker.helpers.userCard();
+  console.log("this is example for index.html and client.js");
   res.status(200).send(JSON.stringify(faker.helpers.userCard()));
 });
 
-
-//import createPost router
-const createPostRouter = require("./routes/createPost");
-app.use("/createPost", createPostRouter);
 
 //import login router
 const userLogin = require("./routes/login");
