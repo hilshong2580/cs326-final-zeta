@@ -11,6 +11,7 @@ install the fake data
 4. npm i cors
 
 5. npm i --save-dev nodemon
+
 install the live server for server.js
 You can change the package.json 
   "scripts": {
