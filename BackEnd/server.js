@@ -1,4 +1,4 @@
-"use strict";
+
 console.log("Server-side code running");
 
 const express = require("express");
@@ -10,12 +10,11 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.static('../FrontEnd', {index: 'login.html'}));
 
 app.listen(process.env.PORT || port);
 
-app.get("/", (req, res) => {
-  console.log("this is server.js");
-});
+
 
 //let user = faker.helpers.userCard();
 app.get("/users", (req, res) => {
