@@ -11,30 +11,6 @@ router.use(cors());
 // router.use(express.static('../FrontEnd'));
 router.use(express.static('../FrontEnd', {index: 'main.html'}));
 
-// let postData = {
-//   posts:[]
-// }
-
-// for(let i = 0; i<3; i++){
-//   let post =  {
-//     email: faker.internet.email(),
-//     title: faker.name.title(),
-//     destination: faker.address.streetAddress(),
-//     outset: faker.address.streetAddress(),
-//     dateTimeStart: faker.datatype.datetime(),
-//     dateTimeEnd: faker.datatype.datetime(),
-//     numOfPeople: faker.datatype.number(),
-//     description: faker.lorem.words(),
-//     photo: faker.image.avatar(),
-//     comment:[
-//       { nameA: faker.hacker.phrase()},
-//       { nameB: faker.hacker.phrase()},
-//       { nameC: faker.hacker.phrase()}
-//     ]
-//   }
-//   postData.posts.push(post);
-// }
-
 
 let postData = new Array(3).fill(null).map((post) => {
   return (post = {
