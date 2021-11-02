@@ -48,17 +48,22 @@ router.delete("/deletePost", function (req, res) {
   console.log("this is delete post");
   let email = req.body.email;
   let uuid = req.body.id;
+  if(deleteJsonObj(email, uuid)){
+    res.send("success")
+  }
+  else
+  res.send("fail")
 
 });
 
-function deleteJsonObj(email, id){
+function deleteJsonObj(email, uuid){
   for(let post in postData){
     if(postData[post].email.equals(email) && postData[post].id.equals(id)){
       postData.splice(post, 1);
       return true;
     }
-
   }
+  return false;
 }
 
 
