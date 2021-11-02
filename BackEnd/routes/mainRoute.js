@@ -66,9 +66,6 @@ function deleteJsonObj(email, uuid){
   return false;
 }
 
-
-
-
 // POST method route
 router.post("/createPost", function (req, res) {
   console.log("this is create post");

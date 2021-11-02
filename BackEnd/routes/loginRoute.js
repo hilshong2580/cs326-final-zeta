@@ -1,8 +1,11 @@
 
 const express = require('express')
 const router = express.Router()
-router.use(express.static('../FrontEnd', {index: 'login.html'}));
+
 const faker = require("faker");
+
+
+router.use(express.static('../FrontEnd', {index: 'login.html'}));
 
 let accounts = new Array(3).fill(null).map((account) => {
   return (account = {
