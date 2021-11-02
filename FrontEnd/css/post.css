@@ -1,6 +1,6 @@
 .detail {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 10px;
     grid-auto-rows: minmax(20px, auto);
@@ -58,4 +58,8 @@
   .DeletePostBtr{
     grid-column: 4;
     grid-row: 1/10;
+  }
+  .EditPostBtr{
+    grid-column: 4;
+    grid-row: 3;
   }

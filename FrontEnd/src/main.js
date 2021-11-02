@@ -3,6 +3,10 @@ console.log("Main-side code running");
 //render the post base on the server data
 getRenderPost();
 
+
+//render the Create post form
+renderCreateButton();
+
 //get all post by fetch http://localhost:3000/main/getPost , then render the post
 async function getRenderPost() {
   let response = await fetch("http://localhost:3000/main/getPost", {
@@ -123,6 +127,20 @@ function renderPost(HTML, id, jsonObj) {
 
   DeletePostBtr.prepend(deleteButton);
 
+  const EditPostBtr = document.createElement("div");
+  EditPostBtr.classList.add("EditPostBtr");
+  EditPostBtr.setAttribute("id", "EditPostBtr" + idString);
+
+  const editButton = document.createElement("button");
+  editButton.classList.add("btn", "btn-primary");
+  editButton.setAttribute("id", "editButton" + idString);
+  editButton.setAttribute("data-toggle", "modal");
+  editButton.setAttribute("data-target", "#fuckyou123");
+  editButton.innerHTML = "Edit Post";
+
+  EditPostBtr.prepend(editButton);
+
+
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
   accordionDetail.prepend(
@@ -133,7 +151,8 @@ function renderPost(HTML, id, jsonObj) {
     endTime,
     numberOfPeople,
     Description,
-    DeletePostBtr
+    DeletePostBtr,
+    EditPostBtr
   );
   // post body end
 
@@ -231,3 +250,17 @@ function renderComment(html, json){
 //   let data = JSON.parse(await response.json());
 //   return data;
 // }
+
+function renderCreateButton(){
+  //alert("test");
+  // const createButton = document.createElement("button");
+  // createButton.classList.add("btn", "btn-primary");
+  // createButton.setAttribute("id", "deleteButton" + idString);
+  // createButton.setAttribute("data-bs-toggle", "modal");
+  // createButton.setAttribute("data-bs-target", "myModal");
+  // createButton.innerHTML = "Create Post";
+
+  // const createButtonPlace = document.createElement("div");
+  // createButtonPlace.classList.add("createPost");
+  // createButtonPlace.prepend(deleteButton);
+}
