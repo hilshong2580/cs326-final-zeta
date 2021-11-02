@@ -14,6 +14,7 @@ router.use(express.static('../FrontEnd', {index: 'main.html'}));
 
 let postData = new Array(3).fill(null).map((post) => {
   return (post = {
+    id: faker.datatype.uuid(),
     email: faker.internet.email(),
     title: faker.name.title(),
     destination: faker.address.streetAddress(),
@@ -42,6 +43,27 @@ router.get("/", (req, res) => {
   console.log("this is main");
 });
 
+// DELETE method route to update the post
+router.delete("/deletePost", function (req, res) {
+  console.log("this is delete post");
+  let email = req.body.email;
+  let uuid = req.body.id;
+
+});
+
+function deleteJsonObj(email, id){
+  for(let post in postData){
+    if(postData[post].email.equals(email) && postData[post].id.equals(id)){
+      postData.splice(post, 1);
+      return true;
+    }
+
+  }
+}
+
+
+
+
 // POST method route
 router.post("/createPost", function (req, res) {
   console.log("this is create post");
@@ -64,9 +86,5 @@ router.put("/updatePost", function (req, res) {
   console.log("this is update post");
 });
 
-// DELETE method route to update the post
-router.delete("/deletePost", function (req, res) {
-  console.log("this is delete post");
-});
 
 module.exports = router;
