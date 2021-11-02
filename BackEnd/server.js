@@ -15,18 +15,10 @@ app.use(express.static('../FrontEnd', {index: 'login.html'}));
 app.listen(process.env.PORT || port);
 
 
-
-//let user = faker.helpers.userCard();
-app.get("/users", (req, res) => {
-  console.log("this is example for index.html and client.js");
-  res.status(200).send(JSON.stringify(faker.helpers.userCard()));
-});
-
-
 //import login router
-const userLogin = require("./routes/login");
+const userLogin = require("./routes/loginRoute");
 app.use("/login", userLogin);
 
 //import main router
-const mainRouter = require("./routes/main");
+const mainRouter = require("./routes/mainRoute");
 app.use("/main", mainRouter);
