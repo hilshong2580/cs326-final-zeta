@@ -34,7 +34,7 @@ router.post('/login', function (req, res) {
 function signInCheck(email, password) {
   //if accounts.json exist same email & password
   // return true
-    if(accounts.find(data => data.email === email && data.password === password){
+    if(accounts.find(data => data.email === email && data.password === password)){
       return true;
     }
     return false;
