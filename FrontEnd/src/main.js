@@ -253,6 +253,19 @@ function renderPost(HTML, id, jsonObj) {
   const buttonSubmit = document.createElement("button");
   buttonSubmit.innerText = "Submit";
 
+  buttonSubmit.addEventListener("click", function (e) {
+    alert("add comment");
+    //  editExistPost(
+    //    JSON.stringify({
+    //      id: "testUuid",
+    //      email: "testEmail@umass.edu",
+    //      comment: jsonObj.comment,
+    //    })
+    //  );
+  });
+
+
+
   const comment = document.createElement("div");
   comment.classList.add("comment");
   comment.prepend(overFlow, formGroup, buttonSubmit);
