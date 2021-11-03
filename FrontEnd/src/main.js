@@ -1,18 +1,33 @@
 console.log("Main-side code running");
+
+let thisUserEmail = "test@umass.edu";
+const thisUserID="testUuid";
+
+
+window.onload = function () {
+  let url = document.location.href,
+    params = url.split("?")[1].split("&"),
+    data = {},
+    tmp;
+  for (var i = 0, l = params.length; i < l; i++) {
+    tmp = params[i].split("=");
+    data[tmp[0]] = tmp[1];
+  }
+  //thisUserEmail = JSON.stringify(data.email);
+  //thisUserEmail = thisUserEmail.replace('%40', '@')
+  //console.log(thisUserEmail);
+};
+
+
 //render the post base on the server data
 getRenderPost();
-
-
-const userID="testUuid";
-const userEmail="testEmail@umass.edu";
-
 
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
   let newPost = {
-    id: userID,
-    email: userEmail,
+    id: thisUserID,
+    email: thisUserEmail,
     title: document.getElementById("createTitle").value,
     destination: document.getElementById("createDestination").value,
     outset: document.getElementById("createOutset").value,
@@ -29,30 +44,13 @@ document.getElementById("createPost").addEventListener("click", function (e) {
   getRenderPost();
 });
 
-// document.getElementById("deletePopUp").addEventListener("click", function (e) {
-//   let email = "testEmail@umass.edu";
-//   let id = "testUuid";
-//   console.log(email + " " + id);
-//   deleteExistPost(JSON.stringify({ email: email, id: id }));
-// });
 
-// document.getElementById("editPopUp").addEventListener("click", function (e) {
-//   let temp = {
-//     id: "testUuid",
-//     email: "testEmail@umass.edu",
-//     title: "aaaaaaaa",
-//     destination: "aaaaaaaaa",
-//     outset: "aaaaaaaaaa",
-//     dateTimeStart: "2021-11-03T02:23",
-//     dateTimeEnd: "2021-11-03T01:24",
-//     numOfPeople: "6",
-//     description: "dasd",
-//     photo: "C:\\fakepath\\1111PickMeForTest.jpg",
-//     comment: [],
-//   };
-//   console.log(temp);
-//   editExistPost(JSON.stringify(temp));
-// });
+document.getElementById("LogoutButton").addEventListener("click", function(e){
+  thisUserEmail = "";
+  window.location.href="./login.html";
+});
+
+
 
 async function editExistPost(jsonObj) {
   fetch("http://localhost:3000/main/PostE", {
@@ -174,15 +172,13 @@ function renderPost(HTML, id, jsonObj) {
 
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("btn", "btn-primary");
-  //deleteButton.setAttribute("id", "deleteButton" + idString);
-  deleteButton.setAttribute("data-bs-toggle", "modal");
-  deleteButton.setAttribute("data-bs-target", "myModal");
+
   deleteButton.setAttribute("type", "button");
   deleteButton.innerHTML = "Delete Post";
 
   deleteButton.addEventListener("click", function (e) {
-    let email = jsonObj.email;
-    let id = jsonObj.id;
+    let email = thisUserEmail;
+    let id = thisUserID;
     console.log(email + " " + id);
     deleteExistPost(JSON.stringify({ email: email, id: id }));
   });
@@ -194,11 +190,10 @@ function renderPost(HTML, id, jsonObj) {
   edBtn.setAttribute("type", "button");
   edBtn.innerHTML = "Edit Button";
 
-
   ///////////////////only user can have edit post////////////////////////
-  if((JSON.stringify(jsonObj.email)===JSON.stringify(userEmail))&&(JSON.stringify(jsonObj.id)===JSON.stringify(userID))){
-  DeletePostBtr.prepend(deleteButton, edBtn);
-  }
+  if((JSON.stringify(jsonObj.email)===JSON.stringify(thisUserEmail))&&(JSON.stringify(jsonObj.id)===JSON.stringify(thisUserID))){
+    DeletePostBtr.prepend(deleteButton, edBtn);
+    }
 
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
@@ -252,7 +247,6 @@ function renderPost(HTML, id, jsonObj) {
 
   const buttonSubmit = document.createElement("button");
   buttonSubmit.innerText = "Submit";
-
   buttonSubmit.addEventListener("click", function (e) {
     alert("add comment");
     //  editExistPost(
@@ -293,11 +287,10 @@ function renderPost(HTML, id, jsonObj) {
 
   const card = document.createElement("div");
   card.classList.add("card");
-  card.setAttribute("id", "post"+idString);
-
+  card.setAttribute("id", "post"+ idString);
   card.prepend(collapsePost);
   card.prepend(cardHeader);
- 
+
   HTML.prepend(card);
 }
 
@@ -420,7 +413,7 @@ function renderForm(html, idString, jsonObj) {
     editExistPost(
       JSON.stringify({
         id: "testUuid",
-        email: "testEmail@umass.edu",
+        email: thisUserEmail,
         title: inputTitle.value,
         destination: inputDestination.value,
         outset: inputOutset.value,

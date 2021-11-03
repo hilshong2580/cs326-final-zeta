@@ -76,7 +76,7 @@ router.put("/PostE", function (req, res) {
   let id = req.body.id;
   let email = req.body.email;
   let title = req.body.title;
-
+  console.log(title+" "+email+" "+id);
 
 
   if (editJsonObj(id, email, title))
