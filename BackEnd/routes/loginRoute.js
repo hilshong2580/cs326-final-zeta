@@ -12,7 +12,7 @@ let accounts = new Array(3).fill(null).map((account) => {
     username : faker.internet.username(),
     password: faker.internet.password(),
     phone : faker.datatype.number(),
-    aboutme : faker.lorem.words(),
+    aboutme : faker.lorem.words()
   });
 });
 
@@ -72,7 +72,7 @@ router.get("/login", function (req, res) {
 function checkRegist(email) {
   //if accounts not exist email
   //return true
-if(accounts.find(data => data.email === email ){
+if(accounts.find(data => data.email === email)){
       return false;
     }
     return true;
