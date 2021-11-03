@@ -110,6 +110,7 @@ function renderPost(HTML, id, jsonObj) {
   postButton.setAttribute("data-target", "#collapse" + idString);
   postButton.setAttribute("aria-expanded", "true");
   postButton.setAttribute("aria-controls", "collapse" + idString);
+  postButton.setAttribute("id", "postitle" + idString);
   postButton.innerText = jsonObj.title;
 
   const h5 = document.createElement("h5");
@@ -270,9 +271,11 @@ function renderPost(HTML, id, jsonObj) {
 
   const card = document.createElement("div");
   card.classList.add("card");
+  card.setAttribute("id", "post"+idString);
+
   card.prepend(collapsePost);
   card.prepend(cardHeader);
-
+ 
   HTML.prepend(card);
 }
 

@@ -13,6 +13,7 @@
   <link src="../css/post.css"/> -->
 
   <script type="module" src="./src/main.js" defer></script>
+  <script type="module" src="./src/search.js" defer></script>
   <link rel="stylesheet" href="./css/main.css" />
   <link rel="stylesheet" href="./css/post.css" />
 
@@ -49,8 +50,9 @@
         <img src="./images/textIcon2.png" alt="...">
         <!-- the search bar -->
         <form class="d-flex md-form form-group w-50">
-          <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2 " id="searchinput" type="search" placeholder="Search" aria-label="Search">
+          <!-- <button class="btn btn-outline-success" type="submit" onclick="searchFunction()">Search</button> -->
+          <button class="btn btn-outline-success"  id="searchbtr" >Search</button>
         </form>
         <!-- the logout -->
         <button class="btn btn-outline-success" type="submit">Logout</button>
