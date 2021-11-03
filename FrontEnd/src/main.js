@@ -1,6 +1,6 @@
 console.log("Main-side code running");
 
-let thisUserEmail = "test@umass.edu";
+let thisUserEmail = "test123@umass.edu";
 const thisUserID="testUuid";
 
 
@@ -13,9 +13,9 @@ window.onload = function () {
     tmp = params[i].split("=");
     data[tmp[0]] = tmp[1];
   }
-  //thisUserEmail = JSON.stringify(data.email);
-  //thisUserEmail = thisUserEmail.replace('%40', '@')
-  //console.log(thisUserEmail);
+  thisUserEmail = JSON.stringify(data.email);
+  thisUserEmail = thisUserEmail.replace('%40', '@')
+  console.log(thisUserEmail);
 };
 
 
@@ -239,7 +239,7 @@ function renderPost(HTML, id, jsonObj) {
   textarea.classList.add("form-control");
   textarea.setAttribute("row", "3");
   textarea.setAttribute("id", "exampleFormControlTextarea1");
-  textarea.innerText = "Your Comment: ";
+  textarea.innerText = thisUserEmail+": ";
 
   const formGroup = document.createElement("div");
   formGroup.classList.add("form-group");
