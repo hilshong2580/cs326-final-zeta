@@ -218,7 +218,7 @@ const form1input=document.createElement("input");
 form1input.setAttribute("type", "text");
 form1input.classList.add("form-control");
 form1input.setAttribute("id", "createTitle"+ idString);
-form1input.placeholder=jsonObj.title;
+form1input.value=jsonObj.title;
 
 const form1label1=document.createElement("label");
 form1label1.classList.add("form-label","required");
@@ -227,7 +227,7 @@ const form1input1=document.createElement("input");
 form1input1.setAttribute("type", "text");
 form1input1.classList.add("form-control");
 form1input1.setAttribute("id", "createDestination"+ idString);
-form1input1.placeholder=jsonObj.destination;
+form1input1.value=jsonObj.destination;
 
 const form1label2=document.createElement("label");
 form1label2.classList.add("form-label","required");
@@ -236,7 +236,7 @@ const form1input2=document.createElement("input");
 form1input2.setAttribute("type", "text");
 form1input2.classList.add("form-control");
 form1input2.setAttribute("id", "createOutset"+ idString);
-form1input2.placeholder=jsonObj.outset;
+form1input2.value=jsonObj.outset;
 
 const form1label3=document.createElement("label");
 form1label3.classList.add("form-label","required");
@@ -245,7 +245,7 @@ const form1input3=document.createElement("input");
 form1input3.setAttribute("type", "datetime-local");
 form1input3.classList.add("form-control");
 form1input3.setAttribute("id", "createDateTimeStart"+ idString);
-//form1input3.placeholder=jsonObj.dateTimeStart;
+form1input3.value=jsonObj.dateTimeStart;
 
 const form1label4=document.createElement("label");
 form1label4.classList.add("form-label","required");
@@ -254,7 +254,7 @@ const form1input4=document.createElement("input");
 form1input4.setAttribute("type", "datetime-local");
 form1input4.classList.add("form-control");
 form1input4.setAttribute("id", "createDateTimeEnd"+ idString);
-//form1input.placeholder=jsonObj.title;
+form1input4.value=jsonObj.dateTimeEnd;
 
 const form1label5=document.createElement("label");
 form1label5.classList.add("form-label","required");
@@ -264,6 +264,7 @@ form1input5.setAttribute("type", "number");
 form1input5.classList.add("form-control");
 form1input5.setAttribute("id", "createNumOfPeople"+ idString);
 form1input5.placeholder=jsonObj.numOfPeople;
+form1input5.value=jsonObj.numOfPeople;
 
 const form1label6=document.createElement("label");
 form1label6.classList.add("form-label","required");
@@ -272,6 +273,8 @@ const form1input6=document.createElement("textarea");
 form1input6.classList.add("form-control");
 form1input6.setAttribute("id", "createDescription"+ idString);
 form1input6.placeholder=jsonObj.description;
+form1input6.value=jsonObj.description;
+
 
 const form1label7=document.createElement("label");
 form1label7.classList.add("form-label","required");
@@ -280,7 +283,8 @@ const form1input7=document.createElement("input");
 form1input7.setAttribute("type", "file");
 form1input7.classList.add("form-control");
 form1input7.setAttribute("id", "createUploadImage"+ idString);
-//form1input.placeholder=jsonObj.title;
+form1input7.src=jsonObj.photo;
+
 
 form1.prepend(form1label,form1input,
               form1label1,form1input1,
