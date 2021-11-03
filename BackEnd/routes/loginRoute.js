@@ -1,94 +1,64 @@
-const express = require('express')
-const router = express.Router()
-
+const express = require("express");
+const router = express.Router();
 const faker = require("faker");
 
-
-router.use(express.static('../FrontEnd', {index: 'login.html'}));
+router.use(express.static("../FrontEnd", { index: "login.html" }));
 
 let accounts = new Array(3).fill(null).map((account) => {
+  let phone0 = faker.phone.phoneNumberFormat().replace("-", "");
+  phone0 = phone0.replace("-", "");
   return (account = {
-<<<<<<< HEAD
-    email: faker.internet.email(),
-    username : faker.internet.username(),
+    username: faker.name.firstName(),
     password: faker.internet.password(),
-    phone : faker.datatype.number(),
-    aboutme : faker.lorem.words()
-=======
-    // email: faker.internet.email(),
-    // username : faker.internet.username(),
-    // password: faker.internet.password(),
-    // phone : faker.datatype.number(),
-    // aboutme : faker.lorem.words(),
->>>>>>> Yu
+    email: faker.internet.email(),
+    phone: phone0,
+    about: faker.commerce.productDescription(),
   });
 });
-
+console.log(accounts);
 
 // POST method route to do the login process
 //if contain account and match the info
 //redirect to main page
-router.post('/login', function (req, res) {
-  console.log("this is login")
+router.post("/Account", function (req, res) {
+  console.log("this is login server");
   let email = req.body.email;
   let password = req.body.password;
-  if (signInCheck(email, password))
-    res.send("true") 
-  else
-    res.send("false")
+  if (signInCheck(email, password)) res.status(200).send("true");
+  else res.status(400).send("false");
 });
-
 
 function signInCheck(email, password) {
-  //if accounts.json exist same email & password
-  // return true
-    if(accounts.find(data => data.email === email && data.password === password)){
-      return true;
-    }
-    return false;
-}
+  if (
+    accounts.find((data) => data.email === email && data.password === password)
+  )
+    return true;
 
-//change the forgot password to be go registration account
-//may be use the "href" on html, or use the res.redirect to registration page
+  return false;
+}
 
 // POST method route
-router.post("/registration", function (req, res) {
+router.post("/Registration", function (req, res) {
   console.log("registration page for new account");
-  //TODO
-  let email = req.body.email;
-  if (checkRegist(email)) {
+  let jsonObj = req.body;
+  console.log(jsonObj);
+  if (checkRegist(jsonObj)) {
     accounts.push({
-      "email": email,
-      "username": req.body.username,
-      "password": req.body.password,
-      "phone": req.body.phone,
-      "aboutme": req.body.aboutme
-    })
-    res.send("true");
-  }
-  else
-    res.send("false");
-
+      username: jsonObj.username,
+      password: jsonObj.password,
+      email: jsonObj.email,
+      phone: jsonObj.phone,
+      about: jsonObj.about,
+    });
+    res.status(200).send("true");
+  } else res.status(400).send("false");
 });
 
-router.get("/login", function (req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  res.json(JSON.stringify(accounts));
-});
+function checkRegist(jsonObj) {
+  if (accounts.find((data) => data.email === jsonObj.email)) return false;
 
-
-function checkRegist(email) {
-  //if accounts not exist email
-  //return true
-<<<<<<< HEAD
-if(accounts.find(data => data.email === email)){
-=======
-if(accounts.find(data => data.email === email )){
->>>>>>> Yu
-      return false;
-    }
-    return true;
+  return true;
 }
 
 
-module.exports = router
+module.exports = router;
