@@ -8,11 +8,19 @@ router.use(express.static('../FrontEnd', {index: 'login.html'}));
 
 let accounts = new Array(3).fill(null).map((account) => {
   return (account = {
+<<<<<<< HEAD
     email: faker.internet.email(),
     username : faker.internet.username(),
     password: faker.internet.password(),
     phone : faker.datatype.number(),
     aboutme : faker.lorem.words()
+=======
+    // email: faker.internet.email(),
+    // username : faker.internet.username(),
+    // password: faker.internet.password(),
+    // phone : faker.datatype.number(),
+    // aboutme : faker.lorem.words(),
+>>>>>>> Yu
   });
 });
 
@@ -72,7 +80,11 @@ router.get("/login", function (req, res) {
 function checkRegist(email) {
   //if accounts not exist email
   //return true
+<<<<<<< HEAD
 if(accounts.find(data => data.email === email)){
+=======
+if(accounts.find(data => data.email === email )){
+>>>>>>> Yu
       return false;
     }
     return true;
