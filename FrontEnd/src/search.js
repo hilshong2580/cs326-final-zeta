@@ -4,7 +4,7 @@ searchFunction();
 
 // searchInput();
 
-const SI="";
+// const SI="";
 
 // function searchInput(){
 
@@ -52,10 +52,10 @@ for(let j=0;j<i;j++){
 
 
    // document.getElementById("post1").hidden= true;
-    console.log(searchInput.value);
-if(searchInput.value==="123"){
-    alert(searchInput.value);
-        }
-  });
+//     console.log(searchInput.value);
+// if(searchInput.value==="123"){
+//     alert(searchInput.value);
+//         }
+//   });
 
 }
