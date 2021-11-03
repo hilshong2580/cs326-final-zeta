@@ -182,7 +182,7 @@ function renderPost(HTML, id, jsonObj) {
 
   const editForm5 = document.createElement("h5");
   editForm5.classList.add("modal-title");
-  editForm5.setAttribute("id", "exampleModalLabel");
+  editForm5.setAttribute("id", "exampleModalLabel"+ idString);
   editForm5.innerHTML=jsonObj.title;
 
   const closeBtr= document.createElement("button");
@@ -202,7 +202,7 @@ function renderPost(HTML, id, jsonObj) {
 
 const editForm6=document.createElement("div");
 editForm6.classList.add("modal-body");
-editForm6.setAttribute("id", "modal-body");
+editForm6.setAttribute("id", "modal-body"+ idString);
 
 
 const form=document.createElement("form");
@@ -217,7 +217,7 @@ form1label.innerHTML="Title";
 const form1input=document.createElement("input");
 form1input.setAttribute("type", "text");
 form1input.classList.add("form-control");
-form1input.setAttribute("id", "createTitle");
+form1input.setAttribute("id", "createTitle"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label1=document.createElement("label");
@@ -226,7 +226,7 @@ form1label1.innerHTML="Destination";
 const form1input1=document.createElement("input");
 form1input1.setAttribute("type", "text");
 form1input1.classList.add("form-control");
-form1input1.setAttribute("id", "createDestination");
+form1input1.setAttribute("id", "createDestination"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label2=document.createElement("label");
@@ -235,7 +235,7 @@ form1label2.innerHTML="Outset";
 const form1input2=document.createElement("input");
 form1input2.setAttribute("type", "text");
 form1input2.classList.add("form-control");
-form1input2.setAttribute("id", "createOutset");
+form1input2.setAttribute("id", "createOutset"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label3=document.createElement("label");
@@ -244,7 +244,7 @@ form1label3.innerHTML="Time: Start";
 const form1input3=document.createElement("input");
 form1input3.setAttribute("type", "datetime-local");
 form1input3.classList.add("form-control");
-form1input3.setAttribute("id", "createDateTimeStart");
+form1input3.setAttribute("id", "createDateTimeStart"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label4=document.createElement("label");
@@ -253,7 +253,7 @@ form1label4.innerHTML="Time: End";
 const form1input4=document.createElement("input");
 form1input4.setAttribute("type", "datetime-local");
 form1input4.classList.add("form-control");
-form1input4.setAttribute("id", "createDateTimeEnd");
+form1input4.setAttribute("id", "createDateTimeEnd"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label5=document.createElement("label");
@@ -262,7 +262,7 @@ form1label5.innerHTML="Num of people";
 const form1input5=document.createElement("input");
 form1input5.setAttribute("type", "number");
 form1input5.classList.add("form-control");
-form1input5.setAttribute("id", "createNumOfPeople");
+form1input5.setAttribute("id", "createNumOfPeople"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label6=document.createElement("label");
@@ -270,7 +270,7 @@ form1label6.classList.add("form-label","required");
 form1label6.innerHTML="Description";
 const form1input6=document.createElement("textarea");
 form1input6.classList.add("form-control");
-form1input6.setAttribute("id", "createDescription");
+form1input6.setAttribute("id", "createDescription"+ idString);
 //form1input.innerText=jsonObj.title;
 
 const form1label7=document.createElement("label");
@@ -279,7 +279,7 @@ form1label7.innerHTML="Image/Photo";
 const form1input7=document.createElement("input");
 form1input7.setAttribute("type", "file");
 form1input7.classList.add("form-control");
-form1input7.setAttribute("id", "createUploadImage");
+form1input7.setAttribute("id", "createUploadImage"+ idString);
 //form1input.innerText=jsonObj.title;
 
 form1.prepend(form1label,form1input,
@@ -300,7 +300,7 @@ editForm7.classList.add("modal-footer");
 
 const saveBtr=document.createElement("button");
 saveBtr.classList.add("btn", "btn-primary");
-saveBtr.setAttribute("id","createPost");
+saveBtr.setAttribute("id","createPost"+ idString);
 saveBtr.innerHTML="Save changes";
 
 const cloBtr=document.createElement("button");
