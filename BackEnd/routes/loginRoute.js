@@ -41,7 +41,7 @@ function signInCheck(email, password) {
 router.post("/Registration", function (req, res) {
   console.log("registration page for new account");
   let jsonObj = req.body;
- console.log(jsonObj);
+  console.log(jsonObj);
   if (checkRegist(jsonObj)) {
     accounts.push({
       username: jsonObj.username,
@@ -59,5 +59,6 @@ function checkRegist(jsonObj) {
 
   return true;
 }
+
 
 module.exports = router;
