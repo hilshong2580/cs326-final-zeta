@@ -45,6 +45,7 @@ router.delete("/PostD", function (req, res) {
 
 function deleteJsonObj(email, id) {
   for (let i in postData) {
+    console.log(postData[i].email);
     if (postData[i].email === email && postData[i].id === id) {
       postData.splice(i, 1);
       return true;

@@ -1,5 +1,7 @@
 console.log("Main-side code running");
 
+
+const userEmail="testEmail@umass.edu"
 //render the post base on the server data
 getRenderPost();
 
@@ -177,7 +179,7 @@ async function deleteExistPost(jsonObj) {
   deleteButton.setAttribute("data-bs-target", "myModal");
   deleteButton.innerHTML = "Delete Post";
   deleteButton.addEventListener("click", function (e) {
-    deleteExistPost(JSON.stringify({ email: jsonObj.email, id: jsonObj.id }));
+    deleteExistPost(JSON.stringify({ email: userEmail, id: jsonObj.id }));
   });
 
   // document.getElementById("deleteButton" + idString).addEventListener("click", function (e) {
