@@ -135,7 +135,8 @@ function renderPost(HTML, id, jsonObj) {
   editButton.classList.add("btn", "btn-primary");
   editButton.setAttribute("id", "editButton" + idString);
   editButton.setAttribute("data-toggle", "modal");
-  editButton.setAttribute("data-target", "#fuckyou123");
+  //editButton.setAttribute("data-target", "editForm"+idString);
+  editButton.setAttribute("data-target", "#editForm"+idString);
   editButton.innerHTML = "Edit Post";
 
   EditPostBtr.prepend(editButton);
@@ -155,6 +156,172 @@ function renderPost(HTML, id, jsonObj) {
     EditPostBtr
   );
   // post body end
+
+
+    ////////////////////// Rander  edit post///////////////////////////////////////////
+
+  const editForm = document.createElement("div");
+  editForm.classList.add("modal", "fade");
+  editForm.setAttribute("id", "editForm"+idString);
+  editForm.setAttribute("tabindex", "-1");
+  editForm.setAttribute("role", "dialog");
+  editForm.setAttribute("aria-labelledby", "exampleModalLabel");
+  editForm.setAttribute("aria-hidden", "true");
+  //editForm.innerHTML = "Edit Post";
+
+
+  
+  const editForm2 = document.createElement("div");
+  editForm2.classList.add("modal-dialog");
+  
+  const editForm3 = document.createElement("div");
+  editForm3.classList.add("modal-content");
+
+  const editForm4 = document.createElement("div");
+  editForm4.classList.add("modal-header");
+
+  const editForm5 = document.createElement("h5");
+  editForm5.classList.add("modal-title");
+  editForm5.setAttribute("id", "exampleModalLabel");
+  editForm5.innerHTML=jsonObj.title;
+
+  const closeBtr= document.createElement("button");
+  closeBtr.classList.add("close");
+  closeBtr.setAttribute("data-dismiss", "modal");
+  closeBtr.setAttribute("aria-label", "Close");
+  
+  const span=document.createElement("span");
+  span.setAttribute("aria-hidden", "true");
+  span.innerHTML="&times";
+  
+  closeBtr.prepend(span);
+  editForm4.prepend(editForm5,closeBtr);
+  
+
+
+
+const editForm6=document.createElement("div");
+editForm6.classList.add("modal-body");
+editForm6.setAttribute("id", "modal-body");
+
+
+const form=document.createElement("form");
+
+const form1=document.createElement("div");
+form1.classList.add("mb-3");
+
+//form////////
+const form1label=document.createElement("label");
+form1label.classList.add("form-label","required");
+form1label.innerHTML="Title";
+const form1input=document.createElement("input");
+form1input.setAttribute("type", "text");
+form1input.classList.add("form-control");
+form1input.setAttribute("id", "createTitle");
+//form1input.innerText=jsonObj.title;
+
+const form1label1=document.createElement("label");
+form1label1.classList.add("form-label","required");
+form1label1.innerHTML="Destination";
+const form1input1=document.createElement("input");
+form1input1.setAttribute("type", "text");
+form1input1.classList.add("form-control");
+form1input1.setAttribute("id", "createDestination");
+//form1input.innerText=jsonObj.title;
+
+const form1label2=document.createElement("label");
+form1label2.classList.add("form-label","required");
+form1label2.innerHTML="Outset";
+const form1input2=document.createElement("input");
+form1input2.setAttribute("type", "text");
+form1input2.classList.add("form-control");
+form1input2.setAttribute("id", "createOutset");
+//form1input.innerText=jsonObj.title;
+
+const form1label3=document.createElement("label");
+form1label3.classList.add("form-label","required");
+form1label3.innerHTML="Time: Start";
+const form1input3=document.createElement("input");
+form1input3.setAttribute("type", "datetime-local");
+form1input3.classList.add("form-control");
+form1input3.setAttribute("id", "createDateTimeStart");
+//form1input.innerText=jsonObj.title;
+
+const form1label4=document.createElement("label");
+form1label4.classList.add("form-label","required");
+form1label4.innerHTML="Time: End";
+const form1input4=document.createElement("input");
+form1input4.setAttribute("type", "datetime-local");
+form1input4.classList.add("form-control");
+form1input4.setAttribute("id", "createDateTimeEnd");
+//form1input.innerText=jsonObj.title;
+
+const form1label5=document.createElement("label");
+form1label5.classList.add("form-label","required");
+form1label5.innerHTML="Num of people";
+const form1input5=document.createElement("input");
+form1input5.setAttribute("type", "number");
+form1input5.classList.add("form-control");
+form1input5.setAttribute("id", "createNumOfPeople");
+//form1input.innerText=jsonObj.title;
+
+const form1label6=document.createElement("label");
+form1label6.classList.add("form-label","required");
+form1label6.innerHTML="Description";
+const form1input6=document.createElement("textarea");
+form1input6.classList.add("form-control");
+form1input6.setAttribute("id", "createDescription");
+//form1input.innerText=jsonObj.title;
+
+const form1label7=document.createElement("label");
+form1label7.classList.add("form-label","required");
+form1label7.innerHTML="Image/Photo";
+const form1input7=document.createElement("input");
+form1input7.setAttribute("type", "file");
+form1input7.classList.add("form-control");
+form1input7.setAttribute("id", "createUploadImage");
+//form1input.innerText=jsonObj.title;
+
+form1.prepend(form1label,form1input,
+              form1label1,form1input1,
+              form1label2,form1input2,
+              form1label3,form1input3,
+              form1label4,form1input4,
+              form1label5,form1input5,
+              form1label6,form1input6,
+              form1label7,form1input7);
+
+form.prepend(form1);
+
+////////////////////////////////////////////////////
+
+const editForm7=document.createElement("div");
+editForm7.classList.add("modal-footer");
+
+const saveBtr=document.createElement("button");
+saveBtr.classList.add("btn", "btn-primary");
+saveBtr.setAttribute("id","createPost");
+saveBtr.innerHTML="Save changes";
+
+const cloBtr=document.createElement("button");
+cloBtr.classList.add("btn", "btn-secondary");
+cloBtr.setAttribute("data-dismiss","modal");
+cloBtr.innerHTML="Close changes";
+
+editForm7.prepend(saveBtr,cloBtr);
+
+const editFormid=document.getElementById("editForm");
+
+
+editForm6.prepend(form);
+editForm3.prepend(editForm4,editForm6,editForm7);
+editForm2.prepend(editForm3);
+editForm.prepend(editForm2);
+editFormid.prepend(editForm);
+
+
+
+////////////////////////////////end of create from/////////////////////////
 
   //comment Start
   const commentDetail = document.createElement("div");
@@ -252,15 +419,206 @@ function renderComment(html, json){
 // }
 
 function renderCreateButton(){
-  //alert("test");
-  // const createButton = document.createElement("button");
-  // createButton.classList.add("btn", "btn-primary");
-  // createButton.setAttribute("id", "deleteButton" + idString);
-  // createButton.setAttribute("data-bs-toggle", "modal");
-  // createButton.setAttribute("data-bs-target", "myModal");
-  // createButton.innerHTML = "Create Post";
+    ////////////////////// Rander  edit post///////////////////////////////////////////
 
-  // const createButtonPlace = document.createElement("div");
-  // createButtonPlace.classList.add("createPost");
-  // createButtonPlace.prepend(deleteButton);
+    const editForm = document.createElement("div");
+    editForm.classList.add("modal", "fade");
+    editForm.setAttribute("id", "exampleModal");
+    editForm.setAttribute("tabindex", "-1");
+    editForm.setAttribute("role", "dialog");
+    editForm.setAttribute("aria-labelledby", "exampleModalLabel");
+    editForm.setAttribute("aria-hidden", "true");
+    //editForm.innerHTML = "Edit Post";
+  
+  
+    
+    const editForm2 = document.createElement("div");
+    editForm2.classList.add("modal-dialog");
+    
+    const editForm3 = document.createElement("div");
+    editForm3.classList.add("modal-content");
+  
+    const editForm4 = document.createElement("div");
+    editForm4.classList.add("modal-header");
+  
+    const editForm5 = document.createElement("h5");
+    editForm5.classList.add("modal-title");
+    editForm5.setAttribute("id", "exampleModalLabel");
+    editForm5.innerHTML="Modal title";
+  
+    const closeBtr= document.createElement("button");
+    closeBtr.classList.add("close");
+    closeBtr.setAttribute("data-dismiss", "modal");
+    closeBtr.setAttribute("aria-label", "Close");
+    
+    const span=document.createElement("span");
+    span.setAttribute("aria-hidden", "true");
+    span.innerHTML="&times";
+    
+    closeBtr.prepend(span);
+    editForm4.prepend(editForm5,closeBtr);
+    
+  
+  
+  
+  const editForm6=document.createElement("div");
+  editForm6.classList.add("modal-body");
+  editForm6.setAttribute("id", "modal-body");
+  
+  
+  const form=document.createElement("form");
+  
+  const form1=document.createElement("div");
+  form1.classList.add("mb-3");
+  
+  //form////////
+  const form1label=document.createElement("label");
+  form1label.classList.add("form-label","required");
+  form1label.innerHTML="Title";
+  const form1input=document.createElement("input");
+  form1input.setAttribute("type", "text");
+  form1input.classList.add("form-control");
+  form1input.setAttribute("id", "createTitle");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label1=document.createElement("label");
+  form1label1.classList.add("form-label","required");
+  form1label1.innerHTML="Destination";
+  const form1input1=document.createElement("input");
+  form1input1.setAttribute("type", "text");
+  form1input1.classList.add("form-control");
+  form1input1.setAttribute("id", "createDestination");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label2=document.createElement("label");
+  form1label2.classList.add("form-label","required");
+  form1label2.innerHTML="Outset";
+  const form1input2=document.createElement("input");
+  form1input2.setAttribute("type", "text");
+  form1input2.classList.add("form-control");
+  form1input2.setAttribute("id", "createOutset");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label3=document.createElement("label");
+  form1label3.classList.add("form-label","required");
+  form1label3.innerHTML="Time: Start";
+  const form1input3=document.createElement("input");
+  form1input3.setAttribute("type", "datetime-local");
+  form1input3.classList.add("form-control");
+  form1input3.setAttribute("id", "createDateTimeStart");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label4=document.createElement("label");
+  form1label4.classList.add("form-label","required");
+  form1label4.innerHTML="Time: End";
+  const form1input4=document.createElement("input");
+  form1input4.setAttribute("type", "datetime-local");
+  form1input4.classList.add("form-control");
+  form1input4.setAttribute("id", "createDateTimeEnd");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label5=document.createElement("label");
+  form1label5.classList.add("form-label","required");
+  form1label5.innerHTML="Num of people";
+  const form1input5=document.createElement("input");
+  form1input5.setAttribute("type", "number");
+  form1input5.classList.add("form-control");
+  form1input5.setAttribute("id", "createNumOfPeople");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label6=document.createElement("label");
+  form1label6.classList.add("form-label","required");
+  form1label6.innerHTML="Description";
+  const form1input6=document.createElement("textarea");
+  form1input6.classList.add("form-control");
+  form1input6.setAttribute("id", "createDescription");
+  //form1input.innerText=jsonObj.title;
+  
+  const form1label7=document.createElement("label");
+  form1label7.classList.add("form-label","required");
+  form1label7.innerHTML="Image/Photo";
+  const form1input7=document.createElement("input");
+  form1input7.setAttribute("type", "file");
+  form1input7.classList.add("form-control");
+  form1input7.setAttribute("id", "createUploadImage");
+  //form1input.innerText=jsonObj.title;
+  
+  form1.prepend(form1label,form1input,
+                form1label1,form1input1,
+                form1label2,form1input2,
+                form1label3,form1input3,
+                form1label4,form1input4,
+                form1label5,form1input5,
+                form1label6,form1input6,
+                form1label7,form1input7);
+  
+  form.prepend(form1);
+  
+  ////////////////////////////////////////////////////
+  
+  const editForm7=document.createElement("div");
+  editForm7.classList.add("modal-footer");
+  
+  const saveBtr=document.createElement("button");
+  saveBtr.classList.add("btn", "btn-primary");
+  saveBtr.setAttribute("id","createPost");
+  saveBtr.innerHTML="Save changes";
+  
+  const cloBtr=document.createElement("button");
+  cloBtr.classList.add("btn", "btn-secondary");
+  cloBtr.setAttribute("data-dismiss","modal");
+  cloBtr.innerHTML="Close changes";
+  
+  editForm7.prepend(saveBtr,cloBtr);
+  
+  
+  
+  
+  editForm6.prepend(form);
+  editForm3.prepend(editForm4,editForm6,editForm7);
+  editForm2.prepend(editForm3);
+  editForm.prepend(editForm2);
+
+
+
+  const createPo=document.createElement("div");
+  createPo.classList.add("filterBar", "row");
+
+  const createPo1=document.createElement("div");
+  createPo1.classList.add("row");
+
+  const createPo2=document.createElement("div");
+  createPo2.classList.add("col");
+
+  const createPo3=document.createElement("div");
+  createPo3.classList.add("mainBtrBar");
+
+  const createPo4=document.createElement("div");
+  createPo4.classList.add("createPost");
+  
+  const creatBtr=document.createElement("button");
+  creatBtr.classList.add("btn", "btn-primary");
+  creatBtr.setAttribute("data-toggle","modal");
+  creatBtr.setAttribute("data-target","#exampleModal");
+  creatBtr.setAttribute("id","createPopUp");
+  creatBtr.innerHTML="Create Post";
+
+
+  createPo4.prepend(creatBtr);
+createPo3.prepend(createPo4,editForm);
+ createPo2.prepend(createPo3);
+createPo1.prepend(createPo2);
+  createPo.prepend(createPo1);
+
+
+  const createPost=document.getElementById("createPostbutton");
+  createPost.prepend(createPo);
+  
+
+
+
+  
+  
+  
+  ////////////////////////////////end of create from/////////////////////////
 }
