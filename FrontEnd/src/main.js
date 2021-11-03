@@ -1,8 +1,8 @@
 console.log("Main-side code running");
 
 let thisUserEmail = "test123@umass.edu";
-const thisUserID="testUuid";
-
+let thisUserName = "test123";
+const thisUserID = "testUuid";
 
 window.onload = function () {
   let url = document.location.href,
@@ -14,10 +14,32 @@ window.onload = function () {
     data[tmp[0]] = tmp[1];
   }
   thisUserEmail = JSON.stringify(data.email);
-  thisUserEmail = thisUserEmail.replace('%40', '@')
-  console.log(thisUserEmail);
+  thisUserEmail = thisUserEmail.replace("%40", "@");
+  const name = thisUserEmail.split("@");
+  thisUserName = name[0].replace('"', "");
 };
 
+async function pushComment(username, comment, title, id, email) {
+  console.log("this is pushComment");
+
+  fetch("http://localhost:3000/main/CommentText", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      comment: comment,
+      title: title,
+      id: id,
+      email: email
+    }),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) 
+    getRenderPost();
+  });
+}
 
 //render the post base on the server data
 getRenderPost();
@@ -44,13 +66,10 @@ document.getElementById("createPost").addEventListener("click", function (e) {
   getRenderPost();
 });
 
-
-document.getElementById("LogoutButton").addEventListener("click", function(e){
+document.getElementById("LogoutButton").addEventListener("click", function (e) {
   thisUserEmail = "";
-  window.location.href="./login.html";
+  window.location.href = "./login.html";
 });
-
-
 
 async function editExistPost(jsonObj) {
   fetch("http://localhost:3000/main/PostE", {
@@ -191,9 +210,12 @@ function renderPost(HTML, id, jsonObj) {
   edBtn.innerHTML = "Edit Button";
 
   ///////////////////only user can have edit post////////////////////////
-  if((JSON.stringify(jsonObj.email)===JSON.stringify(thisUserEmail))&&(JSON.stringify(jsonObj.id)===JSON.stringify(thisUserID))){
+  if (
+    JSON.stringify(jsonObj.email) === JSON.stringify(thisUserEmail) &&
+    JSON.stringify(jsonObj.id) === JSON.stringify(thisUserID)
+  ) {
     DeletePostBtr.prepend(deleteButton, edBtn);
-    }
+  }
 
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
@@ -233,13 +255,15 @@ function renderPost(HTML, id, jsonObj) {
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText = "Your Comment: ";
+  label.innerText = thisUserName+"'s Comment";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
   textarea.setAttribute("row", "3");
   textarea.setAttribute("id", "exampleFormControlTextarea1");
-  textarea.innerText = thisUserEmail+": ";
+
+
+  //textarea.innerText = thisUserEmail + ": ";
 
   const formGroup = document.createElement("div");
   formGroup.classList.add("form-group");
@@ -248,17 +272,8 @@ function renderPost(HTML, id, jsonObj) {
   const buttonSubmit = document.createElement("button");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
-    alert("add comment");
-    //  editExistPost(
-    //    JSON.stringify({
-    //      id: "testUuid",
-    //      email: "testEmail@umass.edu",
-    //      comment: jsonObj.comment,
-    //    })
-    //  );
+    pushComment(thisUserName, textarea.value, jsonObj.title, jsonObj.id, jsonObj.email)
   });
-
-
 
   const comment = document.createElement("div");
   comment.classList.add("comment");
@@ -287,7 +302,7 @@ function renderPost(HTML, id, jsonObj) {
 
   const card = document.createElement("div");
   card.classList.add("card");
-  card.setAttribute("id", "post"+ idString);
+  card.setAttribute("id", "post" + idString);
   card.prepend(collapsePost);
   card.prepend(cardHeader);
 
