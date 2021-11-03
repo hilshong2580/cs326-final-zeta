@@ -1,4 +1,3 @@
-
 const express = require('express')
 const router = express.Router()
 
@@ -10,7 +9,10 @@ router.use(express.static('../FrontEnd', {index: 'login.html'}));
 let accounts = new Array(3).fill(null).map((account) => {
   return (account = {
     email: faker.internet.email(),
+    username : faker.internet.username(),
     password: faker.internet.password(),
+    phone : faker.datatype.number(),
+    aboutme : faker.lorem.words(),
   });
 });
 
@@ -32,8 +34,10 @@ router.post('/login', function (req, res) {
 function signInCheck(email, password) {
   //if accounts.json exist same email & password
   // return true
-
-  return false;
+    if(accounts.find(data => data.email === email && data.password === password){
+      return true;
+    }
+    return false;
 }
 
 //change the forgot password to be go registration account
@@ -47,7 +51,10 @@ router.post("/registration", function (req, res) {
   if (checkRegist(email)) {
     accounts.push({
       "email": email,
+      "username": req.body.username
       "password": req.body.password
+      "phone": req.body.phone
+      "aboutme": req.body.aboutme
     })
     res.send("true");
   }
@@ -56,13 +63,20 @@ router.post("/registration", function (req, res) {
 
 });
 
+router.get("/login", function (req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.json(JSON.stringify(accounts));
+});
+
+
 function checkRegist(email) {
   //if accounts not exist email
   //return true
-
-  return false;
+if(accounts.find(data => data.email === email ){
+      return false;
+    }
+    return true;
 }
 
 
 module.exports = router
-
