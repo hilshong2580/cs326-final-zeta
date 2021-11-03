@@ -2,12 +2,17 @@ console.log("Main-side code running");
 //render the post base on the server data
 getRenderPost();
 
+
+const userID="testUuid";
+const userEmail="testEmail@umass.edu";
+
+
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
   let newPost = {
-    id: "testUuid",
-    email: "testEmail@umass.edu",
+    id: userID,
+    email: userEmail,
     title: document.getElementById("createTitle").value,
     destination: document.getElementById("createDestination").value,
     outset: document.getElementById("createOutset").value,
@@ -189,7 +194,11 @@ function renderPost(HTML, id, jsonObj) {
   edBtn.setAttribute("type", "button");
   edBtn.innerHTML = "Edit Button";
 
+
+  ///////////////////only user can have edit post////////////////////////
+  if((JSON.stringify(jsonObj.email)===JSON.stringify(userEmail))&&(JSON.stringify(jsonObj.id)===JSON.stringify(userID))){
   DeletePostBtr.prepend(deleteButton, edBtn);
+  }
 
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
