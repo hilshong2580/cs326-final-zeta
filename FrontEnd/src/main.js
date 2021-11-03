@@ -327,6 +327,41 @@ editFormid.prepend(editForm);
 
 ////////////////////////////////end of create from/////////////////////////
 
+
+
+
+
+document.getElementById("createPost"+ idString).addEventListener("click", function (e) {
+  console.log("button was editPost");
+  let newPost = {
+    email: "testEmail@umass.edu",
+    title: document.getElementById("createTitle"+ idString).value,
+    destination: document.getElementById("createDestination"+ idString).value,
+    outset: document.getElementById("createOutset"+ idString).value,
+    dateTimeStart: document.getElementById("createDateTimeStart"+ idString).value,
+    dateTimeEnd: document.getElementById("createDateTimeEnd"+ idString).value,
+    numOfPeople: document.getElementById("createNumOfPeople"+ idString).value,
+    description: document.getElementById("createDescription"+ idString).value,
+    photo: document.getElementById("createUploadImage"+ idString).value,
+    comment: [],
+  };
+  //console.log(newPost);
+  postNewPost(JSON.stringify(newPost));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //comment Start
   const commentDetail = document.createElement("div");
   commentDetail.classList.add("commentDetail");
