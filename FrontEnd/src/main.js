@@ -238,23 +238,23 @@ form1input2.classList.add("form-control");
 form1input2.setAttribute("id", "createOutset"+ idString);
 form1input2.value=jsonObj.outset;
 
-const form1label3=document.createElement("label");
-form1label3.classList.add("form-label","required");
-form1label3.innerHTML="Time: Start";
-const form1input3=document.createElement("input");
-form1input3.setAttribute("type", "datetime-local");
-form1input3.classList.add("form-control");
-form1input3.setAttribute("id", "createDateTimeStart"+ idString);
-form1input3.value=jsonObj.dateTimeStart;
+// const form1label3=document.createElement("label");
+// form1label3.classList.add("form-label","required");
+// form1label3.innerHTML="Time: Start";
+// const form1input3=document.createElement("input");
+// form1input3.setAttribute("type", "datetime-local");
+// form1input3.classList.add("form-control");
+// form1input3.setAttribute("id", "createDateTimeStart"+ idString);
+// form1input3.value=jsonObj.dateTimeStart;
 
-const form1label4=document.createElement("label");
-form1label4.classList.add("form-label","required");
-form1label4.innerHTML="Time: End";
-const form1input4=document.createElement("input");
-form1input4.setAttribute("type", "datetime-local");
-form1input4.classList.add("form-control");
-form1input4.setAttribute("id", "createDateTimeEnd"+ idString);
-form1input4.value=jsonObj.dateTimeEnd;
+// const form1label4=document.createElement("label");
+// form1label4.classList.add("form-label","required");
+// form1label4.innerHTML="Time: End";
+// const form1input4=document.createElement("input");
+// form1input4.setAttribute("type", "datetime-local");
+// form1input4.classList.add("form-control");
+// form1input4.setAttribute("id", "createDateTimeEnd"+ idString);
+// form1input4.value=jsonObj.dateTimeEnd;
 
 const form1label5=document.createElement("label");
 form1label5.classList.add("form-label","required");
@@ -276,24 +276,24 @@ form1input6.placeholder=jsonObj.description;
 form1input6.value=jsonObj.description;
 
 
-const form1label7=document.createElement("label");
-form1label7.classList.add("form-label","required");
-form1label7.innerHTML="Image/Photo";
-const form1input7=document.createElement("input");
-form1input7.setAttribute("type", "file");
-form1input7.classList.add("form-control");
-form1input7.setAttribute("id", "createUploadImage"+ idString);
-form1input7.src=jsonObj.photo;
+// const form1label7=document.createElement("label");
+// form1label7.classList.add("form-label","required");
+// form1label7.innerHTML="Image/Photo";
+// const form1input7=document.createElement("input");
+// form1input7.setAttribute("type", "file");
+// form1input7.classList.add("form-control");
+// form1input7.setAttribute("id", "createUploadImage"+ idString);
+// form1input7.src=jsonObj.photo;
 
-
+// form1label3,form1input3,
+// form1label4,form1input4,
+//form1label7,form1input7
 form1.prepend(form1label,form1input,
               form1label1,form1input1,
               form1label2,form1input2,
-              form1label3,form1input3,
-              form1label4,form1input4,
               form1label5,form1input5,
               form1label6,form1input6,
-              form1label7,form1input7);
+              );
 
 form.prepend(form1);
 
@@ -338,12 +338,12 @@ document.getElementById("createPost"+ idString).addEventListener("click", functi
     title: document.getElementById("createTitle"+ idString).value,
     destination: document.getElementById("createDestination"+ idString).value,
     outset: document.getElementById("createOutset"+ idString).value,
-    dateTimeStart: document.getElementById("createDateTimeStart"+ idString).value,
-    dateTimeEnd: document.getElementById("createDateTimeEnd"+ idString).value,
+    dateTimeStart: jsonObj.dateTimeStart,
+    dateTimeEnd: jsonObj.dateTimeEnd,
     numOfPeople: document.getElementById("createNumOfPeople"+ idString).value,
     description: document.getElementById("createDescription"+ idString).value,
-    photo: document.getElementById("createUploadImage"+ idString).value,
-    comment: [],
+    photo: jsonObj.photo,
+    comment: jsonObj.comment,
   };
   //console.log(newPost);
   postNewPost(JSON.stringify(newPost));
