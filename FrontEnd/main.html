@@ -59,13 +59,100 @@
   </div>
 
   <!-- This is filter row for create post, filter, drop down botton -->
-<div id="createPostbutton"></div>
+  <div class="filterBar row">
+    <div class="row">
+      <div class="col">
+        <div class="mainBtrBar">
 
-  
+          <!-- the create post button -->
+          <div class="createPost">
 
-  <div id="editForm"></div>
 
 
+            <!-- Button trigger modal, this is use on create post -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal"
+              id="deletePopUp">
+              delete Post
+            </button>
+
+            <!-- Button trigger modal, this is use on create post -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" id="editPopUp">
+              edit Post
+            </button>
+
+            <!-- Button trigger modal, this is use on create post -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+              id="createPopUp">
+              Create Post
+            </button>
+
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label class="form-label required">Title</label>
+                      <input type="text" class="form-control" id="createTitle">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label required">Destination</label>
+                      <input type="text" class="form-control" id="createDestination">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label required">Outset</label>
+                      <input type="text" class="form-control" id="createOutset">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label required">Time: Start</label>
+                      <input type="datetime-local" class="form-control" id="createDateTimeStart">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label required">Time: End</label>
+                      <input type="datetime-local" class="form-control" id="createDateTimeEnd">
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label required">Num of people</label>
+                      <input type="number" class="form-control" id="createNumOfPeople">
+                    </div>
+
+                    <div class="mb-3">
+                      <label class="form-label required">Description</label>
+                      <textarea class="form-control" id="createDescription"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Image/Photo</label>
+                      <input type="file" class="form-control" id="createUploadImage" />
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" id="createPost">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- the filter for day week month -->
+
+          <!-- dropdown button for sort -->
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- a solid line to seperate the content area -->
   <hr class="solid">
