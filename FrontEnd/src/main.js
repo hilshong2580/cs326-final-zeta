@@ -9,9 +9,10 @@ renderCreateButton();
 
 //get all post by fetch http://localhost:3000/main/getPost , then render the post
 async function getRenderPost() {
-  let response = await fetch("http://localhost:3000/main/getPost", {
+  let response = await fetch("http://localhost:3000/main/PostG", {
     method: "GET",
   });
+  document.getElementById("accordion").innerHTML ="";
   let data = JSON.parse(await response.json());
   for (let i in data) {
     renderPost(document.getElementById("accordion"), i, data[i]);
@@ -22,6 +23,7 @@ async function getRenderPost() {
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
   let newPost = {
+    id:"1234",
     email: "testEmail@umass.edu",
     title: document.getElementById("createTitle").value,
     destination: document.getElementById("createDestination").value,
@@ -41,7 +43,7 @@ document.getElementById("createPost").addEventListener("click", function (e) {
 
 //post new post by fetch http://localhost:3000/main/createPost
 async function postNewPost(jsonObj) {
-  fetch("http://localhost:3000/main/createPost", {
+  fetch("http://localhost:3000/main/PostP", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -52,6 +54,35 @@ async function postNewPost(jsonObj) {
     console.log(data);
   });
 }
+
+
+
+async function editExistPost(jsonObj) {
+  fetch("http://localhost:3000/main/PostE", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: jsonObj,
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+async function deleteExistPost(jsonObj) {
+  fetch("http://localhost:3000/main/PostD", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: jsonObj,
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
 
 function renderPost(HTML, id, jsonObj) {
   let idString = id.toString();
@@ -124,6 +155,9 @@ function renderPost(HTML, id, jsonObj) {
   deleteButton.setAttribute("data-bs-toggle", "modal");
   deleteButton.setAttribute("data-bs-target", "myModal");
   deleteButton.innerHTML = "Delete Post";
+  deleteButton.addEventListener("click", function (e) {
+    deleteExistPost({ email: jsonObj.email, id: jsonObj.id });
+  });
 
   DeletePostBtr.prepend(deleteButton);
 
@@ -238,23 +272,23 @@ form1input2.classList.add("form-control");
 form1input2.setAttribute("id", "createOutset"+ idString);
 form1input2.value=jsonObj.outset;
 
-// const form1label3=document.createElement("label");
-// form1label3.classList.add("form-label","required");
-// form1label3.innerHTML="Time: Start";
-// const form1input3=document.createElement("input");
-// form1input3.setAttribute("type", "datetime-local");
-// form1input3.classList.add("form-control");
-// form1input3.setAttribute("id", "createDateTimeStart"+ idString);
-// form1input3.value=jsonObj.dateTimeStart;
+const form1label3=document.createElement("label");
+form1label3.classList.add("form-label","required");
+form1label3.innerHTML="Time: Start";
+const form1input3=document.createElement("input");
+form1input3.setAttribute("type", "datetime-local");
+form1input3.classList.add("form-control");
+form1input3.setAttribute("id", "createDateTimeStart"+ idString);
+form1input3.value=jsonObj.dateTimeStart;
 
-// const form1label4=document.createElement("label");
-// form1label4.classList.add("form-label","required");
-// form1label4.innerHTML="Time: End";
-// const form1input4=document.createElement("input");
-// form1input4.setAttribute("type", "datetime-local");
-// form1input4.classList.add("form-control");
-// form1input4.setAttribute("id", "createDateTimeEnd"+ idString);
-// form1input4.value=jsonObj.dateTimeEnd;
+const form1label4=document.createElement("label");
+form1label4.classList.add("form-label","required");
+form1label4.innerHTML="Time: End";
+const form1input4=document.createElement("input");
+form1input4.setAttribute("type", "datetime-local");
+form1input4.classList.add("form-control");
+form1input4.setAttribute("id", "createDateTimeEnd"+ idString);
+form1input4.value=jsonObj.dateTimeEnd;
 
 const form1label5=document.createElement("label");
 form1label5.classList.add("form-label","required");
@@ -276,24 +310,24 @@ form1input6.placeholder=jsonObj.description;
 form1input6.value=jsonObj.description;
 
 
-// const form1label7=document.createElement("label");
-// form1label7.classList.add("form-label","required");
-// form1label7.innerHTML="Image/Photo";
-// const form1input7=document.createElement("input");
-// form1input7.setAttribute("type", "file");
-// form1input7.classList.add("form-control");
-// form1input7.setAttribute("id", "createUploadImage"+ idString);
-// form1input7.src=jsonObj.photo;
+const form1label7=document.createElement("label");
+form1label7.classList.add("form-label","required");
+form1label7.innerHTML="Image/Photo";
+const form1input7=document.createElement("input");
+form1input7.setAttribute("type", "file");
+form1input7.classList.add("form-control");
+form1input7.setAttribute("id", "createUploadImage"+ idString);
+form1input7.src=jsonObj.photo;
 
-// form1label3,form1input3,
-// form1label4,form1input4,
-//form1label7,form1input7
+
 form1.prepend(form1label,form1input,
               form1label1,form1input1,
               form1label2,form1input2,
+              form1label3,form1input3,
+              form1label4,form1input4,
               form1label5,form1input5,
               form1label6,form1input6,
-              );
+              form1label7,form1input7);
 
 form.prepend(form1);
 
@@ -334,19 +368,20 @@ editFormid.prepend(editForm);
 document.getElementById("createPost"+ idString).addEventListener("click", function (e) {
   console.log("button was editPost");
   let newPost = {
+    id:"1234",
     email: "testEmail@umass.edu",
     title: document.getElementById("createTitle"+ idString).value,
     destination: document.getElementById("createDestination"+ idString).value,
     outset: document.getElementById("createOutset"+ idString).value,
-    dateTimeStart: jsonObj.dateTimeStart,
-    dateTimeEnd: jsonObj.dateTimeEnd,
+    dateTimeStart: document.getElementById("createDateTimeStart"+ idString).value,
+    dateTimeEnd: document.getElementById("createDateTimeEnd"+ idString).value,
     numOfPeople: document.getElementById("createNumOfPeople"+ idString).value,
     description: document.getElementById("createDescription"+ idString).value,
-    photo: jsonObj.photo,
-    comment: jsonObj.comment,
+    photo: document.getElementById("createUploadImage"+ idString).value,
+    comment: [],
   };
   //console.log(newPost);
-  postNewPost(JSON.stringify(newPost));
+  editExistPost(JSON.stringify(newPost));
 });
 
 

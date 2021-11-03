@@ -3,14 +3,9 @@
 const express = require("express");
 const router = express.Router();
 const faker = require("faker");
-const cors = require("cors");
 
-router.use(express.json());
-router.use(express.urlencoded({ extended: false }));
-router.use(cors());
 // router.use(express.static('../FrontEnd'));
-router.use(express.static('../FrontEnd', {index: 'main.html'}));
-
+router.use(express.static("../FrontEnd", { index: "main.html" }));
 
 let postData = new Array(3).fill(null).map((post) => {
   return (post = {
@@ -24,42 +19,34 @@ let postData = new Array(3).fill(null).map((post) => {
     numOfPeople: faker.datatype.number(),
     description: faker.lorem.words(),
     photo: faker.image.avatar(),
-    comment:[
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()},
-      {name:faker.name.findName(), comment: faker.hacker.phrase()}
-    ]
+    comment: [
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+      { name: faker.name.findName(), comment: faker.hacker.phrase() },
+    ],
   });
 });
 
-
-router.get("/", (req, res) => {
-  console.log("this is main");
-});
-
 // DELETE method route to update the post
-router.delete("/deletePost", function (req, res) {
+router.delete("/PostD", function (req, res) {
   console.log("this is delete post");
   let email = req.body.email;
-  let uuid = req.body.id;
-  if(deleteJsonObj(email, uuid)){
-    res.send("success")
-  }
-  else
-  res.send("fail")
-
+  let id = req.body.id;
+  console.log(email + "  " + id);
+  if (deleteJsonObj(email, id)) res.status(200).send("true");
+  else res.status(404).send("false");
 });
 
-function deleteJsonObj(email, uuid){
-  for(let post in postData){
-    if(postData[post].email.equals(email) && postData[post].id.equals(id)){
-      postData.splice(post, 1);
+function deleteJsonObj(email, id) {
+  for (let i in postData) {
+    if (postData[i].email === email && postData[i].id === id) {
+      postData.splice(i, 1);
       return true;
     }
   }
@@ -67,26 +54,44 @@ function deleteJsonObj(email, uuid){
 }
 
 // POST method route
-router.post("/createPost", function (req, res) {
+router.post("/PostP", function (req, res) {
   console.log("this is create post");
-  console.log(req.body);      // your JSON
-  postData.push(req.body); 
-  res.status(200).send('User created!');
+  console.log(req.body); // your JSON
+  postData.push(req.body);
+  res.status(200).send("User created!");
   //response.send(request.body);    // echo the result back
 });
 
-
 // GET method route to get all post
-router.get("/getPost", function (req, res) {
+router.get("/PostG", function (req, res) {
   console.log("this is get all post");
-  res.setHeader('Content-Type', 'application/json');
-  res.json(JSON.stringify(postData));
+  console.log(postData);
+  res.setHeader("Content-Type", "application/json");
+  res.status(200).json(JSON.stringify(postData));
 });
 
 // PUT method route to update the post
-router.put("/updatePost", function (req, res) {
+router.put("/PostE", function (req, res) {
   console.log("this is update post");
+  let id = req.body.id;
+  let email = req.body.email;
+  let title = req.body.title;
+
+
+
+  if (editJsonObj(id, email, title))
+    res.status(200).send("true");
+  else res.status(404).send("false");
 });
 
+function editJsonObj(id, email, title) {
+  for (let i in postData) {
+    if (postData[i].email === email && postData[i].id === id) {
+      postData[i].title = title;
+      return true;
+    }
+  }
+  return false;
+}
 
 module.exports = router;
