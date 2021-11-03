@@ -1,23 +1,12 @@
 console.log("Main-side code running");
-
 //render the post base on the server data
 getRenderPost();
-
-//get all post by fetch http://localhost:3000/main/getPost , then render the post
-async function getRenderPost() {
-  let response = await fetch("http://localhost:3000/main/getPost", {
-    method: "GET",
-  });
-  let data = JSON.parse(await response.json());
-  for (let i in data) {
-    renderPost(document.getElementById("accordion"), i, data[i]);
-  }
-}
 
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
   let newPost = {
+    id: "testUuid",
     email: "testEmail@umass.edu",
     title: document.getElementById("createTitle").value,
     destination: document.getElementById("createDestination").value,
@@ -35,9 +24,62 @@ document.getElementById("createPost").addEventListener("click", function (e) {
   getRenderPost();
 });
 
+// document.getElementById("deletePost").addEventListener("click", function(e){
+//   let email = document.getElementById("deleteEmail").value;
+//   let id = document.getElementById("deleteUuid").value;
+//   console.log(email+" "+id);
+//   deleteExistPost(JSON.stringify({email:email, id:id}));
+// })
+
+// document.getElementById("deletePost").addEventListener("click", function (e) {
+//   let email = document.getElementById("deleteEmail").value;
+//   let id = document.getElementById("deleteUuid").value;
+//   let title = "aaaaaaaa";
+//   console.log(email + " " + id + "    " + title);
+//   editExistPost(JSON.stringify({ email: email, id: id, title: title }));
+// });
+
+//
+async function editExistPost(jsonObj) {
+  fetch("http://localhost:3000/main/Post", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: jsonObj,
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+async function deleteExistPost(jsonObj) {
+  fetch("http://localhost:3000/main/Post", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: jsonObj,
+  }).then(async (response) => {
+    const data = await response.text();
+    console.log(data);
+  });
+}
+
+//get all post by fetch http://localhost:3000/main/getPost , then render the post
+async function getRenderPost() {
+  let response = await fetch("http://localhost:3000/main/Post", {
+    method: "GET",
+  });
+  let data = JSON.parse(await response.json());
+  for (let i in data) {
+    renderPost(document.getElementById("accordion"), i, data[i]);
+  }
+}
+
 //post new post by fetch http://localhost:3000/main/createPost
 async function postNewPost(jsonObj) {
-  fetch("http://localhost:3000/main/createPost", {
+  fetch("http://localhost:3000/main/Post", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -50,8 +92,8 @@ async function postNewPost(jsonObj) {
 }
 
 function renderPost(HTML, id, jsonObj) {
+  HTML.innerHTML = "";
   let idString = id.toString();
-
   const postButton = document.createElement("button");
   postButton.classList.add("btn", "btn-link");
   postButton.setAttribute("data-toggle", "collapse");
@@ -121,6 +163,10 @@ function renderPost(HTML, id, jsonObj) {
   deleteButton.setAttribute("data-bs-target", "myModal");
   deleteButton.innerHTML = "Delete Post";
 
+  deleteButton.addEventListener("click", function (e) {
+    deleteExistPost({ email: jsonObj.email, id: jsonObj.id });
+  });
+
   DeletePostBtr.prepend(deleteButton);
 
   const accordionDetail = document.createElement("div");
@@ -141,27 +187,33 @@ function renderPost(HTML, id, jsonObj) {
   const commentDetail = document.createElement("div");
   commentDetail.classList.add("commentDetail");
 
-  for(let com in jsonObj.comment){
-    const contentaa =  document.createElement("div")
-    contentaa.innerHTML = (jsonObj.comment[com].name+": "+jsonObj.comment[com].comment);
+  for (let com in jsonObj.comment) {
+    const contentaa = document.createElement("div");
+    contentaa.innerHTML =
+      jsonObj.comment[com].name + ": " + jsonObj.comment[com].comment;
     commentDetail.prepend(contentaa);
   }
 
   const overFlow = document.createElement("div");
-  overFlow.classList.add("overflow-auto", "p-3", "mb-3",  "mb-md-0", "mr-md-3",  "bg-light");
+  overFlow.classList.add(
+    "overflow-auto",
+    "p-3",
+    "mb-3",
+    "mb-md-0",
+    "mr-md-3",
+    "bg-light"
+  );
   overFlow.prepend(commentDetail);
-
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText="Your Comment: ";
+  label.innerText = "Your Comment: ";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
   textarea.setAttribute("row", "3");
   textarea.setAttribute("id", "exampleFormControlTextarea1");
-  textarea.innerText="Your Comment: ";
-
+  textarea.innerText = "Your Comment: ";
 
   const formGroup = document.createElement("div");
   formGroup.classList.add("form-group");
@@ -169,7 +221,6 @@ function renderPost(HTML, id, jsonObj) {
 
   const buttonSubmit = document.createElement("button");
   buttonSubmit.innerText = "Submit";
-
 
   const comment = document.createElement("div");
   comment.classList.add("comment");
@@ -179,7 +230,6 @@ function renderPost(HTML, id, jsonObj) {
   cardBody.innerHTML = "this is " + idString;
   cardBody.prepend(comment);
   cardBody.prepend(accordionDetail);
-
 
   const collapsePost = document.createElement("div");
   collapsePost.setAttribute("id", "collapse" + idString);
@@ -196,13 +246,13 @@ function renderPost(HTML, id, jsonObj) {
   HTML.prepend(card);
 }
 
-
-
-function renderComment(html, json){
-  const content =  document.createElement("div")
-  content.innerHTML = (json.name+": "+json.comment);
+function renderComment(html, json) {
+  const content = document.createElement("div");
+  content.innerHTML = json.name + ": " + json.comment;
   html.prepend(content);
 }
+
+
 
 /**
   email: faker.internet.email(),
