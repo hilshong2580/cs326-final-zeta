@@ -5,7 +5,7 @@ const router = express.Router();
 const faker = require("faker");
 
 // router.use(express.static('../FrontEnd'));
-router.use(express.static("../FrontEnd", { index: "main.html" }));
+//router.use(express.static("../FrontEnd", { index: "main.html" }));
 
 let postData = new Array(3).fill(null).map((post) => {
   return (post = {
@@ -73,21 +73,21 @@ router.get("/PostG", function (req, res) {
 // PUT method route to update the post
 router.put("/PostE", function (req, res) {
   console.log("this is update post");
-  let id = req.body.id;
-  let email = req.body.email;
-  let title = req.body.title;
-  console.log(title+" "+email+" "+id);
+  let body = req.body;
 
-
-  if (editJsonObj(id, email, title))
+  if (editJsonObj(body))
     res.status(200).send("true");
   else res.status(404).send("false");
 });
 
-function editJsonObj(id, email, title) {
+function editJsonObj(body) {
   for (let i in postData) {
-    if (postData[i].email === email && postData[i].id === id) {
+    if (postData[i].email === body.email && postData[i].id === body.id) {
       postData[i].title = title;
+      postData[i].destination = destination;
+      postData[i].outset = outset;
+      postData[i].numOfPeople = numOfPeople;
+      postData[i].description = description;
       return true;
     }
   }
