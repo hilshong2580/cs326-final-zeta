@@ -24,30 +24,30 @@ document.getElementById("createPost").addEventListener("click", function (e) {
   getRenderPost();
 });
 
-document.getElementById("deletePopUp").addEventListener("click", function (e) {
-  let email = "testEmail@umass.edu";
-  let id = "testUuid";
-  console.log(email + " " + id);
-  deleteExistPost(JSON.stringify({ email: email, id: id }));
-});
+// document.getElementById("deletePopUp").addEventListener("click", function (e) {
+//   let email = "testEmail@umass.edu";
+//   let id = "testUuid";
+//   console.log(email + " " + id);
+//   deleteExistPost(JSON.stringify({ email: email, id: id }));
+// });
 
-document.getElementById("editPopUp").addEventListener("click", function (e) {
-  let temp = {
-    id: "testUuid",
-    email: "testEmail@umass.edu",
-    title: "aaaaaaaa",
-    destination: "aaaaaaaaa",
-    outset: "aaaaaaaaaa",
-    dateTimeStart: "2021-11-03T02:23",
-    dateTimeEnd: "2021-11-03T01:24",
-    numOfPeople: "6",
-    description: "dasd",
-    photo: "C:\\fakepath\\1111PickMeForTest.jpg",
-    comment: [],
-  };
-  console.log(temp);
-  editExistPost(JSON.stringify(temp));
-});
+// document.getElementById("editPopUp").addEventListener("click", function (e) {
+//   let temp = {
+//     id: "testUuid",
+//     email: "testEmail@umass.edu",
+//     title: "aaaaaaaa",
+//     destination: "aaaaaaaaa",
+//     outset: "aaaaaaaaaa",
+//     dateTimeStart: "2021-11-03T02:23",
+//     dateTimeEnd: "2021-11-03T01:24",
+//     numOfPeople: "6",
+//     description: "dasd",
+//     photo: "C:\\fakepath\\1111PickMeForTest.jpg",
+//     comment: [],
+//   };
+//   console.log(temp);
+//   editExistPost(JSON.stringify(temp));
+// });
 
 async function editExistPost(jsonObj) {
   fetch("http://localhost:3000/main/PostE", {
