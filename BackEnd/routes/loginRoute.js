@@ -20,7 +20,7 @@ let accounts = new Array(3).fill(null).map((account) => {
 // POST method route to do the login process
 //if contain account and match the info
 //redirect to main page
-router.post('/login', function (req, res) {
+router.post('/login', function (req, res)) {
   console.log("this is login")
   let email = req.body.email;
   let password = req.body.password;
@@ -63,7 +63,7 @@ router.post("/registration", function (req, res) {
 
 });
 
-router.get("/login", function (req, res) {
+router.get("/login", function (req, res)) {
   res.setHeader('Content-Type', 'application/json');
   res.json(JSON.stringify(accounts));
 });
