@@ -8,38 +8,57 @@ getRenderPost();
 renderCreateButton();
 
 //get all post by fetch http://localhost:3000/main/getPost , then render the post
+// async function getRenderPost() {
+//   let response = await fetch("http://localhost:3000/main/PostG", {
+//     method: "GET",
+//   });
+//   console.log("15");
+//   document.getElementById("accordion").innerHTML ="";
+
+//   let data = JSON.parse(await response.json());
+//   for (let i in data) {
+//     renderPost(document.getElementById("accordion"), i, data[i]);
+//   }
+//   console.log("22");
+// }
+
+
+
 async function getRenderPost() {
   let response = await fetch("http://localhost:3000/main/PostG", {
     method: "GET",
   });
-  document.getElementById("accordion").innerHTML ="";
   let data = JSON.parse(await response.json());
+
+  document.getElementById("accordion").innerHTML = "";
   for (let i in data) {
     renderPost(document.getElementById("accordion"), i, data[i]);
   }
 }
 
-// a button listener to create a new post
-document.getElementById("createPost").addEventListener("click", function (e) {
-  console.log("button was createPost");
-  let newPost = {
-    id:"1234",
-    email: "testEmail@umass.edu",
-    title: document.getElementById("createTitle").value,
-    destination: document.getElementById("createDestination").value,
-    outset: document.getElementById("createOutset").value,
-    dateTimeStart: document.getElementById("createDateTimeStart").value,
-    dateTimeEnd: document.getElementById("createDateTimeEnd").value,
-    numOfPeople: document.getElementById("createNumOfPeople").value,
-    description: document.getElementById("createDescription").value,
-    photo: document.getElementById("createUploadImage").value,
-    comment: [],
-  };
-  //console.log(newPost);
-  postNewPost(JSON.stringify(newPost));
-  document.getElementById("accordion").innerHTML = "";
-  getRenderPost();
-});
+// // a button listener to create a new post
+// document.getElementById("createPost").addEventListener("click", function (e) {
+//   console.log("button was createPost");
+//   let newPost = {
+//     id:"1234",
+//     email: "testEmail@umass.edu",
+//     title: document.getElementById("createTitle").value,
+//     destination: document.getElementById("createDestination").value,
+//     outset: document.getElementById("createOutset").value,
+//     dateTimeStart: document.getElementById("createDateTimeStart").value,
+//     dateTimeEnd: document.getElementById("createDateTimeEnd").value,
+//     numOfPeople: document.getElementById("createNumOfPeople").value,
+//     description: document.getElementById("createDescription").value,
+//     photo: document.getElementById("createUploadImage").value,
+//     comment: [],
+//   };
+//   //console.log(newPost);
+//   postNewPost(JSON.stringify(newPost));
+//   console.log("40");
+//   //document.getElementById("accordion").innerHTML = "";
+//   getRenderPost();
+//   console.log("43");
+// });
 
 //post new post by fetch http://localhost:3000/main/createPost
 async function postNewPost(jsonObj) {
@@ -52,7 +71,9 @@ async function postNewPost(jsonObj) {
   }).then(async (response) => {
     const data = await response.text();
     console.log(data);
+    if (response.status === 200)getRenderPost();
   });
+  
 }
 
 
@@ -84,7 +105,7 @@ async function deleteExistPost(jsonObj) {
 }
 
 
-function renderPost(HTML, id, jsonObj) {
+  function renderPost(HTML, id, jsonObj) {
   let idString = id.toString();
 
   const postButton = document.createElement("button");
@@ -156,8 +177,14 @@ function renderPost(HTML, id, jsonObj) {
   deleteButton.setAttribute("data-bs-target", "myModal");
   deleteButton.innerHTML = "Delete Post";
   deleteButton.addEventListener("click", function (e) {
-    deleteExistPost({ email: jsonObj.email, id: jsonObj.id });
+    deleteExistPost(JSON.stringify({ email: jsonObj.email, id: jsonObj.id }));
   });
+
+  // document.getElementById("deleteButton" + idString).addEventListener("click", function (e) {
+  //   console.log("button was deletePost");
+  //   deleteExistPost({ email: jsonObj.email, id: jsonObj.id });
+  // });
+
 
   DeletePostBtr.prepend(deleteButton);
 
@@ -330,6 +357,7 @@ form1.prepend(form1label,form1input,
               form1label7,form1input7);
 
 form.prepend(form1);
+
 
 ////////////////////////////////////////////////////
 
@@ -638,6 +666,34 @@ function renderCreateButton(){
   saveBtr.setAttribute("id","createPost");
   saveBtr.innerHTML="Save changes";
   
+// a button listener to create a new post
+saveBtr.addEventListener("click", function (e) {
+  console.log("button was createPost");
+  let newPost = {
+    id:"1234",
+    email: "testEmail@umass.edu",
+    title: document.getElementById("createTitle").value,
+    destination: document.getElementById("createDestination").value,
+    outset: document.getElementById("createOutset").value,
+    dateTimeStart: document.getElementById("createDateTimeStart").value,
+    dateTimeEnd: document.getElementById("createDateTimeEnd").value,
+    numOfPeople: document.getElementById("createNumOfPeople").value,
+    description: document.getElementById("createDescription").value,
+    photo: document.getElementById("createUploadImage").value,
+    comment: [],
+  };
+  //console.log(newPost);
+  postNewPost(JSON.stringify(newPost));
+  console.log("40");
+  //document.getElementById("accordion").innerHTML = "";
+  // getRenderPost ();
+  console.log("43");
+});
+
+
+
+
+
   const cloBtr=document.createElement("button");
   cloBtr.classList.add("btn", "btn-secondary");
   cloBtr.setAttribute("data-dismiss","modal");
@@ -676,6 +732,8 @@ function renderCreateButton(){
   creatBtr.setAttribute("data-target","#exampleModal");
   creatBtr.setAttribute("id","createPopUp");
   creatBtr.innerHTML="Create Post";
+
+
 
 
   createPo4.prepend(creatBtr);
