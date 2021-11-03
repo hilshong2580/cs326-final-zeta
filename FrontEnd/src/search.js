@@ -29,6 +29,9 @@ const searchInput=document.getElementById("searchinput");
 searchbtr.addEventListener("click", function (e) {
     //SI=JSON.stringify(searchInput.value);
  
+
+
+
     let i=0;
     while(document.getElementById("post"+JSON.stringify(i))!==null){
         console.log(i);
@@ -37,7 +40,7 @@ searchbtr.addEventListener("click", function (e) {
 
 //console.log(document.getElementById("postitle"+JSON.stringify(1)).innerText);
     
-for(let j=0;j<i;j++){
+    for(let j=0;j<i;j++){
         //if(JSON.stringify(searchInput.value)===(JSON.stringify(document.getElementById("postitle"+JSON.stringify(j)).innerText))){
         // if((JSON.stringify(document.getElementById("postitle"+JSON.stringify(j)).innerText)).includes(JSON.stringify(searchInput.value))){ 
         if(((document.getElementById("postitle"+JSON.stringify(j)).innerText).toLowerCase()).includes((searchInput.value).toLowerCase())){ 
@@ -56,6 +59,6 @@ for(let j=0;j<i;j++){
 // if(searchInput.value==="123"){
 //     alert(searchInput.value);
 //         }
-//   });
+   });
 
 }
