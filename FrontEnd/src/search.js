@@ -21,20 +21,24 @@ searchFunction();
 
 
 function searchFunction(){
-const searchbtr=document.getElementById("deletePopUp");
+const searchbtr=document.getElementById("searchbtr");
 
 const input=document.getElementById("searchinput").value;
 const searchInput=document.getElementById("searchinput");
 
 searchbtr.addEventListener("click", function (e) {
-    //SI=JSON.stringify(searchInput.value);
- 
 
+    render();
+   });
 
+}
 
+function render(){
+  
+    const searchInput=document.getElementById("searchinput");
     let i=0;
     while(document.getElementById("post"+JSON.stringify(i))!==null){
-        console.log(i);
+       // console.log(i);
         i++;
     }
 
@@ -45,20 +49,11 @@ searchbtr.addEventListener("click", function (e) {
         // if((JSON.stringify(document.getElementById("postitle"+JSON.stringify(j)).innerText)).includes(JSON.stringify(searchInput.value))){ 
         if(((document.getElementById("postitle"+JSON.stringify(j)).innerText).toLowerCase()).includes((searchInput.value).toLowerCase())){ 
         document.getElementById("post"+JSON.stringify(j)).hidden= false;
-            console.log(document.getElementById("postitle"+JSON.stringify(j)).innerText+"not hide");
+          //  console.log(document.getElementById("postitle"+JSON.stringify(j)).innerText+"not hide");
         }else{
             document.getElementById("post"+JSON.stringify(j)).hidden= true;
-            console.log(document.getElementById("postitle"+JSON.stringify(j)).innerText+" hide");
+           // console.log(document.getElementById("postitle"+JSON.stringify(j)).innerText+" hide");
         }
 
     }
-
-
-   // document.getElementById("post1").hidden= true;
-//     console.log(searchInput.value);
-// if(searchInput.value==="123"){
-//     alert(searchInput.value);
-//         }
-   });
-
 }
