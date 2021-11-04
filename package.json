@@ -1,26 +1,21 @@
 {
-  "name": "cs326-final-zeta",
+  "name": "BackEnd",
   "version": "1.0.0",
-  "description": "Creating a Carpool website that can help Umass Amherst's students to look for some help or seek a partner. Students can post/search their requests and student drivers can post the route with time, location, start-point, end-point. Also, they can discuss detail in the post. The data contain photos, description, dates, comments, rating, etc.",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "dependencies": {},
-  "devDependencies": {},
+  "description": "To start the backend process, we have to install several element\r 1. npm init -y\r This use to set up the basic element for the environment",
+  "main": "client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node BackEnd/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hilshong2580/cs326-final-zeta.git"
+  
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hilshong2580/cs326-final-zeta/issues"
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "faker": "^5.5.3"
   },
-  "homepage": "https://github.com/hilshong2580/cs326-final-zeta#readme"
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
 }
