@@ -15,11 +15,10 @@ ___________________________________________________________________
 ## Part 0: Project API Planning
 ___________________________________________________________________
 
-| End-Point                                     | function:    |     |
+| End-Point                                     | function:    | data transfer:    |
 | :-----:                                       | :----------: | :-: |
-| login:                                        |              |     |
-| :-----------------------------------------:   | :----------: | :-: |
-| router.post("/Account", function (req, res) { |  pass login email and password to server             |     |
+| For login:                                    |              |     |
+| router.post("/Account", function (req, res) { |  pass login email and password to server     |  client to server   |
 
 ## Part 1: Back-end Skeleton Code
 ___________________________________________________________________
