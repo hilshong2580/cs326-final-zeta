@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({
     origin: '*'
 }));
-app.use(express.static('../FrontEnd', {index: 'login.html'}));
+app.use(express.static('./FrontEnd', {index: 'login.html'}));
 
 app.listen(process.env.PORT || port);
 

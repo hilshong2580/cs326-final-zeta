@@ -1,46 +1,25 @@
-async function addUserInfo(name, word, email,phone,aboutme) {
-    const response = await fetch("http://localhost:3000/users", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify({username: name, password: word, email: email,phone:phone,aboutme:aboutme})
-    });
-    if (!response.ok) {
-      console.log(response.error);
-      return;
-    }
-  }
+document.getElementById("btn_login").addEventListener("click", function (e) {
+  console.log("This is sign in: ");
+  let email = document.getElementById("emailInput").value;
+  let password = document.getElementById("passwordInput").value;
+  loginAccount({ email: email, password: password });
+});
 
-function regis(){
-    let username = document.getElementById("username");
-    let pass = document.getElementById("password");
-    let repass = document.getElementById("repass");
-    let email = document.getElementById("email");
-    let phone = document.getElementById("phone");
-    let aboutme = document.getElementById("aboutme");
-    if (username.value == "") {
- 
-        alert("username is empty");
- 
-    } else if (pass.value  == "") {
- 
-        alert("password is empty");
-    }else if (repass.value  == "") {
- 
-        alert("You have to confirm your password");
-    }else if (phone.value  == "") {
- 
-        alert("phone is empty");
-    }else if (aboutme.value  == "") {
- 
-        alert("aboutme is empty");
-    }else if (email.value  == "") {
- 
-        alert("email is empty");
-    }else if (pass.value  !== repass.value) {
- 
-        alert("Your password does not match");
-    }
-    addUserInfo(username.value, pass.value, email.value,phone.value,aboutme.value);
+async function loginAccount(jsonObj) {
+  console.log("this is login front js");
+
+  fetch("http://localhost:3000/login/Account", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+
+    if (response.status === 200) {
+      window.location.href =
+        "./main.html?email=" + encodeURIComponent(jsonObj.email);
+    } else alert("username or password incorrect");
+  });
 }
