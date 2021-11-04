@@ -5,7 +5,7 @@ Team-zeta
 U-Car
 ___________________________________________________________________
 
-## Team Overview
+## Team member
 - Wai Kin Yu
 - Shing Hong Lau
 - Tingshuo Miao
