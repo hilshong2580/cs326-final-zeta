@@ -42,24 +42,24 @@ When we connect to the server, the server will render 3 random fake data from fa
 ## Part 2: Front-end Implementation
 ___________________________________________________________________
 
-- Read post:  When login successfully, the main page will get Post-Data from the server and rander the post out.
+- Read post:  When login successfully, the main page will read Post-Data from the server and rander the post out.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.0.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.2.PNG)
 
 
-- Create post: When passing the Post-Data(created by user) to server, the server will push the data to Post-Data. After that, the main page will rander all the post out.
+- Create post: When passing the Post-Data(created by user) to server, the server will push the data to Post-Data. After that, the main page will read Post-Data from the server and rander all the post out.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/createPost.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/createPost1.PNG)
 
-- Edit post: When passing the Post-Data(edited by user) to server, the server will change the data from Post-Data. After that, the main page will rander all the post out.
+- Edit post: When passing the Post-Data(edited by user) to server, the server will change the data from Post-Data. After that, the main page will read Post-Data from the server and rander all the post out.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPost.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPost1.PNG)
 
-- Delete post: When passing the Post-Data to server, the server will delete the post from Post-Data. After that, the main page will rander all the post out.
+- Delete post: When passing the Post-Data to server, the server will delete the post from Post-Data. After that, the main page will read Post-Data from the server and rander all the post out.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/deletePost.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/deletePost1.PNG)
 
-- Adding Comment to post: When passing the Post-Data and comment to server, the server will change the data(comment part) from Post-Data. After that, the main page will rander all the post out.
+- Adding Comment to post: When passing the Post-Data and comment to server, the server will change the data(comment part) from Post-Data. After that, the main page will read Post-Data from the server and rander all the post out.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/commentSubmit.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/commentSubmit1.PNG)
 
