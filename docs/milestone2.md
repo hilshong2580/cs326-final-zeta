@@ -63,7 +63,7 @@ ___________________________________________________________________
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/commentSubmit.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/commentSubmit1.PNG)
 
-- Search post: After typing the key words for search and enter the search button, the page will hide all other post except the post that contain the key words.
+- Search post: After typing the key words for search and enter the search button, the page will hide all other post except the posts that contain the key words.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/search.PNG)
 
 
