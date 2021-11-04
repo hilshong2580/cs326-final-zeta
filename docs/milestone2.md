@@ -15,10 +15,18 @@ ___________________________________________________________________
 ## Part 0: Project API Planning
 ___________________________________________________________________
 
-| End-Point                                     | function:    | data transfer:    |
-| :-----:                                       | :----------: | :-: |
-| For login:                                    |              |     |
-| router.post("/Account", function (req, res) { |  pass login email and password to server     |  client to server   |
+| End-Point                                            | data transfer:          | Use for:    |
+| :-----:                                              | :----------:            | :-: |
+| (Login)                                              |                         |     |
+| router.post("/Account", function (req, res) {        | client to server        |  pass login email and password to server to check a valid account.|
+| router.post("/Registration", function (req, res) {   | client to server        | pass registration data to server to create a user account.   |
+| (Main page)                                          |                         |     |
+| router.post("/PostP", function (req, res) {          | client to server        | pass Post-Data(created by user) to server, then the server push the data to Post-Data and stored into the server. |
+| router.get("/PostG", function (req, res) {           | server  to client       | pass Post-Data to client, then client can rander and show the post     |
+| router.put("/PostE", function (req, res) {           | client to server        | pass Post-Data(data edited by user) to server, then server update the corresponding Post-Data  |
+| router.delete("/PostD", function (req, res) {        | client to server        | pass Post ID and Email to server, then server delete the corresponding Post-Data     |
+| router.put("/CommentText", function (req, res) {     | client to server        | pass Post-Data and Comments(tpyed by user) to server, then server update the corresponding Post-Data |
+
 
 ## Part 1: Back-end Skeleton Code
 ___________________________________________________________________
