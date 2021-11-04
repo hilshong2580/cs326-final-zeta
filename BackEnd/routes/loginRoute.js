@@ -55,6 +55,10 @@ router.post("/Registration", function (req, res) {
 });
 
 function checkRegist(jsonObj) {
+for(let i in accounts){
+  console.log(accounts[i].email);
+}
+
   if (accounts.find((data) => data.email === jsonObj.email)) return false;
 
   return true;

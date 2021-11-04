@@ -22,7 +22,7 @@ window.onload = function () {
 async function pushComment(username, comment, title, id, email) {
   console.log("this is pushComment");
 
-  fetch("http://localhost:3000/main/CommentText", {
+  fetch("/main/CommentText", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -57,7 +57,7 @@ document.getElementById("createPost").addEventListener("click", function (e) {
     dateTimeEnd: document.getElementById("createDateTimeEnd").value,
     numOfPeople: document.getElementById("createNumOfPeople").value,
     description: document.getElementById("createDescription").value,
-    photo: document.getElementById("createUploadImage").value,
+    photo: "https://cdn.fakercloud.com/avatars/abotap_128.jpg",
     comment: [],
   };
   //console.log(newPost);
@@ -72,7 +72,7 @@ document.getElementById("LogoutButton").addEventListener("click", function (e) {
 });
 
 async function editExistPost(jsonObj) {
-  fetch("http://localhost:3000/main/PostE", {
+  fetch("/main/PostE", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -85,7 +85,7 @@ async function editExistPost(jsonObj) {
 }
 
 async function deleteExistPost(jsonObj) {
-  fetch("http://localhost:3000/main/PostD", {
+  fetch("/main/PostD", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -99,7 +99,7 @@ async function deleteExistPost(jsonObj) {
 
 //get all post by fetch http://localhost:3000/main/getPost , then render the post
 async function getRenderPost() {
-  let response = await fetch("http://localhost:3000/main/PostG", {
+  let response = await fetch("/main/PostG", {
     method: "GET",
   });
   let data = JSON.parse(await response.json());
@@ -112,7 +112,7 @@ async function getRenderPost() {
 
 //post new post by fetch http://localhost:3000/main/createPost
 async function postNewPost(jsonObj) {
-  fetch("http://localhost:3000/main/PostP", {
+  fetch("/main/PostP", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
