@@ -20,7 +20,7 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
 });
 
 async function createAccount(jsonObj) {
-  fetch("http://localhost:3000/login/Registration", {
+  fetch("/Registration", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

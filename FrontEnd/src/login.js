@@ -8,7 +8,7 @@ document.getElementById("btn_login").addEventListener("click", function (e) {
 async function loginAccount(jsonObj) {
   console.log("this is login front js");
 
-  fetch("http://localhost:3000/login/Account", {
+  fetch("/login/Account", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
