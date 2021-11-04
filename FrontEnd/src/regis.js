@@ -20,7 +20,7 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
 });
 
 async function createAccount(jsonObj) {
-  fetch("/Registration", {
+  fetch("/login/Registration", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -29,6 +29,6 @@ async function createAccount(jsonObj) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) window.location.href = "./login.html";
-    else alert("email already exist");
+    else alert("email already exist"+response.status);
   });
 }
