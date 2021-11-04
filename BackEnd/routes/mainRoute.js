@@ -22,7 +22,7 @@ let postData = new Array(3).fill(null).map((post) => {
   });
 });
 
-for(let i in accounts){
+for(let i in postData){
   console.log(postData[i].photo);
 }
 

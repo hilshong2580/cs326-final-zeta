@@ -57,7 +57,7 @@ document.getElementById("createPost").addEventListener("click", function (e) {
     dateTimeEnd: document.getElementById("createDateTimeEnd").value,
     numOfPeople: document.getElementById("createNumOfPeople").value,
     description: document.getElementById("createDescription").value,
-    photo: "https://pixabay.com/images/id-707505/",
+    photo: "https://cdn.fakercloud.com/avatars/abotap_128.jpg",
     comment: [],
   };
   //console.log(newPost);
