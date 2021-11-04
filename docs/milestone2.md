@@ -26,7 +26,7 @@ ___________________________________________________________________
 When we connect to the server, the server will render 3 random fake data from faker. Therefore, before creating any post, there are already exist 3 post sent from the server.
 
 - fake data post:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.0.PNG)
 
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.2.PNG)
 
