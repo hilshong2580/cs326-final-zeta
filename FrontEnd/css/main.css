@@ -1,27 +1,24 @@
-.filterBar{
-    padding-top: 100px;
+.filterBar {
+  padding-top: 100px;
 }
 
 .mainBtrBar {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 
-    gap: 10px;
-    grid-auto-rows: minmax(20px, auto);
-  }
+  gap: 10px;
+  grid-auto-rows: minmax(20px, auto);
+}
 
-  .createPost {
-    grid-column: 2;
-    grid-row: 1;
-  }
 
-  .sortRadioBtr {
-    grid-column: 3/6;
-    grid-row: 1;
-  }
+.sortRadioBtr {
+  grid-column: 3/6;
+  grid-row: 1;
+}
 
-  
-  .sortDropDownBtr {
-    grid-column: 5;
-    grid-row: 1;
-  }
+.sortDropDownBtr {
+  grid-column: 5;
+  grid-row: 1;
+}
+
+
