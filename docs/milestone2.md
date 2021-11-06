@@ -19,6 +19,7 @@ ___________________________________________________________________
 | :-----:                                              | :----------:            | :-: |
 | (Login)                                              |                         |     |
 | router.post("/Account", function (req, res) {        | client to server        |  pass login email and password to server to check a valid account.|
+|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/loginFE.PNG) |
 | router.post("/Registration", function (req, res) {   | client to server        | pass registration data to server to create a user account.   |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/rigstFE.PNG) |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/rigstBE.PNG) |
 | (Main page)                                          |                         |     |
