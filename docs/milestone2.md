@@ -94,17 +94,19 @@ This is the link Deployed on Heroku: [https://u-car-326.herokuapp.com/]
 ## Division of labor
 
 Tingshuo Miao: 
-* 
-* 
+* Adjust login.html and regis.html
+* Catch up with backend API
 
 Shing Hong Lau:
 * 
 * 
 
 Wai Kin Yu:
-* 
-* 
-* 
+* Collect and analysis all the infromation and make Milestone2.md file.
+* Debug and remove part of warnings.
+* Build up search function for main page.
+* Create a rander create button, create form, edit button, edit form on main page.
+* Debug and Deployed test on Heroku.
 
 
 
