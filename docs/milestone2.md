@@ -38,13 +38,17 @@ ___________________________________________________________________
 ## Part 1: Back-end Skeleton Code
 ___________________________________________________________________
 
-When we connect to the server, the server will render 3 random fake data from faker. Therefore, before creating any post, there are already exist 3 post sent from the server.
+When we connect to the server, the server will render 3 random fake data for post and 3 random fake data for user account from faker. Therefore, you can login with the 3 fake account. Also, before creating any post, there are already exist 3 post sent from the server.
+
+- fake data user account:
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerDataUserAccountBE.PNG)
 
 - fake data post:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.0.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostBE.PNG)
 
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerData1.2.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE.PNG)
 
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE2.PNG)
 
 ## Part 2: Front-end Implementation
 ___________________________________________________________________
