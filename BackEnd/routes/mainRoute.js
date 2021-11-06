@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 const faker = require("faker");
 
+//this is shing branch
+
 let postData = new Array(3).fill(null).map((post) => {
   return (post = {
     id: faker.datatype.uuid(),
@@ -26,7 +28,7 @@ for(let i in postData){
   console.log(postData[i].photo);
 }
 
-router.put("/CommentText", function (req, res) {
+router.put("/MainComment", function (req, res) {
   console.log("this is Comment Text");
   let username = req.body.username;
   let comment = req.body.comment;
@@ -54,7 +56,7 @@ function pushComment(username, comment, title, id, email) {
 }
 
 // DELETE method route to update the post
-router.delete("/PostD", function (req, res) {
+router.delete("/MainD", function (req, res) {
   console.log("this is delete post");
   let email = req.body.email;
   let id = req.body.id;
@@ -74,7 +76,7 @@ function deleteJsonObj(email, id) {
 }
 
 // POST method route
-router.post("/PostP", function (req, res) {
+router.post("/MainP", function (req, res) {
   console.log("this is create post");
   console.log(req.body); // your JSON
   postData.push(req.body);
@@ -83,7 +85,7 @@ router.post("/PostP", function (req, res) {
 });
 
 // GET method route to get all post
-router.get("/PostG", function (req, res) {
+router.get("/MainG", function (req, res) {
   console.log("this is get all post");
   console.log(postData);
   res.setHeader("Content-Type", "application/json");
@@ -91,7 +93,7 @@ router.get("/PostG", function (req, res) {
 });
 
 // PUT method route to update the post
-router.put("/PostE", function (req, res) {
+router.put("/MainE", function (req, res) {
   console.log("this is update post");
   let body = req.body;
 
