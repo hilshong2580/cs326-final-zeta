@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const faker = require("faker");
-// const port = 3000;
+const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -14,7 +14,7 @@ app.use(cors({
 }));
 app.use(express.static('./FrontEnd', {index: 'login.html'}));
 
-//app.listen(process.env.PORT || port);
+app.listen(process.env.PORT || port);
 app.listen(process.env.PORT);
 
 
