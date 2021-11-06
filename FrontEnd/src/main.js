@@ -1,9 +1,11 @@
 console.log("Main-side code running");
 
+//the default variables for testing
 let thisUserEmail = "test123@umass.edu";
 let thisUserName = "test123";
 const thisUserID = "testUuid";
 
+//a method to load the url to get the user email, username
 window.onload = function () {
   let url = document.location.href,
     params = url.split("?")[1].split("&"),
@@ -19,6 +21,7 @@ window.onload = function () {
   thisUserName = name[0].replace('"', "");
 };
 
+//a fetch to upload the new comment from the post, it used to update the content of data
 async function pushComment(username, comment, title, id, email) {
   console.log("this is pushComment");
 
@@ -65,14 +68,16 @@ document.getElementById("createPost").addEventListener("click", function (e) {
   getRenderPost();
 });
 
+// a button listener to logout the main page, then move back to login page
 document.getElementById("LogoutButton").addEventListener("click", function (e) {
   thisUserEmail = "";
   window.location.href = "./login.html";
 });
 
+// a button listener to pop-up a window to display the user information
 document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
 
-//a function to get user info from login
+//a function to get user info from login, then render the user modal
 async function getUserInfo(jsonObj) {
   fetch("/login/UserInfo", {
     method: "POST",
@@ -147,6 +152,7 @@ async function postNewPost(jsonObj) {
   });
 }
 
+//a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {
   const idString = id.toString();
   const postButton = document.createElement("button");
@@ -337,13 +343,14 @@ function renderPost(HTML, id, jsonObj) {
   HTML.prepend(card);
 }
 
+//a render function to render the comment to post page based on the post's comment column
 function renderComment(html, json) {
   const content = document.createElement("div");
   content.innerHTML = json.name + ": " + json.comment;
   html.prepend(content);
 }
 
-//render the form for edit
+//render the form for edit information
 function renderForm(html, idString, jsonObj) {
   const span = document.createElement("span");
   span.setAttribute("aria-hidden", "true");

@@ -4,8 +4,7 @@ const express = require("express");
 const router = express.Router();
 const faker = require("faker");
 
-//this is shing branch
-
+//use the fake data to generate json object
 let postData = new Array(3).fill(null).map((post) => {
   return (post = {
     id: faker.datatype.uuid(),
@@ -24,10 +23,8 @@ let postData = new Array(3).fill(null).map((post) => {
   });
 });
 
-for(let i in postData){
-  console.log(postData[i].photo);
-}
-
+//a put method to update the comment from post
+//push the comment into correct postion comment column 
 router.put("/MainComment", function (req, res) {
   console.log("this is Comment Text");
   console.log(req.body);
@@ -42,6 +39,7 @@ router.put("/MainComment", function (req, res) {
   else res.status(400).send("false");
 });
 
+//a function to find and push the comment to column, used in /MainComment
 function pushComment(username, comment, title, id, email) {
   for (let i in postData) {
     if (
@@ -56,7 +54,7 @@ function pushComment(username, comment, title, id, email) {
   return false;
 }
 
-// DELETE method route to update the post
+// DELETE method route for the post owner to delete the post 
 router.delete("/MainD", function (req, res) {
   console.log("this is delete post");
   let email = req.body.email;
@@ -66,6 +64,7 @@ router.delete("/MainD", function (req, res) {
   else res.status(404).send("false");
 });
 
+//a function to find a specific post, delete it
 function deleteJsonObj(email, id) {
   for (let i in postData) {
     if (postData[i].email === email && postData[i].id === id) {
@@ -76,13 +75,13 @@ function deleteJsonObj(email, id) {
   return false;
 }
 
-// POST method route
+// a POST method for user to create a new account
+//it push the input data to json array
 router.post("/MainP", function (req, res) {
   console.log("this is create post");
   console.log(req.body); // your JSON
   postData.push(req.body);
   res.status(200).send("User created!");
-  //response.send(request.body);    // echo the result back
 });
 
 // GET method route to get all post
@@ -94,6 +93,7 @@ router.get("/MainG", function (req, res) {
 });
 
 // PUT method route to update the post
+// post owner can edit the post information
 router.put("/MainE", function (req, res) {
   console.log("this is update post");
   let body = req.body;
@@ -103,6 +103,7 @@ router.put("/MainE", function (req, res) {
   else res.status(404).send("false");
 });
 
+//a function to find and update the post detail
 function editJsonObj(body) {
   for (let i in postData) {
     if (postData[i].email === body.email && postData[i].id === body.id) {

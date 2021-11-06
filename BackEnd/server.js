@@ -15,7 +15,7 @@ app.use(cors({
 app.use(express.static('./FrontEnd', {index: 'login.html'}));
 
 app.listen(process.env.PORT || port);
-app.listen(process.env.PORT);
+//app.listen(process.env.PORT);
 
 
 //import login router
