@@ -30,6 +30,7 @@ ___________________________________________________________________
 | router.put("/PostE", function (req, res) {           | client to server        | pass Post-Data(data edited by user) to server, then server update the corresponding Post-Data  |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/ed1.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/ed3.PNG)|
 | router.delete("/PostD", function (req, res) {        | client to server        | pass Post ID and Email to server, then server delete the corresponding Post-Data     |
+|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPostBE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/deletePostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/deletePostBE.PNG)|
 | router.put("/CommentText", function (req, res) {     | client to server        | pass Post-Data and Comments(tpyed by user) to server, then server update the corresponding Post-Data |
 
 
