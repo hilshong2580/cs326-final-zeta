@@ -98,11 +98,43 @@ Tingshuo Miao:
 * Catch up with backend API
 
 Shing Hong Lau:
-* 
-* 
+* Fix bug from login.html and regis.html
+* Create login.js file and write a function for button to fetch to do the login check
+* Create regis.js file to write a function for button to fetch to do the account create
+* Create main.js file to do the following methods:
+1. window.onload: load the input url to storage username and email
+2.  function: Logout: a button listener to clear local user data, then move back to login page
+3. PUT: pushComment(): a button listener with an async function for update the new comment in a post
+4. POST: postNewPost(): a button listener with an async function for create the new post
+5. POST: getUserInfo(): a button listener with an async function for post user's email, then return the account information
+6. PUT: editExistPost(): a button listener with an async function for edit the post data
+7. Delete: deleteExistPost(): a button listener with an async function for delete the post data
+8. GET: getRenderPost(): an async function for get all post the post data.
+9. function: renderPost(): render the post to main page based on server's data. It include outset, time, date, delete & edit button etc.
+10. function: renderComment(): render the server data's comment to post's page
+11. function: renderForm(): render a modal form for edit button on post page
+
+* create server.js to set up server, default the starting page, import the login and main router.
+
+* create loginRouter.js to do the following work:
+1. use fake data to generate json array for user account info
+2. POST endpoint with "/Account" to find the specific exist user from json array
+3. POST endpoint with "/Registration" to push new account json array
+4. POST endpoint with "/UserInfo" to find the specific exist user, then return his/her data
+5. function: checkRegist(): check the new user's email is exist or not
+* create mainRouter.js to do the following work :
+1. use fake data to generate json array for post data
+2. POST endpoint with "/MainComment" to add comment to specific json object
+3. POST endpoint with "/MainD" for the post owner to delete the post 
+4. POST endpoint with "/MainP" for user to create a new account
+5. POST endpoint with "/MainG" to get all post from json array
+6. POST endpoint with "/MainE" for post owner can edit the post information
+7. function: editJsonObj(), deleteJsonObj(), pushComment(): used on above API endpoint
+
+* create README.md for another programmer set up environment
 
 Wai Kin Yu:
-* Collect and analysis all the infromation and make Milestone2.md file.
+* Collect and analysis all the information and make Milestone2.md file.
 * Debug and remove part of warnings.
 * Build up search function for main page.
 * Create a rander create button, create form, edit button, edit form on main page.
