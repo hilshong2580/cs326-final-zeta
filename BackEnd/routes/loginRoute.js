@@ -68,7 +68,7 @@ router.post("/UserInfo", function (req, res) {
   let email = req.body.email;
   let returnJson = null;
   returnJson = getUserInfo(email);
-
+console.log(returnJson);
   if (returnJson !== null) {
     res.status(200).json(JSON.stringify(returnJson));
   } else res.status(400).json(JSON.stringify({check:"false"}));

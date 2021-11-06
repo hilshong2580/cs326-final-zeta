@@ -23,16 +23,18 @@ ___________________________________________________________________
 | router.post("/Registration", function (req, res) {   | client to server        | pass registration data to server to create a user account.   |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/rigstFE.PNG) |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/rigstBE.PNG) |
 | (Main page)                                          |                         |     |
-| router.post("/PostP", function (req, res) {          | client to server        | pass Post-Data(created by user) to server, then the server push the data to Post-Data and stored into the server. |
+| router.post("/MainP", function (req, res) {          | client to server        | pass Post-Data(created by user) to server, then the server push the data to Post-Data and stored into the server. |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/createPostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/createPostBE2.0.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/createPostFE2.0.PNG)|
-| router.get("/PostG", function (req, res) {           | server  to client       | pass Post-Data to client, then client can rander and show the post     |
+| router.get("/MainG", function (req, res) {           | server  to client       | pass Post-Data to client, then client can rander and show the post     |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/getPostBE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE2.PNG)|
-| router.put("/PostE", function (req, res) {           | client to server        | pass Post-Data(data edited by user) to server, then server update the corresponding Post-Data  |
+| router.put("/MainE", function (req, res) {           | client to server        | pass Post-Data(data edited by user) to server, then server update the corresponding Post-Data  |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/ed1.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/ed3.PNG)|
-| router.delete("/PostD", function (req, res) {        | client to server        | pass Post ID and Email to server, then server delete the corresponding Post-Data     |
+| router.delete("/MainD", function (req, res) {        | client to server        | pass Post ID and Email to server, then server delete the corresponding Post-Data     |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPostBE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/deletePostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/deletePostBE.PNG)|
-| router.put("/CommentText", function (req, res) {     | client to server        | pass Post-Data and Comments(tpyed by user) to server, then server update the corresponding Post-Data |
+| router.put("/MainComment", function (req, res) {     | client to server        | pass Post-Data and Comments(tpyed by user) to server, then server update the corresponding Post-Data |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/getPostBE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/co1.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/co2.PNG)|
+|router.post("/UserInfo", function (req, res) {|client to server| pass user email to server, then server send back the user information |
+|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/loginFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/userInfo.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/userInfo2.PNG)|
 
 
 ## Part 1: Back-end Skeleton Code
@@ -75,8 +77,13 @@ ___________________________________________________________________
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/commentSubmit.PNG)
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/commentSubmit1.PNG)
 
+- When clicking the user Info button, it will pop up a form and show the user information.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/userInfo.PNG)
+
+
 - Search post: After typing the key words for search and enter the search button, the page will hide all other post except the posts that contain the key words.
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/search.PNG)
+
 
 
 ## Part 3: Deployment

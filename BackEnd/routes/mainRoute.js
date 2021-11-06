@@ -30,6 +30,7 @@ for(let i in postData){
 
 router.put("/MainComment", function (req, res) {
   console.log("this is Comment Text");
+  console.log(req.body);
   let username = req.body.username;
   let comment = req.body.comment;
   let title = req.body.title;
