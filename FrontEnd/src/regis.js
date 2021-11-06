@@ -8,7 +8,7 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
   let about = document.getElementById("aboutmeRegister").value;
 
   if (password === repPassword && email.endsWith(emailEnd)) {
-    let name = emailEnd.split("@");
+    let name = email.split("@");
     createAccount({
       username: name[0],
       password: password,
