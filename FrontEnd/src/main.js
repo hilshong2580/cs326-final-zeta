@@ -22,7 +22,7 @@ window.onload = function () {
 async function pushComment(username, comment, title, id, email) {
   console.log("this is pushComment");
 
-  fetch("/main/CommentText", {
+  fetch("/main/MainComment", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -32,12 +32,11 @@ async function pushComment(username, comment, title, id, email) {
       comment: comment,
       title: title,
       id: id,
-      email: email
+      email: email,
     }),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) 
-    getRenderPost();
+    if (response.status === 200) getRenderPost();
   });
 }
 
@@ -71,8 +70,31 @@ document.getElementById("LogoutButton").addEventListener("click", function (e) {
   window.location.href = "./login.html";
 });
 
+document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
+
+//a function to get user info from login
+async function getUserInfo(jsonObj) {
+  fetch("/login/UserInfo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: thisUserEmail }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      console.log("this is true");
+      document.getElementById("mainUserName").innerHTML = "Name: "+data.username;
+      document.getElementById("mainUserEmail").innerHTML = "Email: "+data.email;
+      document.getElementById("mainUserPhone").innerHTML = "Phone: "+data.phone;
+      document.getElementById("mainUserAbout").innerHTML = "About Me: "+data.about;
+    }
+  });
+}
+
+//a function to edit post content
 async function editExistPost(jsonObj) {
-  fetch("/main/PostE", {
+  fetch("/main/MainE", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -84,8 +106,9 @@ async function editExistPost(jsonObj) {
   });
 }
 
+//a function to delete Post
 async function deleteExistPost(jsonObj) {
-  fetch("/main/PostD", {
+  fetch("/main/MainD", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -99,7 +122,7 @@ async function deleteExistPost(jsonObj) {
 
 //get all post by fetch http://localhost:3000/main/getPost , then render the post
 async function getRenderPost() {
-  let response = await fetch("/main/PostG", {
+  let response = await fetch("/main/MainG", {
     method: "GET",
   });
   let data = JSON.parse(await response.json());
@@ -112,7 +135,7 @@ async function getRenderPost() {
 
 //post new post by fetch http://localhost:3000/main/createPost
 async function postNewPost(jsonObj) {
-  fetch("/main/PostP", {
+  fetch("/main/MainP", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -255,13 +278,12 @@ function renderPost(HTML, id, jsonObj) {
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText = thisUserName+"'s Comment";
+  label.innerText = thisUserName + "'s Comment";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
   textarea.setAttribute("row", "3");
   textarea.setAttribute("id", "exampleFormControlTextarea1");
-
 
   //textarea.innerText = thisUserEmail + ": ";
 
@@ -272,7 +294,13 @@ function renderPost(HTML, id, jsonObj) {
   const buttonSubmit = document.createElement("button");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
-    pushComment(thisUserName, textarea.value, jsonObj.title, jsonObj.id, jsonObj.email)
+    pushComment(
+      thisUserName,
+      textarea.value,
+      jsonObj.title,
+      jsonObj.id,
+      jsonObj.email
+    );
   });
 
   const comment = document.createElement("div");
