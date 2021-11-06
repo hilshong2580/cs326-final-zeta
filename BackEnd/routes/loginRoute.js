@@ -15,7 +15,6 @@ let accounts = new Array(3).fill(null).map((account) => {
     about: faker.commerce.productDescription(),
   });
 });
-console.log(accounts);
 
 // POST method route to do the login process
 //if contain account and match the info
@@ -55,14 +54,31 @@ router.post("/Registration", function (req, res) {
 });
 
 function checkRegist(jsonObj) {
-for(let i in accounts){
-  console.log(accounts[i].email);
-}
+  for (let i in accounts) {
+    console.log(accounts[i].email);
+  }
 
   if (accounts.find((data) => data.email === jsonObj.email)) return false;
 
   return true;
 }
 
+router.post("/UserInfo", function (req, res) {
+  console.log("this is get user info");
+  let email = req.body.email;
+  let returnJson = null;
+  returnJson = getUserInfo(email);
+
+  if (returnJson !== null) {
+    res.status(200).json(JSON.stringify(returnJson));
+  } else res.status(400).json(JSON.stringify({check:"false"}));
+});
+
+function getUserInfo(userEmail) {
+  for (let i in accounts) {
+    if (JSON.stringify(accounts[i].email) === userEmail) return accounts[i];
+  }
+  return null;
+}
 
 module.exports = router;
