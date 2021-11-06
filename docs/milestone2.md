@@ -44,11 +44,12 @@ When we connect to the server, the server will render 3 random fake data for pos
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerDataUserAccountBE.PNG)
 
 - fake data post:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostBE.PNG)
 
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE.PNG)
 
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE2.PNG)
+
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostBE.PNG)
 
 ## Part 2: Front-end Implementation
 ___________________________________________________________________
