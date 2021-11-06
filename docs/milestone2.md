@@ -20,6 +20,7 @@ ___________________________________________________________________
 | (Login)                                              |                         |     |
 | router.post("/Account", function (req, res) {        | client to server        |  pass login email and password to server to check a valid account.|
 | router.post("/Registration", function (req, res) {   | client to server        | pass registration data to server to create a user account.   |
+|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/rigstFE.PNG) |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/rigstBE.PNG) |
 | (Main page)                                          |                         |     |
 | router.post("/PostP", function (req, res) {          | client to server        | pass Post-Data(created by user) to server, then the server push the data to Post-Data and stored into the server. |
 | router.get("/PostG", function (req, res) {           | server  to client       | pass Post-Data to client, then client can rander and show the post     |
