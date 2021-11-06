@@ -28,6 +28,7 @@ ___________________________________________________________________
 | router.get("/PostG", function (req, res) {           | server  to client       | pass Post-Data to client, then client can rander and show the post     |
 |![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/getPostBE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/fakerPostFE2.PNG)|
 | router.put("/PostE", function (req, res) {           | client to server        | pass Post-Data(data edited by user) to server, then server update the corresponding Post-Data  |
+|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/ed1.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/editPostFE.PNG)|![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot2/ed3.PNG)|
 | router.delete("/PostD", function (req, res) {        | client to server        | pass Post ID and Email to server, then server delete the corresponding Post-Data     |
 | router.put("/CommentText", function (req, res) {     | client to server        | pass Post-Data and Comments(tpyed by user) to server, then server update the corresponding Post-Data |
 
