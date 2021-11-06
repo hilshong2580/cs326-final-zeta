@@ -133,6 +133,8 @@ Shing Hong Lau:
 
 8. create README.md for another programmer set up environment
 9. update the css for main.html to adjust create post's button and user info's button position
+10. link project to Heroku and debug
+11. Add comment to all file to increase the readability.
 
 Wai Kin Yu:
 * Collect and analysis all the information and make Milestone2.md file.
