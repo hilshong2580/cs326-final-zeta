@@ -1,9 +1,7 @@
 console.log("Main-side code running");
 
 //the default variables for testing
-let thisUserEmail = "test123@umass.edu";
-let thisUserName = "test123";
-const thisUserID = "testUuid";
+let thisUserID = -1;
 
 //a method to load the url to get the user email, username
 window.onload = function () {
@@ -15,43 +13,167 @@ window.onload = function () {
     tmp = params[i].split("=");
     data[tmp[0]] = tmp[1];
   }
-  thisUserEmail = JSON.stringify(data.email);
-  thisUserEmail = thisUserEmail.replace("%40", "@");
-  const name = thisUserEmail.split("@");
-  thisUserName = name[0].replace('"', "");
+  thisUserID = parseInt(data.userId);
+  //render User information to user pop up window
+  getUserInfo();
 };
 
-//a fetch to upload the new comment from the post, it used to update the content of data
-async function pushComment(username, comment, title, id, email) {
-  console.log("this is pushComment");
+//render the post base on the server data
+getRenderPost();
 
-  fetch("/main/MainComment", {
+//a function to get user info from login, then render the user modal
+async function getUserInfo() {
+  console.log("this is get user info in front end with id:" + thisUserID);
+  fetch("/main/UserInfo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userId: thisUserID }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      document.getElementById("mainUserName").innerHTML = data.name;
+      document.getElementById("mainUserEmail").innerHTML = data.email;
+      document.getElementById("mainUserPhone").innerHTML = data.phone;
+      document.getElementById("mainUserAbout").innerHTML = data.about;
+    }
+  });
+}
+
+//GET: all post by fetch http://localhost:3000/main/getPost , then render the post
+async function getRenderPost() {
+  let response = await fetch("/main/", {
+    method: "GET",
+  });
+  let data = JSON.parse(await response.json());
+
+  if (response.status === 200) {
+    document.getElementById("accordion").innerHTML = "";
+    for (let i in data) {
+      let dataTemp = {
+        userId: data[i].userid,
+        postId: data[i].postid,
+        title: data[i].title,
+        destination: data[i].destination,
+        outset: data[i].outset,
+        numOfPeople: data[i].numofpeople,
+        description: data[i].description,
+        dateTimeStart: data[i].datetimestart,
+        dateTimeEnd: data[i].datetimeend,
+        photo: data[i].photo,
+      };
+
+      renderPost(document.getElementById("accordion"), i, dataTemp);
+    }
+  }
+  else
+  console.log("not post exist");
+}
+
+//PUT:  a function to edit post content
+async function editExistPost(jsonObj) {
+  fetch("/main/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username: username,
-      comment: comment,
-      title: title,
-      id: id,
-      email: email,
-    }),
+    body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) getRenderPost();
   });
 }
 
-//render the post base on the server data
-getRenderPost();
+//DELETE: a function to delete Post
+async function deleteExistPost(jsonObj) {
+  fetch("/main/", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//post new post by fetch http://localhost:3000/main/createPost
+async function postNewPost(jsonObj) {
+  fetch("/main/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//a fetch to upload the new comment from the post, it used to update the content of data
+async function pushComment(jsonObj) {
+  console.log("this is insert comment based on post");
+
+  fetch("/main/comment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//PUT: get the comment based on the post id
+async function getComment(postId, html) {
+  console.log("this is get comment based on post");
+
+  fetch("/main/comment", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ postId: postId }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      for (let com in data) {
+        const content = document.createElement("div");
+        content.innerHTML = data[com].name + ": " + data[com].comment;
+        html.prepend(content);
+      }
+    }
+  });
+}
+
+//PUT: get the comment based on the post id
+async function deleteComment(postId) {
+  console.log("this is delete comment based on post");
+
+  fetch("/main/comment", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ postId: postId }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      console.log("delete comment successful on frontend Main base on post");
+    }
+  });
+}
 
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
   let newPost = {
-    id: thisUserID,
-    email: thisUserEmail,
+    userId: thisUserID,
     title: document.getElementById("createTitle").value,
     destination: document.getElementById("createDestination").value,
     outset: document.getElementById("createOutset").value,
@@ -60,97 +182,21 @@ document.getElementById("createPost").addEventListener("click", function (e) {
     numOfPeople: document.getElementById("createNumOfPeople").value,
     description: document.getElementById("createDescription").value,
     photo: "https://cdn.fakercloud.com/avatars/abotap_128.jpg",
-    comment: [],
   };
   //console.log(newPost);
-  postNewPost(JSON.stringify(newPost));
+  postNewPost(newPost);
   document.getElementById("accordion").innerHTML = "";
   getRenderPost();
 });
 
 // a button listener to logout the main page, then move back to login page
 document.getElementById("LogoutButton").addEventListener("click", function (e) {
-  thisUserEmail = "";
+  thisUserID = -1;
   window.location.href = "./login.html";
 });
 
 // a button listener to pop-up a window to display the user information
 document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
-
-//a function to get user info from login, then render the user modal
-async function getUserInfo(jsonObj) {
-  fetch("/login/UserInfo", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email: thisUserEmail }),
-  }).then(async (response) => {
-    const data = JSON.parse(await response.json());
-    if (response.status === 200) {
-      console.log("this is true");
-      document.getElementById("mainUserName").innerHTML = "Name: "+data.username;
-      document.getElementById("mainUserEmail").innerHTML = "Email: "+data.email;
-      document.getElementById("mainUserPhone").innerHTML = "Phone: "+data.phone;
-      document.getElementById("mainUserAbout").innerHTML = "About Me: "+data.about;
-    }
-  });
-}
-
-//a function to edit post content
-async function editExistPost(jsonObj) {
-  fetch("/main/MainE", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonObj,
-  }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) getRenderPost();
-  });
-}
-
-//a function to delete Post
-async function deleteExistPost(jsonObj) {
-  fetch("/main/MainD", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonObj,
-  }).then(async (response) => {
-    const data = await response.text();
-    if (data === "true") getRenderPost();
-  });
-}
-
-//get all post by fetch http://localhost:3000/main/getPost , then render the post
-async function getRenderPost() {
-  let response = await fetch("/main/MainG", {
-    method: "GET",
-  });
-  let data = JSON.parse(await response.json());
-
-  document.getElementById("accordion").innerHTML = "";
-  for (let i in data) {
-    renderPost(document.getElementById("accordion"), i, data[i]);
-  }
-}
-
-//post new post by fetch http://localhost:3000/main/createPost
-async function postNewPost(jsonObj) {
-  fetch("/main/MainP", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonObj,
-  }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) getRenderPost();
-  });
-}
 
 //a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {
@@ -225,10 +271,8 @@ function renderPost(HTML, id, jsonObj) {
   deleteButton.innerHTML = "Delete Post";
 
   deleteButton.addEventListener("click", function (e) {
-    let email = thisUserEmail;
-    let id = thisUserID;
-    console.log(email + " " + id);
-    deleteExistPost(JSON.stringify({ email: email, id: id }));
+    deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
+    deleteComment(jsonObj.postId);
   });
 
   const edBtn = document.createElement("button");
@@ -239,10 +283,7 @@ function renderPost(HTML, id, jsonObj) {
   edBtn.innerHTML = "Edit Button";
 
   ///////////////////only user can have edit post////////////////////////
-  if (
-    JSON.stringify(jsonObj.email) === JSON.stringify(thisUserEmail) &&
-    JSON.stringify(jsonObj.id) === JSON.stringify(thisUserID)
-  ) {
+  if (JSON.stringify(jsonObj.userId) === JSON.stringify(thisUserID)) {
     DeletePostBtr.prepend(deleteButton, edBtn);
   }
 
@@ -264,12 +305,14 @@ function renderPost(HTML, id, jsonObj) {
   const commentDetail = document.createElement("div");
   commentDetail.classList.add("commentDetail");
 
-  for (let com in jsonObj.comment) {
-    const contentaa = document.createElement("div");
-    contentaa.innerHTML =
-      jsonObj.comment[com].name + ": " + jsonObj.comment[com].comment;
-    commentDetail.prepend(contentaa);
-  }
+  getComment(jsonObj.postId, commentDetail);
+
+  // for (let com in jsonObj.comment) {
+  //   const contentaa = document.createElement("div");
+  //   contentaa.innerHTML =
+  //     jsonObj.comment[com].name + ": " + jsonObj.comment[com].comment;
+  //   commentDetail.prepend(contentaa);
+  // }
 
   const overFlow = document.createElement("div");
   overFlow.classList.add(
@@ -284,7 +327,8 @@ function renderPost(HTML, id, jsonObj) {
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText = thisUserName + "'s Comment";
+  label.innerText =
+    document.getElementById("mainUserName").innerHTML + "'s Comment";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
@@ -300,13 +344,11 @@ function renderPost(HTML, id, jsonObj) {
   const buttonSubmit = document.createElement("button");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
-    pushComment(
-      thisUserName,
-      textarea.value,
-      jsonObj.title,
-      jsonObj.id,
-      jsonObj.email
-    );
+    pushComment({
+      name: document.getElementById("mainUserName").innerHTML,
+      comment: textarea.value,
+      postId: jsonObj.postId,
+    });
   });
 
   const comment = document.createElement("div");
@@ -460,17 +502,15 @@ function renderForm(html, idString, jsonObj) {
   saveBtn.setAttribute("data-dismiss", "modal");
   saveBtn.innerHTML = "Save";
   saveBtn.addEventListener("click", function (e) {
-    editExistPost(
-      JSON.stringify({
-        id: "testUuid",
-        email: thisUserEmail,
-        title: inputTitle.value,
-        destination: inputDestination.value,
-        outset: inputOutset.value,
-        numOfPeople: inputPeople.value,
-        description: inputDescription.value,
-      })
-    );
+    editExistPost({
+      userId: thisUserID,
+      postId: jsonObj.postId,
+      title: inputTitle.value,
+      destination: inputDestination.value,
+      outset: inputOutset.value,
+      numOfPeople: inputPeople.value,
+      description: inputDescription.value,
+    });
   });
 
   const closeBtn = document.createElement("button");
