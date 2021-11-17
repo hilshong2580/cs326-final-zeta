@@ -223,7 +223,8 @@ function renderPost(HTML, id, jsonObj) {
   const destination = document.createElement("div");
   destination.classList.add("Destination");
   destination.setAttribute("id", "Destination" + idString);
-  destination.innerHTML = "Destination: " + jsonObj.destination;
+  destination.innerHTML = "<input class='form-control' type='text' value='Destination: "+jsonObj.destination+ "' aria-label='Disabled input example' disabled readonly>";
+
 
   const picture = document.createElement("div");
   picture.classList.add("picture");
@@ -238,45 +239,53 @@ function renderPost(HTML, id, jsonObj) {
   const outset = document.createElement("div");
   outset.classList.add("Outset");
   outset.setAttribute("id", "Outset" + idString);
-  outset.innerHTML = "Outset: " + jsonObj.outset;
+  outset.innerHTML = "<input class='form-control' type='text' value='Outset: "+jsonObj.outset+ "' aria-label='Disabled input example' disabled readonly>";
+  //"Outset: " + jsonObj.outset;
 
   const startTime = document.createElement("div");
   startTime.classList.add("startTime");
   startTime.setAttribute("id", "startTime" + idString);
-  startTime.innerHTML = "Start: " + jsonObj.dateTimeStart;
+  startTime.innerHTML = "<input class='form-control' type='text' value='Start: "+jsonObj.dateTimeStart+ "' aria-label='Disabled input example' disabled readonly>";
+  //"Start: " + jsonObj.dateTimeStart;
 
   const endTime = document.createElement("div");
   endTime.classList.add("endTime");
   endTime.setAttribute("id", "endTime" + idString);
-  endTime.innerHTML = "End: " + jsonObj.dateTimeEnd;
+  endTime.innerHTML = "<input class='form-control' type='text' value='End: "+jsonObj.dateTimeEnd+ "' aria-label='Disabled input example' disabled readonly>";
+  //"End: " + jsonObj.dateTimeEnd;
 
   const numberOfPeople = document.createElement("div");
   numberOfPeople.classList.add("numberOfPeople");
   numberOfPeople.setAttribute("id", "numberOfPeople" + idString);
-  numberOfPeople.innerHTML = "People Num: " + jsonObj.numOfPeople;
+  numberOfPeople.innerHTML = "<input class='form-control' type='text' value='Num of People: "+jsonObj.numOfPeople+ "' aria-label='Disabled input example' disabled readonly>";
+  //"People Num: " + jsonObj.numOfPeople;
 
   const Description = document.createElement("div");
   Description.classList.add("Description");
   Description.setAttribute("id", "Description" + idString);
-  Description.innerHTML = "Description: " + jsonObj.description;
+  Description.innerHTML = 
+  "<div class='mb-3'><label for='exampleFormControlTextarea1' class='form-label'><input class='form-control' type='text' value='Description: ' aria-label='Disabled input example' disabled readonly></label><textarea class='form-control' id='exampleFormControlTextarea1' rows='3' disabled readonly  placeholder = '<font color='black'>"+jsonObj.description+"</textarea></div>";
+  //"Description: " + jsonObj.description;
 
   const DeletePostBtr = document.createElement("div");
   DeletePostBtr.classList.add("DeletePostBtr");
   DeletePostBtr.setAttribute("id", "DeletePostBtr" + idString);
 
   const deleteButton = document.createElement("button");
-  deleteButton.classList.add("btn", "btn-primary");
+
+  deleteButton.classList.add("btn", "btn-outline-primary");
 
   deleteButton.setAttribute("type", "button");
+  deleteButton.setAttribute("id","b1");
   deleteButton.innerHTML = "Delete Post";
-
+ 
   deleteButton.addEventListener("click", function (e) {
     deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
     deleteComment(jsonObj.postId);
   });
 
   const edBtn = document.createElement("button");
-  edBtn.classList.add("btn", "btn-primary");
+  edBtn.classList.add("btn", "btn-outline-primary");
   edBtn.setAttribute("data-toggle", "modal");
   edBtn.setAttribute("data-target", "#Modal" + idString);
   edBtn.setAttribute("type", "button");
@@ -342,6 +351,7 @@ function renderPost(HTML, id, jsonObj) {
   formGroup.prepend(label, textarea);
 
   const buttonSubmit = document.createElement("button");
+  buttonSubmit.classList.add("btn", "btn-primary");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
     pushComment({
