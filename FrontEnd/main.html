@@ -44,16 +44,21 @@
     <nav class="navbar navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <img src="./images/textIcon2.png" alt="...">
+        
         <!-- the search bar -->
         <div class="d-flex md-form form-group w-50">
-          <input class="form-control me-2 " id="searchinput" type="search" placeholder="Search" aria-label="Search">
-          <!-- <button class="btn btn-outline-success" type="submit" onclick="searchFunction()">Search</button> -->
-          <button class="btn btn-outline-success" id="searchbtr">Search</button>
+        <input class="form-control me-2 " id="searchinput" type="search" placeholder="Search" aria-label="Search" id="seabar">
+        <!-- <button class="btn btn-outline-success" type="submit" onclick="searchFunction()">Search</button> -->
+        <button class="btn btn-outline-success" id="searchbtr">Search</button>
         </div>
 
-        <!-- the logout -->
-        <button class="btn btn-outline-success" type="submit" id="LogoutButton">Logout</button>
-
+        <div>
+          <!-- the UserInfo -->
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#UserModal" id="UserPopUp">
+          User Info
+          </button>
+          <!-- the logout --><button class="btn btn-outline-success" type="submit" id="LogoutButton">Logout</button>
+        </div>
       </div>
 
     </nav>
@@ -66,24 +71,14 @@
         <div class="mainBtrBar">
 
           <!-- the create post button -->
-          <div class="row"></div>
           <!-- Button trigger modal, this is use on create post -->
-          <div class="col-6 text-left">
-            <div class="previous">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                id="createPopUp">
-                Create Post
-              </button>
+            <div class="text-right">
+                <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
+                  id="createPopUp">
+                  Create Post
+                </button>
             </div>
-          </div>
-          <div class="col-6 text-right">
-            <div class="next">
-              <!-- the UserInfo -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#UserModal" id="UserPopUp">
-                User Info
-              </button>
-            </div>
-          </div>
+          
         </div>
 
 
