@@ -1,9 +1,9 @@
 console.log("Main-side code running");
 
-let thisUserEmail = "test123@umass.edu";
-let thisUserName = "test123";
-const thisUserID = "testUuid";
+//the default variables for testing
+let thisUserID = -1;
 
+//a method to load the url to get the user email, username
 window.onload = function () {
   let url = document.location.href,
     params = url.split("?")[1].split("&"),
@@ -13,43 +13,172 @@ window.onload = function () {
     tmp = params[i].split("=");
     data[tmp[0]] = tmp[1];
   }
-  thisUserEmail = JSON.stringify(data.email);
-  thisUserEmail = thisUserEmail.replace("%40", "@");
-  const name = thisUserEmail.split("@");
-  thisUserName = name[0].replace('"', "");
+  thisUserID = parseInt(data.userId);
+  //render User information to user pop up window
+  getUserInfo();
 };
 
-async function pushComment(username, comment, title, id, email) {
-  console.log("this is pushComment");
 
-  fetch("/main/CommentText", {
+console.log(document.getElementById("mainUserName").innerHTML);
+
+//render the post base on the server data
+getRenderPost();
+
+//a function to get user info from login, then render the user modal
+async function getUserInfo() {
+  console.log("this is get user info in front end with id:" + thisUserID);
+  fetch("/main/UserInfo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userId: thisUserID }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      document.getElementById("mainUserName").innerHTML = data.name;
+      document.getElementById("mainUserEmail").innerHTML = data.email;
+      document.getElementById("mainUserPhone").innerHTML = data.phone;
+      document.getElementById("mainUserAbout").innerHTML = data.about;
+    }
+  });
+}
+
+console.log(document.getElementById("mainUserName").innerHTML);
+
+//GET: all post by fetch http://localhost:3000/main/getPost , then render the post
+async function getRenderPost() {
+  let response = await fetch("/main/", {
+    method: "GET",
+  });
+  let data = JSON.parse(await response.json());
+
+  if (response.status === 200) {
+    document.getElementById("accordion").innerHTML = "";
+    for (let i in data) {
+      let dataTemp = {
+        userId: data[i].userid,
+        postId: data[i].postid,
+        title: data[i].title,
+        destination: data[i].destination,
+        outset: data[i].outset,
+        numOfPeople: data[i].numofpeople,
+        description: data[i].description,
+        dateTimeStart: data[i].datetimestart,
+        dateTimeEnd: data[i].datetimeend,
+        photo: data[i].photo,
+      };
+
+      renderPost(document.getElementById("accordion"), i, dataTemp);
+    }
+  }
+  else
+  console.log("not post exist");
+}
+
+//PUT:  a function to edit post content
+async function editExistPost(jsonObj) {
+  fetch("/main/", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username: username,
-      comment: comment,
-      title: title,
-      id: id,
-      email: email
-    }),
+    body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) 
-    getRenderPost();
+    if (response.status === 200) getRenderPost();
   });
 }
 
-//render the post base on the server data
-getRenderPost();
+//DELETE: a function to delete Post
+async function deleteExistPost(jsonObj) {
+  fetch("/main/", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//post new post by fetch http://localhost:3000/main/createPost
+async function postNewPost(jsonObj) {
+  fetch("/main/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//a fetch to upload the new comment from the post, it used to update the content of data
+async function pushComment(jsonObj) {
+  console.log("this is insert comment based on post");
+
+  fetch("/main/comment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//PUT: get the comment based on the post id
+async function getComment(postId, html) {
+  console.log("this is get comment based on post");
+
+  fetch("/main/comment", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ postId: postId }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      for (let com in data) {
+        const content = document.createElement("div");
+        content.innerHTML = data[com].name + ": " + data[com].comment;
+        html.prepend(content);
+      }
+    }
+  });
+}
+
+//PUT: get the comment based on the post id
+async function deleteComment(postId) {
+  console.log("this is delete comment based on post");
+
+  fetch("/main/comment", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ postId: postId }),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) {
+      console.log("delete comment successful on frontend Main base on post");
+    }
+  });
+}
 
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
   let newPost = {
-    id: thisUserID,
-    email: thisUserEmail,
+    userId: thisUserID,
     title: document.getElementById("createTitle").value,
     destination: document.getElementById("createDestination").value,
     outset: document.getElementById("createOutset").value,
@@ -58,72 +187,23 @@ document.getElementById("createPost").addEventListener("click", function (e) {
     numOfPeople: document.getElementById("createNumOfPeople").value,
     description: document.getElementById("createDescription").value,
     photo: "https://cdn.fakercloud.com/avatars/abotap_128.jpg",
-    comment: [],
   };
   //console.log(newPost);
-  postNewPost(JSON.stringify(newPost));
+  postNewPost(newPost);
   document.getElementById("accordion").innerHTML = "";
   getRenderPost();
 });
 
+// a button listener to logout the main page, then move back to login page
 document.getElementById("LogoutButton").addEventListener("click", function (e) {
-  thisUserEmail = "";
+  thisUserID = -1;
   window.location.href = "./login.html";
 });
 
-async function editExistPost(jsonObj) {
-  fetch("/main/PostE", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonObj,
-  }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) getRenderPost();
-  });
-}
+// a button listener to pop-up a window to display the user information
+document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
 
-async function deleteExistPost(jsonObj) {
-  fetch("/main/PostD", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonObj,
-  }).then(async (response) => {
-    const data = await response.text();
-    if (data === "true") getRenderPost();
-  });
-}
-
-//get all post by fetch http://localhost:3000/main/getPost , then render the post
-async function getRenderPost() {
-  let response = await fetch("/main/PostG", {
-    method: "GET",
-  });
-  let data = JSON.parse(await response.json());
-
-  document.getElementById("accordion").innerHTML = "";
-  for (let i in data) {
-    renderPost(document.getElementById("accordion"), i, data[i]);
-  }
-}
-
-//post new post by fetch http://localhost:3000/main/createPost
-async function postNewPost(jsonObj) {
-  fetch("/main/PostP", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonObj,
-  }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) getRenderPost();
-  });
-}
-
+//a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {
   const idString = id.toString();
   const postButton = document.createElement("button");
@@ -148,7 +228,8 @@ function renderPost(HTML, id, jsonObj) {
   const destination = document.createElement("div");
   destination.classList.add("Destination");
   destination.setAttribute("id", "Destination" + idString);
-  destination.innerHTML = "Destination: " + jsonObj.destination;
+  destination.innerHTML = "<input class='form-control' type='text' value='Destination: "+jsonObj.destination+ "' aria-label='Disabled input example' disabled readonly>";
+
 
   const picture = document.createElement("div");
   picture.classList.add("picture");
@@ -163,57 +244,60 @@ function renderPost(HTML, id, jsonObj) {
   const outset = document.createElement("div");
   outset.classList.add("Outset");
   outset.setAttribute("id", "Outset" + idString);
-  outset.innerHTML = "Outset: " + jsonObj.outset;
+  outset.innerHTML = "<input class='form-control' type='text' value='Outset: "+jsonObj.outset+ "' aria-label='Disabled input example' disabled readonly>";
+  //"Outset: " + jsonObj.outset;
 
   const startTime = document.createElement("div");
   startTime.classList.add("startTime");
   startTime.setAttribute("id", "startTime" + idString);
-  startTime.innerHTML = "Start: " + jsonObj.dateTimeStart;
+  startTime.innerHTML = "<input class='form-control' type='text' value='Start: "+jsonObj.dateTimeStart+ "' aria-label='Disabled input example' disabled readonly>";
+  //"Start: " + jsonObj.dateTimeStart;
 
   const endTime = document.createElement("div");
   endTime.classList.add("endTime");
   endTime.setAttribute("id", "endTime" + idString);
-  endTime.innerHTML = "End: " + jsonObj.dateTimeEnd;
+  endTime.innerHTML = "<input class='form-control' type='text' value='End: "+jsonObj.dateTimeEnd+ "' aria-label='Disabled input example' disabled readonly>";
+  //"End: " + jsonObj.dateTimeEnd;
 
   const numberOfPeople = document.createElement("div");
   numberOfPeople.classList.add("numberOfPeople");
   numberOfPeople.setAttribute("id", "numberOfPeople" + idString);
-  numberOfPeople.innerHTML = "People Num: " + jsonObj.numOfPeople;
+  numberOfPeople.innerHTML = "<input class='form-control' type='text' value='Num of People: "+jsonObj.numOfPeople+ "' aria-label='Disabled input example' disabled readonly>";
+  //"People Num: " + jsonObj.numOfPeople;
 
   const Description = document.createElement("div");
   Description.classList.add("Description");
   Description.setAttribute("id", "Description" + idString);
-  Description.innerHTML = "Description: " + jsonObj.description;
+  Description.innerHTML = 
+  "<div class='mb-3'><label for='exampleFormControlTextarea1' class='form-label'><input class='form-control' type='text' value='Description: ' aria-label='Disabled input example' disabled readonly></label><textarea class='form-control' id='exampleFormControlTextarea1' rows='3' disabled readonly  placeholder = '<font color='black'>"+jsonObj.description+"</textarea></div>";
+  //"Description: " + jsonObj.description;
 
   const DeletePostBtr = document.createElement("div");
   DeletePostBtr.classList.add("DeletePostBtr");
   DeletePostBtr.setAttribute("id", "DeletePostBtr" + idString);
 
   const deleteButton = document.createElement("button");
-  deleteButton.classList.add("btn", "btn-primary");
+
+  deleteButton.classList.add("btn", "btn-outline-primary");
 
   deleteButton.setAttribute("type", "button");
+  deleteButton.setAttribute("id","b1");
   deleteButton.innerHTML = "Delete Post";
-
+ 
   deleteButton.addEventListener("click", function (e) {
-    let email = thisUserEmail;
-    let id = thisUserID;
-    console.log(email + " " + id);
-    deleteExistPost(JSON.stringify({ email: email, id: id }));
+    deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
+    deleteComment(jsonObj.postId);
   });
 
   const edBtn = document.createElement("button");
-  edBtn.classList.add("btn", "btn-primary");
+  edBtn.classList.add("btn", "btn-outline-primary");
   edBtn.setAttribute("data-toggle", "modal");
   edBtn.setAttribute("data-target", "#Modal" + idString);
   edBtn.setAttribute("type", "button");
   edBtn.innerHTML = "Edit Button";
 
   ///////////////////only user can have edit post////////////////////////
-  if (
-    JSON.stringify(jsonObj.email) === JSON.stringify(thisUserEmail) &&
-    JSON.stringify(jsonObj.id) === JSON.stringify(thisUserID)
-  ) {
+  if (JSON.stringify(jsonObj.userId) === JSON.stringify(thisUserID)) {
     DeletePostBtr.prepend(deleteButton, edBtn);
   }
 
@@ -235,12 +319,14 @@ function renderPost(HTML, id, jsonObj) {
   const commentDetail = document.createElement("div");
   commentDetail.classList.add("commentDetail");
 
-  for (let com in jsonObj.comment) {
-    const contentaa = document.createElement("div");
-    contentaa.innerHTML =
-      jsonObj.comment[com].name + ": " + jsonObj.comment[com].comment;
-    commentDetail.prepend(contentaa);
-  }
+  getComment(jsonObj.postId, commentDetail);
+
+  // for (let com in jsonObj.comment) {
+  //   const contentaa = document.createElement("div");
+  //   contentaa.innerHTML =
+  //     jsonObj.comment[com].name + ": " + jsonObj.comment[com].comment;
+  //   commentDetail.prepend(contentaa);
+  // }
 
   const overFlow = document.createElement("div");
   overFlow.classList.add(
@@ -255,13 +341,12 @@ function renderPost(HTML, id, jsonObj) {
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText = thisUserName+"'s Comment";
+  label.innerText ="Your Comment";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
   textarea.setAttribute("row", "3");
   textarea.setAttribute("id", "exampleFormControlTextarea1");
-
 
   //textarea.innerText = thisUserEmail + ": ";
 
@@ -270,9 +355,14 @@ function renderPost(HTML, id, jsonObj) {
   formGroup.prepend(label, textarea);
 
   const buttonSubmit = document.createElement("button");
+  buttonSubmit.classList.add("btn", "btn-primary");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
-    pushComment(thisUserName, textarea.value, jsonObj.title, jsonObj.id, jsonObj.email)
+    pushComment({
+      name: document.getElementById("mainUserName").innerHTML,
+      comment: textarea.value,
+      postId: jsonObj.postId,
+    });
   });
 
   const comment = document.createElement("div");
@@ -309,13 +399,14 @@ function renderPost(HTML, id, jsonObj) {
   HTML.prepend(card);
 }
 
+//a render function to render the comment to post page based on the post's comment column
 function renderComment(html, json) {
   const content = document.createElement("div");
   content.innerHTML = json.name + ": " + json.comment;
   html.prepend(content);
 }
 
-//render the form for edit
+//render the form for edit information
 function renderForm(html, idString, jsonObj) {
   const span = document.createElement("span");
   span.setAttribute("aria-hidden", "true");
@@ -425,17 +516,15 @@ function renderForm(html, idString, jsonObj) {
   saveBtn.setAttribute("data-dismiss", "modal");
   saveBtn.innerHTML = "Save";
   saveBtn.addEventListener("click", function (e) {
-    editExistPost(
-      JSON.stringify({
-        id: "testUuid",
-        email: thisUserEmail,
-        title: inputTitle.value,
-        destination: inputDestination.value,
-        outset: inputOutset.value,
-        numOfPeople: inputPeople.value,
-        description: inputDescription.value,
-      })
-    );
+    editExistPost({
+      userId: thisUserID,
+      postId: jsonObj.postId,
+      title: inputTitle.value,
+      destination: inputDestination.value,
+      outset: inputOutset.value,
+      numOfPeople: inputPeople.value,
+      description: inputDescription.value,
+    });
   });
 
   const closeBtn = document.createElement("button");

@@ -1,27 +1,54 @@
-.filterBar{
-    padding-top: 100px;
+.filterBar {
+  padding-top: 100px;
 }
 
 .mainBtrBar {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+  display: grid;
+  grid-auto-rows: minmax(20px, auto);
+}
 
-    gap: 10px;
-    grid-auto-rows: minmax(20px, auto);
-  }
 
-  .createPost {
-    grid-column: 2;
-    grid-row: 1;
-  }
+.sortRadioBtr {
+  grid-column: 3/6;
+  grid-row: 1;
+}
 
-  .sortRadioBtr {
-    grid-column: 3/6;
-    grid-row: 1;
-  }
+.sortDropDownBtr {
+  grid-column: 5;
+  grid-row: 1;
+}
 
-  
-  .sortDropDownBtr {
-    grid-column: 5;
-    grid-row: 1;
-  }
+.DeletePostBtr{
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+#b1{
+  margin-right: 20px;
+}
+
+.accordionDetail{
+  margin-top: 30px;
+}
+
+
+#createPopUp{
+  margin-top: 13px;
+}
+
+.Destination{
+  margin-top: 13px;
+}
+.Description{
+  margin-top: -60px;
+  width: 300px;
+  height: 400px;
+}
+
+.picture{
+  margin-top: 13px;
+}
+
+.detail{
+  height: 400px;
+}

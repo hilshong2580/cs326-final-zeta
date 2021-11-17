@@ -14,7 +14,8 @@
 
 
   <title>U-Car! Team-Zeta Project</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -43,15 +44,23 @@
     <nav class="navbar navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <img src="./images/textIcon2.png" alt="...">
+        
         <!-- the search bar -->
         <div class="d-flex md-form form-group w-50">
-          <input class="form-control me-2 " id="searchinput" type="search" placeholder="Search" aria-label="Search">
-          <!-- <button class="btn btn-outline-success" type="submit" onclick="searchFunction()">Search</button> -->
-        </div> 
-         <button class="btn btn-outline-success"  id="searchbtr" >Search</button>
-        <!-- the logout -->
-        <button class="btn btn-outline-success" type="submit" id="LogoutButton">Logout</button>
+        <input class="form-control me-2 " id="searchinput" type="search" placeholder="Search" aria-label="Search" id="seabar">
+        <!-- <button class="btn btn-outline-success" type="submit" onclick="searchFunction()">Search</button> -->
+        <button class="btn btn-outline-success" id="searchbtr">Search</button>
+        </div>
+
+        <div>
+          <!-- the UserInfo -->
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#UserModal" id="UserPopUp">
+          User Info
+          </button>
+          <!-- the logout --><button class="btn btn-outline-success" type="submit" id="LogoutButton">Logout</button>
+        </div>
       </div>
+
     </nav>
   </div>
 
@@ -62,80 +71,118 @@
         <div class="mainBtrBar">
 
           <!-- the create post button -->
-          <div class="createPost">
+          <!-- Button trigger modal, this is use on create post -->
+            <div class="text-right">
+                <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
+                  id="createPopUp">
+                  Create Post
+                </button>
+            </div>
+          
+        </div>
 
-            <!-- Button trigger modal, this is use on create post -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-              id="createPopUp">
-              Create Post
-            </button>
 
-          </div>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body" id="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label class="form-label required">Title</label>
-                      <input type="text" class="form-control" id="createTitle">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label required">Destination</label>
-                      <input type="text" class="form-control" id="createDestination">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label required">Outset</label>
-                      <input type="text" class="form-control" id="createOutset">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label required">Time: Start</label>
-                      <input type="datetime-local" class="form-control" id="createDateTimeStart">
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label required">Time: End</label>
-                      <input type="datetime-local" class="form-control" id="createDateTimeEnd">
-                    </div>
-
-                    <div class="mb-3">
-                      <label class="form-label required">Num of people</label>
-                      <input type="number" class="form-control" id="createNumOfPeople">
-                    </div>
-
-                    <div class="mb-3">
-                      <label class="form-label required">Description</label>
-                      <textarea class="form-control" id="createDescription"></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Image/Photo</label>
-                      <input type="file" class="form-control" id="createUploadImage" />
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" id="createPost">Save changes</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+        <!-- Modal for UserInfo-->
+        <div class="modal fade" id="UserModal" tabindex="-1" role="dialog" aria-labelledby="UserModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="UserModalLabel">UserInfo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">Name:</label>
+                    <label class="form-label" id="mainUserName"></label>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Email:</label>
+                    <label class="form-label required" id="mainUserEmail"></label>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Phone:</label>
+                    <label class="form-label required" id="mainUserPhone"></label>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">About:</label>
+                    <label class="form-label required" id="mainUserAbout"></label>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-
-
-          <!-- the filter for day week month -->
-
-          <!-- dropdown button for sort -->
-
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label required">Title</label>
+                    <input type="text" class="form-control" id="createTitle">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Destination</label>
+                    <input type="text" class="form-control" id="createDestination">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Outset</label>
+                    <input type="text" class="form-control" id="createOutset">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Time: Start</label>
+                    <input type="datetime-local" class="form-control" id="createDateTimeStart">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Time: End</label>
+                    <input type="datetime-local" class="form-control" id="createDateTimeEnd">
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label required">Num of people</label>
+                    <input type="number" class="form-control" id="createNumOfPeople">
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label required">Description</label>
+                    <textarea class="form-control" id="createDescription"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Image/Photo</label>
+                    <input type="file" class="form-control" id="createUploadImage" />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="createPost" data-dismiss="modal">Save
+                  changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- the filter for day week month -->
+
+        <!-- dropdown button for sort -->
+
       </div>
     </div>
+  </div>
   </div>
 
   <!-- a solid line to seperate the content area -->

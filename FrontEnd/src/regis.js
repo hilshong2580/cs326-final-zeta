@@ -6,11 +6,12 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
   let email = document.getElementById("emailRegister").value;
   let phone = document.getElementById("phoneRegister").value;
   let about = document.getElementById("aboutmeRegister").value;
+  let name = document.getElementById("userNameRegister").value;
 
   if (password === repPassword && email.endsWith(emailEnd)) {
-    let name = emailEnd.split("@");
+
     createAccount({
-      username: name[0],
+      name: name,
       password: password,
       email: email,
       phone: phone,
