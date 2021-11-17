@@ -51,9 +51,10 @@ async function getRenderPost() {
   let response = await fetch("/main/", {
     method: "GET",
   });
-  let data = JSON.parse(await response.json());
+  
 
   if (response.status === 200) {
+    let data = JSON.parse(await response.json());
     document.getElementById("accordion").innerHTML = "";
     for (let i in data) {
       let dataTemp = {
@@ -73,7 +74,9 @@ async function getRenderPost() {
     }
   }
   else
-  console.log("not post exist");
+  if (response.status === 202){
+    document.getElementById("accordion").innerHTML = "";
+  console.log("not post exist");}
 }
 
 //PUT:  a function to edit post content
@@ -358,11 +361,13 @@ function renderPost(HTML, id, jsonObj) {
   buttonSubmit.classList.add("btn", "btn-primary");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
-    pushComment({
-      name: document.getElementById("mainUserName").innerHTML,
-      comment: textarea.value,
-      postId: jsonObj.postId,
-    });
+    if (textarea.value!==""){
+      pushComment({
+        name: document.getElementById("mainUserName").innerHTML,
+        comment: textarea.value,
+        postId: jsonObj.postId,
+      });
+    }
   });
 
   const comment = document.createElement("div");
