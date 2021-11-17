@@ -52,3 +52,11 @@
 .detail{
   height: 400px;
 }
+
+#bgp {
+  background-image: url("../images/background2.0.PNG");
+  background-size:50%;
+  height: 100vh;
+  opacity: 1;
+  
+}
