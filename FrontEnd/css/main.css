@@ -4,9 +4,6 @@
 
 .mainBtrBar {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-
-  gap: 10px;
   grid-auto-rows: minmax(20px, auto);
 }
 
@@ -21,4 +18,37 @@
   grid-row: 1;
 }
 
+.DeletePostBtr{
+  margin-top: 10px;
+  margin-right: 5px;
+}
 
+#b1{
+  margin-right: 20px;
+}
+
+.accordionDetail{
+  margin-top: 30px;
+}
+
+
+#createPopUp{
+  margin-top: 13px;
+}
+
+.Destination{
+  margin-top: 13px;
+}
+.Description{
+  margin-top: -60px;
+  width: 300px;
+  height: 400px;
+}
+
+.picture{
+  margin-top: 13px;
+}
+
+.detail{
+  height: 400px;
+}
