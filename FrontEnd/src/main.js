@@ -18,6 +18,9 @@ window.onload = function () {
   getUserInfo();
 };
 
+
+console.log(document.getElementById("mainUserName").innerHTML);
+
 //render the post base on the server data
 getRenderPost();
 
@@ -40,6 +43,8 @@ async function getUserInfo() {
     }
   });
 }
+
+console.log(document.getElementById("mainUserName").innerHTML);
 
 //GET: all post by fetch http://localhost:3000/main/getPost , then render the post
 async function getRenderPost() {
@@ -336,8 +341,7 @@ function renderPost(HTML, id, jsonObj) {
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText =
-    document.getElementById("mainUserName").innerHTML + "'s Comment";
+  label.innerText ="Your Comment";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
