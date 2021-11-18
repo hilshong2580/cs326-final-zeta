@@ -26,11 +26,6 @@ const pool = new Pool({
   database: database,
   host: host,
   post: post
-}|| {
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
 });
 
 module.exports = pool;
