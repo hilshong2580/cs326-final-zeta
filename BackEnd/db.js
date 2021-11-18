@@ -12,10 +12,10 @@ if (!process.env.PASSWORD) {
   host = secrets.host;
   post = secrets.post;
 } else {
-  user = process.env.NAME;
-  password = process.env.PASSWORD;
-  database = process.env.DATABASE;
-  host = process.env.HOST;
+  user = process.env.POSTGRES_USER;
+  password = process.env.POSTGRES_PASSWORD;
+  database = process.env.POSTGRES_DATABASE;
+  host = process.env.POSTGRES_HOST;
   post = process.env.POST;
 }
 
