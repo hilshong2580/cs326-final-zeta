@@ -4,15 +4,20 @@ const { readFileSync, existsSync } = require("fs");
 
 let secrets, user, password, database, host, post;
 
-
-   secrets = require("./secrets.json");
-   user = secrets.user;
-   password = secrets.password;
-   database = secrets.database;
-   host = secrets.host;
-   post = secrets.post;
+if (process.env.PASSWORD) {
+//   secrets = require("./secrets.json");
+//   user = secrets.user;
+//   password = secrets.password;
+//   database = secrets.database;
+//   host = secrets.host;
+//   post = secrets.post;
 // } else {
- 
+  user = process.env.POSTGRES_USER;
+  password = process.env.POSTGRES_PASSWORD;
+  database = process.env.POSTGRES_DATABASE;
+  host = process.env.POSTGRES_HOST
+}
+
 //const secrets = require('./secrets.json');
 
 const pool = new Pool({
