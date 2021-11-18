@@ -4,14 +4,14 @@ const { readFileSync, existsSync } = require("fs");
 
 let secrets, user, password, database, host, post;
 
-if (!process.env.PASSWORD) {
-  secrets = require("./secrets.json");
-  user = secrets.user;
-  password = secrets.password;
-  database = secrets.database;
-  host = secrets.host;
-  post = secrets.post;
-} else {
+if (process.env.PASSWORD) {
+//   secrets = require("./secrets.json");
+//   user = secrets.user;
+//   password = secrets.password;
+//   database = secrets.database;
+//   host = secrets.host;
+//   post = secrets.post;
+// } else {
   user = process.env.POSTGRES_USER;
   password = process.env.POSTGRES_PASSWORD;
   database = process.env.POSTGRES_DATABASE;
