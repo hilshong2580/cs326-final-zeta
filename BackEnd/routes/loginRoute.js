@@ -21,7 +21,7 @@ router.post("/Registration", async function (req, res) {
     res.status(200).send("New Account Create Successful");
   } catch (err) {
     console.log(err.message);
-    res.status(400).send("existed");
+    res.status(405).send("existed");
   }
 });
 
