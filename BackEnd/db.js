@@ -5,7 +5,7 @@ const { readFileSync, existsSync } = require("fs");
 let secrets, user, password, database, host, post;
 
 if (!process.env.PASSWORD) {
-  secrets = require("./secrets.json");
+  secrets = require("./secretsHeroku.json");
   user = secrets.user;
   password = secrets.password;
   database = secrets.database;
