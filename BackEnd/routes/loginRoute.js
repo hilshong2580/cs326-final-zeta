@@ -18,6 +18,15 @@ router.post("/Registration", async function (req, res) {
       "INSERT INTO userTable (password, name, email, phone, about) VALUES ($1, $2, $3, $4, $5) RETURNING *",
       [password, name, email, phone, about]
     );
+    console.log(createAccount.rows);
+      if(createAccount.rows.length > 0){
+        const createActivity = await pool.query(
+          "INSERT INTO activityTable (userId, favorite_Num, post_Num, comment_Num) VALUES ($1, $2, $3, $4) RETURNING *",
+          [createAccount.rows[0].userid, 0, 0, 0]
+        );
+        console.log(createActivity.rows);
+      }
+
     res.status(200).send("New Account Create Successful");
   } catch (err) {
     console.log(err.message);
