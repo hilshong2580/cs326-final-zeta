@@ -159,7 +159,7 @@ async function checkFav(userId,postId) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) {
-     alert(data);
+     alert("THIS IS : "+data);
       return data;}
   });
 }
@@ -413,11 +413,12 @@ function renderPost(HTML, id, jsonObj) {
   //  deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
     //deleteComment(jsonObj.postId);
 
-    if(checkFav(thisUserID,jsonObj.postId)==="true"){
-     // alert("excisted");
+    if(JSON.stringify(checkFav(thisUserID,jsonObj.postId))==="true"){
+      alert("del");
      DelFav(thisUserID,jsonObj.postId);
      favButton.innerHTML = "Add to favour";
     }else{
+     // alert(checkFav(thisUserID,jsonObj.postId));
       addtoFav(thisUserID,jsonObj.postId);
       favButton.innerHTML = "Remove to favour";
     }
