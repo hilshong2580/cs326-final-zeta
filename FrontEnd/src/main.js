@@ -126,6 +126,62 @@ async function postNewPost(jsonObj) {
   });
 }
 
+////////////////////add fav function///////////////////
+async function addtoFav(userId,postId) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId
+  };
+  fetch("/main/addToFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) alert("added");
+  });
+}
+
+/////////////////////check fav function////////////////
+async function checkFav(userId,postId) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId
+  };
+  fetch("/main/checkIfFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) return response;
+  });
+}
+
+//////////////////////Remove from fav//////////////////////
+async function DelFav(userId,postId) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId
+  };
+  fetch("/main/delFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) alert("removed");
+  });
+}
+
+
+
 //a fetch to upload the new comment from the post, it used to update the content of data
 async function pushComment(jsonObj) {
   console.log("this is insert comment based on post");
@@ -341,6 +397,35 @@ function renderPost(HTML, id, jsonObj) {
     DeletePostBtr.prepend(deleteButton, edBtn);
   }
 
+  //////////////////////Add to Fav//////////////////////////
+
+  const favButton = document.createElement("button");
+
+  favButton.classList.add("btn", "btn-outline-primary");
+
+  favButton.setAttribute("type", "button");
+  favButton.setAttribute("id","b1");
+  favButton.innerHTML = "Add to favour";
+
+  favButton.addEventListener("click", function (e) {
+  //  deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
+    //deleteComment(jsonObj.postId);
+
+    if(checkFav(thisUserID,jsonObj.postId)){
+     // alert("excisted");
+     DelFav(thisUserID,jsonObj.postId);
+     favButton.innerHTML = "Remove to favour";
+    }else{
+      addtoFav(thisUserID,jsonObj.postId);
+      favButton.innerHTML = "Add to favour";
+    }
+
+   
+    // alert("fav");
+  });
+  DeletePostBtr.prepend(favButton);
+///////////////////////////////////////////////////////////////
+
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
   accordionDetail.prepend(
@@ -351,7 +436,7 @@ function renderPost(HTML, id, jsonObj) {
     endTime,
     numberOfPeople,
     Description,
-    DeletePostBtr
+    DeletePostBtr,
   );
   // post body end
 

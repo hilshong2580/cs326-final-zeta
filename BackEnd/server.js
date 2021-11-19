@@ -23,6 +23,7 @@ app.listen(process.env.PORT || port);
 createUserTable();
 createPostTable();
 createCommentTable();
+createFavTable();
 
 //import login router
 const userLogin = require("./routes/loginRoute");
@@ -73,4 +74,12 @@ async function createCommentTable(){
     comment varchar(255) NOT NULL
 )`);
 console.log("commentTable created");
+}
+
+async function createFavTable(){
+    const favTable = await pool.query(`CREATE TABLE IF NOT EXISTS favTable(
+    userId INT NOT NULL,
+    postId INT NOT NULL
+)`);
+console.log("favTable created");
 }
