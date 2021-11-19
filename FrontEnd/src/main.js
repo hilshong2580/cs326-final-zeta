@@ -40,6 +40,11 @@ async function getUserInfo() {
       document.getElementById("mainUserEmail").innerHTML = data.email;
       document.getElementById("mainUserPhone").innerHTML = data.phone;
       document.getElementById("mainUserAbout").innerHTML = data.about;
+
+      document.getElementById("EditUserInfoName").value = data.name;
+      document.getElementById("EditUserInfoEmail").value = data.email;
+      document.getElementById("EditUserInfoPhone").value = data.phone;
+      document.getElementById("EditUserInfoAbout").value = data.about;
     }
   });
 }
@@ -205,6 +210,38 @@ document.getElementById("LogoutButton").addEventListener("click", function (e) {
 
 // a button listener to pop-up a window to display the user information
 document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
+
+
+document.getElementById("editUserInfoBtr").addEventListener("click", function (e) {
+  console.log("button was editUserInfo");
+  // alert("ABC");
+  let body = {
+    userId:thisUserID,
+    name:document.getElementById("EditUserInfoName").value, 
+    email:document.getElementById("EditUserInfoEmail").value, 
+    phone:document.getElementById("EditUserInfoPhone").value, 
+    about:document.getElementById("EditUserInfoAbout").value,
+  };
+
+  editUser(body);
+});
+
+async function editUser(jsonObj) {
+  fetch("/main/editUser", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getUserInfo();
+  });
+}
+
+
+
+
 
 //a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {

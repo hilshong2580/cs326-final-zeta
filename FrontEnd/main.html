@@ -113,11 +113,55 @@
                     <label class="form-label required">About:</label>
                     <label class="form-label required" id="mainUserAbout"></label>
                   </div>
+                  <button type="button" class="btn btn-outline-success" data-toggle="modal" data-dismiss="modal" data-target="#editUSIFO" >edit</button>
+                  <!-- <button type="button" class="btn btn-primary" id="editUserInfo" data-dismiss="modal">edit</button> -->
                 </form>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- <div id="editUSIFO"></div>> -->
+        <div class="modal fade" id="editUSIFO" tabindex="-1" role="dialog" aria-labelledby="UserModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="UserModalLabel">UserInfo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label">Name:</label>
+                    <label class="form-label" id="EdmainUserName"></label>
+                    <input type="text" class="form-control" id="EditUserInfoName">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Email:</label>
+                    <label class="form-label required" id="EdmainUserEmail"></label>
+                    <input type="text" class="form-control" id="EditUserInfoEmail">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">Phone:</label>
+                    <label class="form-label required" id="EdmainUserPhone"></label>
+                    <input type="text" class="form-control" id="EditUserInfoPhone">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label required">About:</label>
+                    <label class="form-label required" id="EdmainUserAbout"></label>
+                    <input type="text" class="form-control" id="EditUserInfoAbout">
+                  </div>
+                 <button type="button" class="btn btn-primary" id="editUserInfoBtr" data-dismiss="modal">save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div id="editUSIFO"></div>> -->
+        
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

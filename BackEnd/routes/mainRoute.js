@@ -197,4 +197,28 @@ router.delete("/comment", async function (req, res) {
   }
 });
 
+////////////////////////////edit user info///////////////////////
+router.put("/editUser", async function (req, res) {
+  console.log("this is update/edit User");
+  try {
+    const {userid, name, email, phone, about } = req.body;
+    const updateUser = await pool.query(
+      "UPDATE userTable SET name = $2, email = $3, phone= $4, about= $5 WHERE userid = $1",
+      [userid, name, email, phone, about]
+ 
+    );
+
+    console.log(JSON.stringify(req.body));
+    if (updateUser.rowCount > 0) res.status(200).json("Post Update Success");
+    else res.status(202).json("Post Update Fail");
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).json("Post Update Error");
+  }
+
+});
+
+
+
+
 module.exports = router;
