@@ -216,7 +216,7 @@ document.getElementById("editUserInfoBtr").addEventListener("click", function (e
   console.log("button was editUserInfo");
   // alert("ABC");
   let body = {
-    userId:thisUserID,
+    userid:thisUserID,
     name:document.getElementById("EditUserInfoName").value, 
     email:document.getElementById("EditUserInfoEmail").value, 
     phone:document.getElementById("EditUserInfoPhone").value, 
