@@ -23,6 +23,7 @@ app.listen(process.env.PORT || port);
 createUserTable();
 createPostTable();
 createCommentTable();
+createActivityTable();
 
 //import login router
 const userLogin = require("./routes/loginRoute");
@@ -73,4 +74,15 @@ async function createCommentTable(){
     comment varchar(255) NOT NULL
 )`);
 console.log("commentTable created");
+}
+
+//create user's Post table
+async function createActivityTable(){
+    const commentTable = await pool.query(`CREATE TABLE IF NOT EXISTS activityTable(
+    userId INT PRIMARY KEY,
+    favorite_Num INT NOT NULL,
+    post_Num INT NOT NULL,
+    comment_Num INT NOT NULL
+)`);
+console.log("activityTable created");
 }
