@@ -158,7 +158,9 @@ async function checkFav(userId,postId) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) return response;
+    if (response.status === 200) {
+     alert(data);
+      return data;}
   });
 }
 
@@ -411,13 +413,13 @@ function renderPost(HTML, id, jsonObj) {
   //  deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
     //deleteComment(jsonObj.postId);
 
-    if(checkFav(thisUserID,jsonObj.postId)){
+    if(checkFav(thisUserID,jsonObj.postId)==="true"){
      // alert("excisted");
      DelFav(thisUserID,jsonObj.postId);
-     favButton.innerHTML = "Remove to favour";
+     favButton.innerHTML = "Add to favour";
     }else{
       addtoFav(thisUserID,jsonObj.postId);
-      favButton.innerHTML = "Add to favour";
+      favButton.innerHTML = "Remove to favour";
     }
 
    
