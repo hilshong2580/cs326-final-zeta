@@ -18,7 +18,6 @@ window.onload = function () {
   getUserInfo();
 };
 
-
 console.log(document.getElementById("mainUserName").innerHTML);
 
 //render the post base on the server data
@@ -56,7 +55,6 @@ async function getRenderPost() {
   let response = await fetch("/main/", {
     method: "GET",
   });
-  
 
   if (response.status === 200) {
     let data = JSON.parse(await response.json());
@@ -77,11 +75,10 @@ async function getRenderPost() {
 
       renderPost(document.getElementById("accordion"), i, dataTemp);
     }
-  }
-  else
-  if (response.status === 202){
+  } else if (response.status === 202) {
     document.getElementById("accordion").innerHTML = "";
-  console.log("not post exist");}
+    console.log("not post exist");
+  }
 }
 
 //PUT:  a function to edit post content
@@ -182,6 +179,67 @@ async function deleteComment(postId) {
   });
 }
 
+async function editUser(jsonObj) {
+  fetch("/main/editUser", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getUserInfo();
+  });
+}
+
+//PUT:  a function to edit post content
+async function updateActivity(jsonObj) {
+  fetch("/main/activity", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) getRenderPost();
+  });
+}
+
+//post new post by fetch http://localhost:3000/main/createPost
+async function getActivity(jsonObj, html) {
+  fetch("/main/activity", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = JSON.parse(await response.json());
+    if (response.status === 200) 
+      console.log(data[0]);
+      
+      let favoriteDiv = document.createElement("div");
+      let favoriteLab = document.createElement("div").innerHTML = "Favorite Num: ";
+      let favoriteNum = document.createElement("div").innerHTML = data[0].favorite_num;
+      favoriteDiv.prepend(favoriteLab, favoriteNum);
+
+      let postDiv = document.createElement("div");
+      let postLab = document.createElement("div").innerHTML = "Post Num: ";
+      let postNum = document.createElement("div").innerHTML = data[0].post_num;
+      postDiv.prepend(postLab, postNum);
+
+      let commentDiv = document.createElement("div");
+      let commentLab = document.createElement("div").innerHTML = "Comment Num: ";
+      let commentNum = document.createElement("div").innerHTML = data[0].comment_num;
+      commentDiv.prepend(commentLab, commentNum);
+
+      let userDiv = document.createElement("div").innerHTML = data[0].name+" activity's record:";
+
+      html.prepend(userDiv, commentDiv, postDiv, favoriteDiv)
+  });
+}
+
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
   console.log("button was createPost");
@@ -198,6 +256,12 @@ document.getElementById("createPost").addEventListener("click", function (e) {
   };
   //console.log(newPost);
   postNewPost(newPost);
+  updateActivity({
+    userId: thisUserID,
+    favorite: 0,
+    post: 1,
+    comment: 0,
+  });
   document.getElementById("accordion").innerHTML = "";
   getRenderPost();
 });
@@ -211,37 +275,21 @@ document.getElementById("LogoutButton").addEventListener("click", function (e) {
 // a button listener to pop-up a window to display the user information
 document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
 
+document
+  .getElementById("editUserInfoBtr")
+  .addEventListener("click", function (e) {
+    console.log("button was editUserInfo");
+    // alert("ABC");
+    let body = {
+      userid: thisUserID,
+      name: document.getElementById("EditUserInfoName").value,
+      email: document.getElementById("EditUserInfoEmail").value,
+      phone: document.getElementById("EditUserInfoPhone").value,
+      about: document.getElementById("EditUserInfoAbout").value,
+    };
 
-document.getElementById("editUserInfoBtr").addEventListener("click", function (e) {
-  console.log("button was editUserInfo");
-  // alert("ABC");
-  let body = {
-    userid:thisUserID,
-    name:document.getElementById("EditUserInfoName").value, 
-    email:document.getElementById("EditUserInfoEmail").value, 
-    phone:document.getElementById("EditUserInfoPhone").value, 
-    about:document.getElementById("EditUserInfoAbout").value,
-  };
-
-  editUser(body);
-});
-
-async function editUser(jsonObj) {
-  fetch("/main/editUser", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(jsonObj),
-  }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) getUserInfo();
+    editUser(body);
   });
-}
-
-
-
-
 
 //a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {
@@ -268,48 +316,61 @@ function renderPost(HTML, id, jsonObj) {
   const destination = document.createElement("div");
   destination.classList.add("Destination");
   destination.setAttribute("id", "Destination" + idString);
-  destination.innerHTML = "<input class='form-control' type='text' value='Destination: "+jsonObj.destination+ "' aria-label='Disabled input example' disabled readonly>";
-
+  destination.innerHTML =
+    "<input class='form-control' type='text' value='Destination: " +
+    jsonObj.destination +
+    "' aria-label='Disabled input example' disabled readonly>";
 
   const picture = document.createElement("div");
   picture.classList.add("picture");
   picture.setAttribute("id", "Picture" + idString);
 
-  const image = document.createElement("img");
-  image.setAttribute("src", jsonObj.photo);
-  image.setAttribute("alt", "...");
-  image.setAttribute("id", "image" + idString);
-  picture.prepend(image);
+  getActivity({ userId: jsonObj.userId}, picture);
+
 
   const outset = document.createElement("div");
   outset.classList.add("Outset");
   outset.setAttribute("id", "Outset" + idString);
-  outset.innerHTML = "<input class='form-control' type='text' value='Outset: "+jsonObj.outset+ "' aria-label='Disabled input example' disabled readonly>";
+  outset.innerHTML =
+    "<input class='form-control' type='text' value='Outset: " +
+    jsonObj.outset +
+    "' aria-label='Disabled input example' disabled readonly>";
   //"Outset: " + jsonObj.outset;
 
   const startTime = document.createElement("div");
   startTime.classList.add("startTime");
   startTime.setAttribute("id", "startTime" + idString);
-  startTime.innerHTML = "<input class='form-control' type='text' value='Start: "+jsonObj.dateTimeStart+ "' aria-label='Disabled input example' disabled readonly>";
+  startTime.innerHTML =
+    "<input class='form-control' type='text' value='Start: " +
+    jsonObj.dateTimeStart +
+    "' aria-label='Disabled input example' disabled readonly>";
   //"Start: " + jsonObj.dateTimeStart;
 
   const endTime = document.createElement("div");
   endTime.classList.add("endTime");
   endTime.setAttribute("id", "endTime" + idString);
-  endTime.innerHTML = "<input class='form-control' type='text' value='End: "+jsonObj.dateTimeEnd+ "' aria-label='Disabled input example' disabled readonly>";
+  endTime.innerHTML =
+    "<input class='form-control' type='text' value='End: " +
+    jsonObj.dateTimeEnd +
+    "' aria-label='Disabled input example' disabled readonly>";
   //"End: " + jsonObj.dateTimeEnd;
 
   const numberOfPeople = document.createElement("div");
   numberOfPeople.classList.add("numberOfPeople");
   numberOfPeople.setAttribute("id", "numberOfPeople" + idString);
-  numberOfPeople.innerHTML = "<input class='form-control' type='text' value='Num of People: "+jsonObj.numOfPeople+ "' aria-label='Disabled input example' disabled readonly>";
+  numberOfPeople.innerHTML =
+    "<input class='form-control' type='text' value='Num of People: " +
+    jsonObj.numOfPeople +
+    "' aria-label='Disabled input example' disabled readonly>";
   //"People Num: " + jsonObj.numOfPeople;
 
   const Description = document.createElement("div");
   Description.classList.add("Description");
   Description.setAttribute("id", "Description" + idString);
-  Description.innerHTML = 
-  "<div class='mb-3'><label for='exampleFormControlTextarea1' class='form-label'><input class='form-control' type='text' value='Description: ' aria-label='Disabled input example' disabled readonly></label><textarea class='form-control' id='exampleFormControlTextarea1' rows='3' disabled readonly  placeholder = '<font color='black'>"+jsonObj.description+"</textarea></div>";
+  Description.innerHTML =
+    "<div class='mb-3'><label for='exampleFormControlTextarea1' class='form-label'><input class='form-control' type='text' value='Description: ' aria-label='Disabled input example' disabled readonly></label><textarea class='form-control' id='exampleFormControlTextarea1' rows='3' disabled readonly  placeholder = '<font color='black'>" +
+    jsonObj.description +
+    "</textarea></div>";
   //"Description: " + jsonObj.description;
 
   const DeletePostBtr = document.createElement("div");
@@ -321,9 +382,9 @@ function renderPost(HTML, id, jsonObj) {
   deleteButton.classList.add("btn", "btn-outline-primary");
 
   deleteButton.setAttribute("type", "button");
-  deleteButton.setAttribute("id","b1");
+  deleteButton.setAttribute("id", "b1");
   deleteButton.innerHTML = "Delete Post";
- 
+
   deleteButton.addEventListener("click", function (e) {
     deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
     deleteComment(jsonObj.postId);
@@ -381,7 +442,7 @@ function renderPost(HTML, id, jsonObj) {
 
   const label = document.createElement("label");
   label.setAttribute("for", "exampleFormControlTextarea1");
-  label.innerText ="Your Comment";
+  label.innerText = "Your Comment";
 
   const textarea = document.createElement("textarea");
   textarea.classList.add("form-control");
@@ -398,13 +459,20 @@ function renderPost(HTML, id, jsonObj) {
   buttonSubmit.classList.add("btn", "btn-primary");
   buttonSubmit.innerText = "Submit";
   buttonSubmit.addEventListener("click", function (e) {
-    if (textarea.value!==""){
+    if (textarea.value !== "") {
       pushComment({
         name: document.getElementById("mainUserName").innerHTML,
         comment: textarea.value,
         postId: jsonObj.postId,
       });
     }
+
+    updateActivity({
+      userId: thisUserID,
+      favorite: 0,
+      post: 0,
+      comment: 1,
+    });
   });
 
   const comment = document.createElement("div");
@@ -421,7 +489,7 @@ function renderPost(HTML, id, jsonObj) {
   renderForm(modal, idString, jsonObj);
 
   const cardBody = document.createElement("div");
-  cardBody.innerHTML = "this is " + idString;
+  //cardBody.innerHTML = "this is " + idString;
   cardBody.prepend(modal, comment);
   cardBody.prepend(accordionDetail);
 
