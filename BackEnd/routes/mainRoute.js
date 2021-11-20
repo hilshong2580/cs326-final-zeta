@@ -29,6 +29,8 @@ router.post("/UserInfo", async function (req, res) {
 
 });
 
+
+////////////////////////////POST create, edit, delete, get ///////////////////////
 // GET method route to get all post
 router.get("/", async function (req, res) {
   console.log("this is get all post in backend main");
@@ -133,6 +135,7 @@ router.delete("/", async function (req, res) {
   }
 });
 
+////////////////////////////User Comment///////////////////////
 //a put method to update the comment from post
 //push the comment into correct postion comment column
 router.post("/comment", async function (req, res) {
@@ -218,7 +221,40 @@ router.put("/editUser", async function (req, res) {
 
 });
 
+////////////////////////////user activity///////////////////////
+router.put("/activity", async function (req, res) {
+  console.log("this is update User activity");
+  try {
+    const {userId, favorite, post, comment} = req.body;
+    const activityUpdate = await pool.query(
+      "UPDATE activityTable set favorite_num = favorite_num + $1, post_num = post_num + $2, comment_num = comment_num + $3 WHERE userid = $4",
+      [favorite, post, comment, userId]
+ 
+    );
+    if (activityUpdate.rowCount > 0) {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(JSON.stringify(activityUpdate.rows));
+    } else res.status(202).json(JSON.stringify("activity update fail"));
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).json(JSON.stringify("activity update error"));
+  }
+});
 
 
-
+router.post("/activity", async function (req, res) {
+  console.log("this is get activity data");
+  try {
+    const userId = req.body.userId;
+    const getActivity = await pool.query("SELECT * FROM activityTable Inner JOIN userTable On userTable.userid = activityTable.userid Where activityTable.userid = $1", [userId]);
+    if (getActivity.rows.length > 0) {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(JSON.stringify(getActivity.rows));
+    } else res.status(202).json("get all Activity fail");
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).json("get all Activity error");
+  }
+});
+//SELECT * FROM activityTable Inner JOIN userTable On userTable.userid = activityTable.userid Where userid = 40;
 module.exports = router;
