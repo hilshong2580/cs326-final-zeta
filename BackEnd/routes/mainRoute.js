@@ -223,7 +223,7 @@ router.post("/addToFav", async function (req, res) {
   console.log("this is adding to fav");
 
   try {
-    console.log(req.body);
+   // console.log(req.body);
     const { userid, postid  } = req.body;
     const addfav = await pool.query(
       "INSERT INTO favTable (userid, postid) VALUES ($1, $2) RETURNING *",
@@ -238,12 +238,33 @@ router.post("/addToFav", async function (req, res) {
 
 });
 
-/////////////////////////check if fav////////////////////
-router.post("/checkIfFav", async function (req, res) {
-  console.log("this is checking to fav");
+///////////////////////////////remove from fav/////////////////////////////
+router.post("/delFav", async function (req, res) {
+  console.log("this is del to fav");
 
   try {
-    console.log(req.body);
+   // console.log(req.body);
+    const { userid, postid  } = req.body;
+    const delfav = await pool.query(
+      "DELETE FROM favTable WHERE userid=$1 AND postid = $2",
+      [userid,postid]
+    );
+    //console.log("252");
+    res.status(200).send("Del fav to table Successful");
+  } catch (err) {
+    console.log(err.message);
+    res.status(202).send("del fav to table Fail");
+  }
+});
+
+
+
+/////////////////////////check if fav////////////////////
+router.post("/checkIfFav", async function (req, res) {
+  //console.log("this is checking to fav");
+
+  try {
+    //console.log(req.body);
     const { userid, postid  } = req.body;
     const ckeckfav = await pool.query(
       "SELECT * FROM favTable WHERE userid=$1 AND postid = $2",
@@ -251,9 +272,10 @@ router.post("/checkIfFav", async function (req, res) {
     );
 
     if (ckeckfav.rowCount>0){
-    //console.log(req.body);
+    console.log("T");
     res.status(200).send("true");}
     else{
+      console.log("F");
     res.status(200).send("false");
     }
   } catch (err) {
@@ -262,23 +284,6 @@ router.post("/checkIfFav", async function (req, res) {
   }
 });
 
-///////////////////////////////remove from fav/////////////////////////////
-router.post("/delFav", async function (req, res) {
-  console.log("this is del to fav");
-
-  try {
-    console.log(req.body);
-    const { userid, postid  } = req.body;
-    const delfav = await pool.query(
-      "DELETE FROM favTable WHERE userid=$1 AND postid = $2",
-      [userid,postid]
-    );
-   // console.log(req.body);
-  } catch (err) {
-    console.log(err.message);
-    res.status(202).send("del fav to table Fail");
-  }
-});
 
 
 module.exports = router;

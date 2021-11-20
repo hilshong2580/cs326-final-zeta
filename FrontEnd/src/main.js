@@ -127,7 +127,7 @@ async function postNewPost(jsonObj) {
 }
 
 ////////////////////add fav function///////////////////
-async function addtoFav(userId,postId) {
+async function addtoFav(userId,postId,html) {
   let jsonObj = {
     userid: userId,
     postid: postId
@@ -139,10 +139,31 @@ async function addtoFav(userId,postId) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) console.log("added");
+    //const data = await response.text();
+    if (response.status === 200) {console.log("added");
+    checkFav(userId,postId,html);}
   });
 }
+
+//////////////////////Remove from fav//////////////////////
+async function DelFav(userId,postId,html) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId
+  };
+  fetch("/main/delFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    //const data = await response.text();
+    if (response.status === 200) {console.log("deled");
+    checkFav(userId,postId,html);}
+  });
+}
+
 
 /////////////////////check fav function////////////////
 async function checkFav(userId,postId,html) {
@@ -173,23 +194,6 @@ async function checkFav(userId,postId,html) {
   });
 }
 
-//////////////////////Remove from fav//////////////////////
-async function DelFav(userId,postId) {
-  let jsonObj = {
-    userid: userId,
-    postid: postId
-  };
-  fetch("/main/delFav", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(jsonObj),
-  }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) console.log("removed");
-  });
-}
 
 
 
@@ -421,23 +425,14 @@ function renderPost(HTML, id, jsonObj) {
   checkFav(thisUserID,jsonObj.postId,favButton);
 
   favButton.addEventListener("click", function (e) {
-  //  deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
-    //deleteComment(jsonObj.postId);
-
-    //alert(checkFav(thisUserID,jsonObj.postId).text());
-    //alert(favButton.innerHTML==="Remove From Favour");
-
+//alert(favButton.innerHTML==="Remove From Favour");
      if(favButton.innerHTML==="Remove From Favour"){
-      //alert("del");
-      DelFav(thisUserID,jsonObj.postId);
-    //  favButton.innerHTML = "Add to favour";
+      DelFav(thisUserID,jsonObj.postId,favButton);
+
      }else{
-    // alert(checkFav(thisUserID,jsonObj.postId));
-      addtoFav(thisUserID,jsonObj.postId);
-    //   favButton.innerHTML = "Remove to favour";
+      addtoFav(thisUserID,jsonObj.postId,favButton);
      }
     
-     checkFav(thisUserID,jsonObj.postId,favButton);
    
     // alert("fav");
   });
