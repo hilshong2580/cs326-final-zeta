@@ -124,7 +124,7 @@ async function postNewPost(jsonObj) {
 }
 
 ////////////////////add fav function///////////////////
-async function addtoFav(userId,postId,html,tag) {
+async function addtoFav(userId, postId, html, tag) {
   let jsonObj = {
     userid: userId,
     postid: postId,
@@ -138,13 +138,15 @@ async function addtoFav(userId,postId,html,tag) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     //const data = await response.text();
-    if (response.status === 200) {console.log("added");
-    checkFav(userId,postId,html);}
+    if (response.status === 200) {
+      console.log("added");
+      checkFav(userId, postId, html);
+    }
   });
 }
 
 //////////////////////Remove from fav//////////////////////
-async function DelFav(userId,postId,html,tag) {
+async function DelFav(userId, postId, html, tag) {
   let jsonObj = {
     userid: userId,
     postid: postId,
@@ -158,14 +160,16 @@ async function DelFav(userId,postId,html,tag) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     //const data = await response.text();
-    if (response.status === 200) {console.log("deled");
-    checkFav(userId,postId,html);}
+    if (response.status === 200) {
+      console.log("deled");
+      checkFav(userId, postId, html);
+    }
   });
 }
 
 
 /////////////////////check fav function////////////////
-async function checkFav(userId,postId,html) {
+async function checkFav(userId, postId, html) {
   let jsonObj = {
     userid: userId,
     postid: postId
@@ -179,17 +183,17 @@ async function checkFav(userId,postId,html) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) {
-     //alert("THIS IS : "+data);
-    // console.log("THHHHHHHIIIII:" +data);
-     //alert(data==="true");
-     if(data==="true"){
-       html.innerHTML="Remove From Favour";
-       //alert("Remove From Favourkkkk");
-     }else{
-      html.innerHTML="Add to favour";
-       //alert("data: "+JSON.stringify(data));
-     }
+      //alert("THIS IS : "+data);
+      // console.log("THHHHHHHIIIII:" +data);
+      //alert(data==="true");
+      if (data === "true") {
+        html.innerHTML = "Remove From Favour";
+        //alert("Remove From Favourkkkk");
+      } else {
+        html.innerHTML = "Add to favour";
+        //alert("data: "+JSON.stringify(data));
       }
+    }
   });
 }
 
@@ -289,27 +293,27 @@ async function getActivity(jsonObj, html) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = JSON.parse(await response.json());
-    if (response.status === 200) 
+    if (response.status === 200)
       console.log(data[0]);
-      
-      let favoriteDiv = document.createElement("div");
-      let favoriteLab = document.createElement("div").innerHTML = "Favorite Num: ";
-      let favoriteNum = document.createElement("div").innerHTML = data[0].favorite_num;
-      favoriteDiv.prepend(favoriteLab, favoriteNum);
 
-      let postDiv = document.createElement("div");
-      let postLab = document.createElement("div").innerHTML = "Post Num: ";
-      let postNum = document.createElement("div").innerHTML = data[0].post_num;
-      postDiv.prepend(postLab, postNum);
+    let favoriteDiv = document.createElement("div");
+    let favoriteLab = document.createElement("div").innerHTML = "Favorite Num: ";
+    let favoriteNum = document.createElement("div").innerHTML = data[0].favorite_num;
+    favoriteDiv.prepend(favoriteLab, favoriteNum);
 
-      let commentDiv = document.createElement("div");
-      let commentLab = document.createElement("div").innerHTML = "Comment Num: ";
-      let commentNum = document.createElement("div").innerHTML = data[0].comment_num;
-      commentDiv.prepend(commentLab, commentNum);
+    let postDiv = document.createElement("div");
+    let postLab = document.createElement("div").innerHTML = "Post Num: ";
+    let postNum = document.createElement("div").innerHTML = data[0].post_num;
+    postDiv.prepend(postLab, postNum);
 
-      let userDiv = document.createElement("div").innerHTML = data[0].name+" activity's record:";
+    let commentDiv = document.createElement("div");
+    let commentLab = document.createElement("div").innerHTML = "Comment Num: ";
+    let commentNum = document.createElement("div").innerHTML = data[0].comment_num;
+    commentDiv.prepend(commentLab, commentNum);
 
-      html.prepend(userDiv, commentDiv, postDiv, favoriteDiv)
+    let userDiv = document.createElement("div").innerHTML = data[0].name + " activity's record:";
+
+    html.prepend(userDiv, commentDiv, postDiv, favoriteDiv)
   });
 }
 
@@ -398,7 +402,7 @@ function renderPost(HTML, id, jsonObj) {
   picture.classList.add("picture");
   picture.setAttribute("id", "Picture" + idString);
 
-  getActivity({ userId: jsonObj.userId}, picture);
+  getActivity({ userId: jsonObj.userId }, picture);
 
 
   const outset = document.createElement("div");
@@ -482,26 +486,38 @@ function renderPost(HTML, id, jsonObj) {
   favButton.classList.add("btn", "btn-outline-primary");
 
   favButton.setAttribute("type", "button");
-  favButton.setAttribute("id","b1");
- // favButton.innerHTML = "Add to favour";
+  favButton.setAttribute("id", "b1");
+  // favButton.innerHTML = "Add to favour";
 
-  checkFav(thisUserID,jsonObj.postId,favButton);
+  checkFav(thisUserID, jsonObj.postId, favButton);
 
   favButton.addEventListener("click", function (e) {
-//alert(favButton.innerHTML==="Remove From Favour");
-     if(favButton.innerHTML==="Remove From Favour"){
-      DelFav(thisUserID,jsonObj.postId,favButton,"post" + idString);
+    //alert(favButton.innerHTML==="Remove From Favour");
+    if (favButton.innerHTML === "Remove From Favour") {
+      DelFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
+      updateActivity({
+        userId: thisUserID,
+        favorite: -1,
+        post: 0,
+        comment: 0,
+      });
 
-     }else{
+    } else {
 
-      addtoFav(thisUserID,jsonObj.postId,favButton,"post" + idString);
-     }
-    
-   
+      addtoFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
+      updateActivity({
+        userId: thisUserID,
+        favorite: 1,
+        post: 0,
+        comment: 0,
+      });
+    }
+
+
     // alert("fav");
   });
   DeletePostBtr.prepend(favButton);
-///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
 
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
@@ -613,7 +629,7 @@ function renderPost(HTML, id, jsonObj) {
   // card.prepend(pid);
   card.prepend(collapsePost);
   card.prepend(cardHeader);
-  
+
 
   HTML.prepend(card);
 }

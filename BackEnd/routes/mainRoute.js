@@ -223,11 +223,11 @@ router.delete("/comment", async function (req, res) {
 router.put("/editUser", async function (req, res) {
   console.log("this is update/edit User");
   try {
-    const {userid, name, email, phone, about } = req.body;
+    const { userid, name, email, phone, about } = req.body;
     const updateUser = await pool.query(
       "UPDATE userTable SET name = $2, email = $3, phone= $4, about= $5 WHERE userid = $1",
       [userid, name, email, phone, about]
- 
+
     );
 
     console.log(JSON.stringify(req.body));
@@ -244,11 +244,11 @@ router.put("/editUser", async function (req, res) {
 router.put("/activity", async function (req, res) {
   console.log("this is update User activity");
   try {
-    const {userId, favorite, post, comment} = req.body;
+    const { userId, favorite, post, comment } = req.body;
     const activityUpdate = await pool.query(
       "UPDATE activityTable set favorite_num = favorite_num + $1, post_num = post_num + $2, comment_num = comment_num + $3 WHERE userid = $4",
       [favorite, post, comment, userId]
- 
+
     );
     if (activityUpdate.rowCount > 0) {
       res.setHeader("Content-Type", "application/json");
@@ -257,17 +257,19 @@ router.put("/activity", async function (req, res) {
   } catch (err) {
     console.log(err.message);
     res.status(404).json(JSON.stringify("activity update error"));
+  }
+});
 
 ////////////////////////add to fav//////////////////////////
 router.post("/addToFav", async function (req, res) {
   console.log("this is adding to fav");
 
   try {
-   // console.log(req.body);
-    const { userid, postid, postTag  } = req.body;
+    // console.log(req.body);
+    const { userid, postid, postTag } = req.body;
     const addfav = await pool.query(
       "INSERT INTO favTable (userid, postid, postTag) VALUES ($1, $2, $3) RETURNING *",
-      [userid,postid,postTag]
+      [userid, postid, postTag]
     );
     //console.log(req.body);
     res.status(200).send("Add fav to table Successful");
@@ -283,11 +285,11 @@ router.post("/delFav", async function (req, res) {
   console.log("this is del to fav");
 
   try {
-   // console.log(req.body);
-    const { userid, postid  } = req.body;
+    // console.log(req.body);
+    const { userid, postid } = req.body;
     const delfav = await pool.query(
       "DELETE FROM favTable WHERE userid=$1 AND postid = $2",
-      [userid,postid]
+      [userid, postid]
     );
     //console.log("252");
     res.status(200).send("Del fav to table Successful");
@@ -305,18 +307,19 @@ router.post("/checkIfFav", async function (req, res) {
 
   try {
     //console.log(req.body);
-    const { userid, postid  } = req.body;
+    const { userid, postid } = req.body;
     const ckeckfav = await pool.query(
       "SELECT * FROM favTable WHERE userid=$1 AND postid = $2",
-      [userid,postid]
+      [userid, postid]
     );
 
-    if (ckeckfav.rowCount>0){
-    console.log("T");
-    res.status(200).send("true");}
-    else{
+    if (ckeckfav.rowCount > 0) {
+      console.log("T");
+      res.status(200).send("true");
+    }
+    else {
       console.log("F");
-    res.status(200).send("false");
+      res.status(200).send("false");
     }
   } catch (err) {
     console.log(err.message);
