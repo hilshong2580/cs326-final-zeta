@@ -127,10 +127,11 @@ async function postNewPost(jsonObj) {
 }
 
 ////////////////////add fav function///////////////////
-async function addtoFav(userId,postId,html) {
+async function addtoFav(userId,postId,html,tag) {
   let jsonObj = {
     userid: userId,
-    postid: postId
+    postid: postId,
+    postTag: tag
   };
   fetch("/main/addToFav", {
     method: "POST",
@@ -146,10 +147,11 @@ async function addtoFav(userId,postId,html) {
 }
 
 //////////////////////Remove from fav//////////////////////
-async function DelFav(userId,postId,html) {
+async function DelFav(userId,postId,html,tag) {
   let jsonObj = {
     userid: userId,
-    postid: postId
+    postid: postId,
+    postTag: tag
   };
   fetch("/main/delFav", {
     method: "POST",
@@ -427,10 +429,11 @@ function renderPost(HTML, id, jsonObj) {
   favButton.addEventListener("click", function (e) {
 //alert(favButton.innerHTML==="Remove From Favour");
      if(favButton.innerHTML==="Remove From Favour"){
-      DelFav(thisUserID,jsonObj.postId,favButton);
+      DelFav(thisUserID,jsonObj.postId,favButton,"post" + idString);
 
      }else{
-      addtoFav(thisUserID,jsonObj.postId,favButton);
+
+      addtoFav(thisUserID,jsonObj.postId,favButton,"post" + idString);
      }
     
    
@@ -533,8 +536,16 @@ function renderPost(HTML, id, jsonObj) {
   const card = document.createElement("div");
   card.classList.add("card");
   card.setAttribute("id", "post" + idString);
+  //card.setAttribute("tag", "postid"+jsonObj.postId);
+  //card.innerText="WTF"+idString;
+  //const pid = document.createElement("div");
+  //pid.setAttribute("id", "postid:"+jsonObj.postId);
+  //console.log("This post's is :"+ "postid:"+jsonObj.postId);
+
+  // card.prepend(pid);
   card.prepend(collapsePost);
   card.prepend(cardHeader);
+  
 
   HTML.prepend(card);
 }

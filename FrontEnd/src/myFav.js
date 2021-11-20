@@ -62,6 +62,7 @@ const searchbtr=document.getElementById("MyFavPost");
 searchbtr.addEventListener("click", function (e) {
 
     // alert(thisUserID);
+    hideAll();
     getUserFav();
    });
 
@@ -82,25 +83,29 @@ async function getUserFav() {
          // let tempString=JSON.stringify(data);
          // tempString.replace("userid\":1", "");
         //  alert(tempString);
-        hideAll();
-          for (let i in data) {
+       
+
+          for (let i in data) {  
+           // console.log(data.postId);
             let dataTemp = {
-              postId: data[i].postid
+              postId: data[i].postid,
+              postTag: data[i].posttag
             };
-        console.log(dataTemp.postId);
+        console.log(dataTemp.postTag);
 /////////////////////
-        const searchInput=document.getElementById("searchinput");
-        let i=0;
-        while(document.getElementById("post"+JSON.stringify(i))!==null){
-        // console.log(i);
-            i++;
-        }
+        // const searchInput=document.getElementById("searchinput");
+        // let l=0;
+        // while(document.getElementById("post"+JSON.stringify(l))!==null){
+        // // console.log(i);
+        //     i++;
+        // }
         // console.log(document.getElementById("postitle"+JSON.stringify(1)).innerText);
-        for(let j=0;j<i;j++){
-            if(((document.getElementById("postitle"+JSON.stringify(j)).innerText).toLowerCase())===dataTemp.postId){ 
-            document.getElementById("post"+JSON.stringify(j)).hidden= false;
-                }
-            }
+       // for(let j=0;j<i;j++){
+           // if(((document.getElementById("postitle"+JSON.stringify(j)).innerText).toLowerCase())===dataTemp.postId){ 
+            document.getElementById(dataTemp.postTag).hidden=false;
+            //console.log(document.getElementById("pid"+ JSON.stringify(dataTemp.postId)).tag);
+              //  }
+          //  }
 
 
         ///////////////////////

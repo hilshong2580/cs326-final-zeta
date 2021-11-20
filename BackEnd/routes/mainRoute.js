@@ -246,10 +246,10 @@ router.post("/addToFav", async function (req, res) {
 
   try {
    // console.log(req.body);
-    const { userid, postid  } = req.body;
+    const { userid, postid, postTag  } = req.body;
     const addfav = await pool.query(
-      "INSERT INTO favTable (userid, postid) VALUES ($1, $2) RETURNING *",
-      [userid,postid]
+      "INSERT INTO favTable (userid, postid, postTag) VALUES ($1, $2, $3) RETURNING *",
+      [userid,postid,postTag]
     );
     //console.log(req.body);
     res.status(200).send("Add fav to table Successful");
