@@ -145,7 +145,7 @@ async function addtoFav(userId,postId) {
 }
 
 /////////////////////check fav function////////////////
-async function checkFav(userId,postId) {
+async function checkFav(userId,postId,html) {
   let jsonObj = {
     userid: userId,
     postid: postId
@@ -159,8 +159,17 @@ async function checkFav(userId,postId) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) {
-     alert("THIS IS : "+data);
-      return data;}
+     //alert("THIS IS : "+data);
+     console.log("THHHHHHHIIIII:" +data);
+     alert(data==="true");
+     if(JSON.stringify(data)==="true"){
+       html.innerHTML="Remove From Favourkkkk";
+       alert("Remove From Favourkkkk");
+     }else{
+      html.innerHTML="Add to favourppppp";
+       //alert("data: "+JSON.stringify(data));
+     }
+      }
   });
 }
 
@@ -409,19 +418,23 @@ function renderPost(HTML, id, jsonObj) {
   favButton.setAttribute("id","b1");
   favButton.innerHTML = "Add to favour";
 
+  checkFav(thisUserID,jsonObj.postId,favButton);
+
   favButton.addEventListener("click", function (e) {
   //  deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
     //deleteComment(jsonObj.postId);
 
-    if(JSON.stringify(checkFav(thisUserID,jsonObj.postId))==="true"){
-      alert("del");
-     DelFav(thisUserID,jsonObj.postId);
-     favButton.innerHTML = "Add to favour";
-    }else{
-     // alert(checkFav(thisUserID,jsonObj.postId));
+    //alert(checkFav(thisUserID,jsonObj.postId).text());
+
+     if(favButton.innerHTML==="Remove From Favour"){
+    //   alert("del");
+      DelFav(thisUserID,jsonObj.postId);
+    //  favButton.innerHTML = "Add to favour";
+     }else{
+    //  // alert(checkFav(thisUserID,jsonObj.postId));
       addtoFav(thisUserID,jsonObj.postId);
-      favButton.innerHTML = "Remove to favour";
-    }
+    //   favButton.innerHTML = "Remove to favour";
+     }
 
    
     // alert("fav");
