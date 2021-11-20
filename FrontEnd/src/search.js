@@ -1,25 +1,6 @@
 
 searchFunction();
 
-
-// searchInput();
-
-// const SI="";
-
-// function searchInput(){
-
-//     const searchInput=document.getElementById("searchinput");
-//     searchInput.addEventListener("keydown", function (e) {
-//        // console.log(document.getElementById("searchinput").value);
-//         console.log(searchInput.value);
-       
-//         //SI=SI+JSON.stringify(searchInput.innerHTML);
-//         });
-
-// }
-
-
-
 function searchFunction(){
 const searchbtr=document.getElementById("searchbtr");
 

@@ -9,6 +9,7 @@
 
   <script type="module" src="./src/main.js" defer></script>
   <script type="module" src="./src/search.js" defer></script>
+  <script type="module" src="./src/myFav.js" defer></script>
   <link rel="stylesheet" href="./css/main.css" />
   <link rel="stylesheet" href="./css/post.css" />
 
@@ -75,7 +76,21 @@
 
           <!-- the create post button -->
           <!-- Button trigger modal, this is use on create post -->
-            <div class="text-right">
+            <div class="text-center">
+
+              <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm" data-toggle="modal" 
+              id="allPost">
+              All Post
+              </button>
+
+              <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm" data-toggle="modal" 
+              id="MyFavPost">
+              My Favour Post
+              </button>
+            </div>
+
+              <div class="text-right">
+
                 <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"
                   id="createPopUp">
                   Create Post

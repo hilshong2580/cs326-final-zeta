@@ -29,6 +29,28 @@ router.post("/UserInfo", async function (req, res) {
 
 });
 
+/////////////////////////////////////////////////////
+router.post("/UserFav", async function (req, res) {
+  try {
+    const { userId } = req.body;
+    //console.log(userId);
+
+    const userInfo = await pool.query(
+      "SELECT * FROM favTable WHERE userid = $1",
+      [userId]
+    );
+
+    if (userInfo.rows.length > 0)
+      res.status(200).json(JSON.stringify(userInfo.rows));
+    else res.status(202).json(JSON.stringify("Find user info fail, not match"));
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).json(JSON.stringify("Find user info error"));
+  }
+});
+
+
+
 // GET method route to get all post
 router.get("/", async function (req, res) {
   console.log("this is get all post in backend main");
