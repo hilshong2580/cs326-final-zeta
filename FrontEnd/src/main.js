@@ -140,7 +140,7 @@ async function addtoFav(userId,postId) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) alert("added");
+    if (response.status === 200) console.log("added");
   });
 }
 
@@ -160,13 +160,13 @@ async function checkFav(userId,postId,html) {
     const data = await response.text();
     if (response.status === 200) {
      //alert("THIS IS : "+data);
-     console.log("THHHHHHHIIIII:" +data);
-     alert(data==="true");
-     if(JSON.stringify(data)==="true"){
-       html.innerHTML="Remove From Favourkkkk";
-       alert("Remove From Favourkkkk");
+    // console.log("THHHHHHHIIIII:" +data);
+     //alert(data==="true");
+     if(data==="true"){
+       html.innerHTML="Remove From Favour";
+       //alert("Remove From Favourkkkk");
      }else{
-      html.innerHTML="Add to favourppppp";
+      html.innerHTML="Add to favour";
        //alert("data: "+JSON.stringify(data));
      }
       }
@@ -187,7 +187,7 @@ async function DelFav(userId,postId) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) alert("removed");
+    if (response.status === 200) console.log("removed");
   });
 }
 
@@ -416,7 +416,7 @@ function renderPost(HTML, id, jsonObj) {
 
   favButton.setAttribute("type", "button");
   favButton.setAttribute("id","b1");
-  favButton.innerHTML = "Add to favour";
+ // favButton.innerHTML = "Add to favour";
 
   checkFav(thisUserID,jsonObj.postId,favButton);
 
@@ -425,17 +425,19 @@ function renderPost(HTML, id, jsonObj) {
     //deleteComment(jsonObj.postId);
 
     //alert(checkFav(thisUserID,jsonObj.postId).text());
+    //alert(favButton.innerHTML==="Remove From Favour");
 
      if(favButton.innerHTML==="Remove From Favour"){
-    //   alert("del");
+      //alert("del");
       DelFav(thisUserID,jsonObj.postId);
     //  favButton.innerHTML = "Add to favour";
      }else{
-    //  // alert(checkFav(thisUserID,jsonObj.postId));
+    // alert(checkFav(thisUserID,jsonObj.postId));
       addtoFav(thisUserID,jsonObj.postId);
     //   favButton.innerHTML = "Remove to favour";
      }
-
+    
+     checkFav(thisUserID,jsonObj.postId,favButton);
    
     // alert("fav");
   });

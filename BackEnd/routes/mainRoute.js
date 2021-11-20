@@ -252,7 +252,7 @@ router.post("/checkIfFav", async function (req, res) {
 
     if (ckeckfav.rowCount>0){
     //console.log(req.body);
-    res.status(200).send("ture");}
+    res.status(200).send("true");}
     else{
     res.status(200).send("false");
     }
