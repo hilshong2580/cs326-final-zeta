@@ -29,8 +29,27 @@ router.post("/UserInfo", async function (req, res) {
 
 });
 
-
 ////////////////////////////POST create, edit, delete, get ///////////////////////
+
+router.post("/UserFav", async function (req, res) {
+  try {
+    const { userId } = req.body;
+    //console.log(userId);
+
+    const userInfo = await pool.query(
+      "SELECT * FROM favTable WHERE userid = $1",
+      [userId]
+    );
+
+    if (userInfo.rows.length > 0)
+      res.status(200).json(JSON.stringify(userInfo.rows));
+    else res.status(202).json(JSON.stringify("Find user info fail, not match"));
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).json(JSON.stringify("Find user info error"));
+  }
+});
+
 // GET method route to get all post
 router.get("/", async function (req, res) {
   console.log("this is get all post in backend main");
@@ -238,6 +257,71 @@ router.put("/activity", async function (req, res) {
   } catch (err) {
     console.log(err.message);
     res.status(404).json(JSON.stringify("activity update error"));
+
+////////////////////////add to fav//////////////////////////
+router.post("/addToFav", async function (req, res) {
+  console.log("this is adding to fav");
+
+  try {
+   // console.log(req.body);
+    const { userid, postid, postTag  } = req.body;
+    const addfav = await pool.query(
+      "INSERT INTO favTable (userid, postid, postTag) VALUES ($1, $2, $3) RETURNING *",
+      [userid,postid,postTag]
+    );
+    //console.log(req.body);
+    res.status(200).send("Add fav to table Successful");
+  } catch (err) {
+    console.log(err.message);
+    res.status(202).send("Add fav to table Fail");
+  }
+
+});
+
+///////////////////////////////remove from fav/////////////////////////////
+router.post("/delFav", async function (req, res) {
+  console.log("this is del to fav");
+
+  try {
+   // console.log(req.body);
+    const { userid, postid  } = req.body;
+    const delfav = await pool.query(
+      "DELETE FROM favTable WHERE userid=$1 AND postid = $2",
+      [userid,postid]
+    );
+    //console.log("252");
+    res.status(200).send("Del fav to table Successful");
+  } catch (err) {
+    console.log(err.message);
+    res.status(202).send("del fav to table Fail");
+  }
+});
+
+
+
+/////////////////////////check if fav////////////////////
+router.post("/checkIfFav", async function (req, res) {
+  //console.log("this is checking to fav");
+
+  try {
+    //console.log(req.body);
+    const { userid, postid  } = req.body;
+    const ckeckfav = await pool.query(
+      "SELECT * FROM favTable WHERE userid=$1 AND postid = $2",
+      [userid,postid]
+    );
+
+    if (ckeckfav.rowCount>0){
+    console.log("T");
+    res.status(200).send("true");}
+    else{
+      console.log("F");
+    res.status(200).send("false");
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(202).send("check fav to table Fail");
+
   }
 });
 

@@ -123,6 +123,79 @@ async function postNewPost(jsonObj) {
   });
 }
 
+////////////////////add fav function///////////////////
+async function addtoFav(userId,postId,html,tag) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId,
+    postTag: tag
+  };
+  fetch("/main/addToFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    //const data = await response.text();
+    if (response.status === 200) {console.log("added");
+    checkFav(userId,postId,html);}
+  });
+}
+
+//////////////////////Remove from fav//////////////////////
+async function DelFav(userId,postId,html,tag) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId,
+    postTag: tag
+  };
+  fetch("/main/delFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    //const data = await response.text();
+    if (response.status === 200) {console.log("deled");
+    checkFav(userId,postId,html);}
+  });
+}
+
+
+/////////////////////check fav function////////////////
+async function checkFav(userId,postId,html) {
+  let jsonObj = {
+    userid: userId,
+    postid: postId
+  };
+  fetch("/main/checkIfFav", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jsonObj),
+  }).then(async (response) => {
+    const data = await response.text();
+    if (response.status === 200) {
+     //alert("THIS IS : "+data);
+    // console.log("THHHHHHHIIIII:" +data);
+     //alert(data==="true");
+     if(data==="true"){
+       html.innerHTML="Remove From Favour";
+       //alert("Remove From Favourkkkk");
+     }else{
+      html.innerHTML="Add to favour";
+       //alert("data: "+JSON.stringify(data));
+     }
+      }
+  });
+}
+
+
+
+
 //a fetch to upload the new comment from the post, it used to update the content of data
 async function pushComment(jsonObj) {
   console.log("this is insert comment based on post");
@@ -402,6 +475,34 @@ function renderPost(HTML, id, jsonObj) {
     DeletePostBtr.prepend(deleteButton, edBtn);
   }
 
+  //////////////////////Add to Fav//////////////////////////
+
+  const favButton = document.createElement("button");
+
+  favButton.classList.add("btn", "btn-outline-primary");
+
+  favButton.setAttribute("type", "button");
+  favButton.setAttribute("id","b1");
+ // favButton.innerHTML = "Add to favour";
+
+  checkFav(thisUserID,jsonObj.postId,favButton);
+
+  favButton.addEventListener("click", function (e) {
+//alert(favButton.innerHTML==="Remove From Favour");
+     if(favButton.innerHTML==="Remove From Favour"){
+      DelFav(thisUserID,jsonObj.postId,favButton,"post" + idString);
+
+     }else{
+
+      addtoFav(thisUserID,jsonObj.postId,favButton,"post" + idString);
+     }
+    
+   
+    // alert("fav");
+  });
+  DeletePostBtr.prepend(favButton);
+///////////////////////////////////////////////////////////////
+
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
   accordionDetail.prepend(
@@ -412,7 +513,7 @@ function renderPost(HTML, id, jsonObj) {
     endTime,
     numberOfPeople,
     Description,
-    DeletePostBtr
+    DeletePostBtr,
   );
   // post body end
 
@@ -503,8 +604,16 @@ function renderPost(HTML, id, jsonObj) {
   const card = document.createElement("div");
   card.classList.add("card");
   card.setAttribute("id", "post" + idString);
+  //card.setAttribute("tag", "postid"+jsonObj.postId);
+  //card.innerText="WTF"+idString;
+  //const pid = document.createElement("div");
+  //pid.setAttribute("id", "postid:"+jsonObj.postId);
+  //console.log("This post's is :"+ "postid:"+jsonObj.postId);
+
+  // card.prepend(pid);
   card.prepend(collapsePost);
   card.prepend(cardHeader);
+  
 
   HTML.prepend(card);
 }

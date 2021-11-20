@@ -24,6 +24,7 @@ createUserTable();
 createPostTable();
 createCommentTable();
 createActivityTable();
+createFavTable();
 
 //import login router
 const userLogin = require("./routes/loginRoute");
@@ -85,4 +86,13 @@ async function createActivityTable(){
     comment_Num INT NOT NULL
 )`);
 console.log("activityTable created");
+=======
+async function createFavTable(){
+    const favTable = await pool.query(`CREATE TABLE IF NOT EXISTS favTable(
+    userId INT NOT NULL,
+    postId INT NOT NULL,
+    postTag varchar(255) NOT NULL
+)`);
+console.log("favTable created");
+
 }
