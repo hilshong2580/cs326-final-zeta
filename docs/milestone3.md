@@ -15,78 +15,78 @@ ___________________________________________________________________
 ## Documentation:Database implementation
 ___________________________________________________________________
 As first required to do, we create the database to store all the data for our application.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createDatabase.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createDatabase.png)
 
 Then created tables with following codes (We create five table which are:userTable, postTable, commentTable, activityTable, favTable):
 
 -For userTable:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/creatusertable.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/creatusertable.png)
 
 -For postTable:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createposttable.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createposttable.png)
 
 -For commentTable:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createcommenttable.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createcommenttable.png)
 
 -For activityTable:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createactivitytable.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createactivitytable.png)
 
 -For favTable：
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createfavtable.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createfavtable.png)
 
 
 So, they will create the tables in database as like this:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/tables.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/tables.png)
 
 There are all the functions we use to perform Create, Read, Update and Delete operations on the Database:
 
 -POST method route to get the user information once login in:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getuserinfo.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getuserinfo.png)
 
 -POST method for user to get favorites
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/postfav.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/postfav.png)
 
 -GET method route to get all post
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getpost.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getpost.png)
 
 -POST method for user to create a post
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createpost.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createpost.png)
 
 -PUT method route to update the post
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/putpost.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/putpost.png)
 
 -DELETE method route for the post owner to delete the post
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/deletepost.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/deletepost.png)
 
 -Push the comment into correct postion comment column
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/pustcomment.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/pustcomment.png)
 
 -PUT method route to get comments
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getcomment.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getcomment.png)
 
 -DELETE method route for the post owner to delete the comments
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/deletecomment.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/deletecomment.png)
 
 -PUT method route to update user info
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/edituser.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/edituser.png)
 
 -PUT method route to update activity
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/updateacti.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/updateacti.png)
 
 -POST method for user to add favorite
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/addfav.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/addfav.png)
 
 -POST method for user to remove favorite
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/deletefav.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/deletefav.png)
 
 -POST method for check if is a fovorite
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/checkiffav.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/checkiffav.png)
 
 -POST method to get activities
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getac.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getac.png)
 
 Then, we have a secrets.json file to store Local PostgreSQL credentials
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/credentials.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/credentials.png)
 
 And then we have those functions to get into the PostgreSQL and the Heroku database:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/way.PNG)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/way.png)
