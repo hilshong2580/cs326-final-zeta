@@ -91,3 +91,9 @@ Then, we have a secrets.json file to store Local PostgreSQL credentials
 
 And then we have those functions to get into the PostgreSQL and the Heroku database:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/way.png)
+
+## Division of labor
+
+Tingshuo Miao: 
+* Re-adjust the layout of main page-main.html
+* Collect and analysis all the information and make Milestone3.md file.
