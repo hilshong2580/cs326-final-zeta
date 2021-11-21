@@ -18,6 +18,7 @@ As first required to do, we create the database to store all the data for our ap
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createdatabase.png)
 
 Then created tables with following codes (We create five table which are:userTable, postTable, commentTable, activityTable, favTable):
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/tables.png)
 
 -For userTable:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/creatusertable.png)
