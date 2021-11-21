@@ -15,7 +15,7 @@ ___________________________________________________________________
 ## Documentation:Database implementation
 ___________________________________________________________________
 As first required to do, we create the database to store all the data for our application.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createDatabase.png)
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/createdatabase.png)
 
 Then created tables with following codes (We create five table which are:userTable, postTable, commentTable, activityTable, favTable):
 
