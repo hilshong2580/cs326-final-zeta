@@ -39,6 +39,12 @@ Then created tables with following codes (We create five table which are:userTab
 So, they will create the tables in database as like this:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/tables.png)
 
+The userTable contains password, name, email, phone and about as column names.
+The postTable contains userId, title, destination, outset, dateTimeStart, dateTimeEnd, numOfPeople, description and photo as column names.
+The commentTable contains postId, name and comment as column names.
+The favTable contains userid, postid, postTag as colums names.
+The activityTable contains userId, favorite, post, comment as column names.
+
 There are all the functions we use to perform Create, Read, Update and Delete operations on the Database:
 
 -POST method route to get the user information once login in:
