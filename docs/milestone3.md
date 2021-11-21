@@ -40,14 +40,19 @@ So, they will create the tables in database as like this:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/tables.png)
 
 The userTable contains password, name, email, phone and about as column names.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/usertable.png)
 
 The postTable contains userId, title, destination, outset, dateTimeStart, dateTimeEnd, numOfPeople, description and photo as column names.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/posttable.png)
 
 The commentTable contains postId, name and comment as column names.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/commenttable.png)
 
 The favTable contains userid, postid, postTag as colums names.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/favtable.png)
 
 The activityTable contains userId, favorite, post, comment as column names.
+![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/activitytable.png)
 
 There are all the functions we use to perform Create, Read, Update and Delete operations on the Database:
 
