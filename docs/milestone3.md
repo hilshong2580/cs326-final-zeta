@@ -87,6 +87,7 @@ There are all the functions we use to perform Create, Read, Update and Delete op
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/getac.png)
 
 Then, we have a secrets.json file to store Local PostgreSQL credentials
+
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/credentials.png)
 
 And then we have those functions to get into the PostgreSQL and the Heroku database:
