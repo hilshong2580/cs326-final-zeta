@@ -21,10 +21,10 @@ router.post("/UserInfo", async function (req, res) {
 
     if (userInfo.rows.length > 0)
       res.status(200).json(JSON.stringify(userInfo.rows[0]));
-    else res.status(202).json(JSON.stringify("Find user info fail, not match"));
+    else res.status(202).send(("Find user info fail, not match"));
   } catch (err) {
     console.log(err.message);
-    res.status(404).json(JSON.stringify("Find user info error"));
+    res.status(404).send(("Find user info error"));
   }
 
 });
@@ -125,11 +125,11 @@ router.put("/", async function (req, res) {
     );
 
     console.log(updatePost);
-    if (updatePost.rowCount > 0) res.status(200).json("Post Update Success");
-    else res.status(202).json("Post Update Fail");
+    if (updatePost.rowCount > 0) res.status(200).send("Post Update Success");
+    else res.status(202).send("Post Update Fail");
   } catch (err) {
     console.log(err.message);
-    res.status(404).json("Post Update Error");
+    res.status(404).send("Post Update Error");
   }
 
 });
@@ -146,11 +146,11 @@ router.delete("/", async function (req, res) {
     );
 
     console.log(deletePost.rowCount);
-    if (deletePost.rowCount > 0) res.status(200).json("Post Delete Success");
-    else res.status(202).json("Post Delete Fail");
+    if (deletePost.rowCount > 0) res.status(200).send("Post Delete Success");
+    else res.status(202).send("Post Delete Fail");
   } catch (err) {
     console.log(err.message);
-    res.status(404).json("Post Delete Error");
+    res.status(404).send("Post Delete Error");
   }
 });
 
@@ -191,10 +191,10 @@ router.put("/comment", async function (req, res) {
     if (getComment.rows.length > 0) {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(JSON.stringify(getComment.rows));
-    } else res.status(202).json(JSON.stringify("get comment fail"));
+    } else res.status(202).send(("get comment fail"));
   } catch (err) {
     console.log(err.message);
-    res.status(404).json(JSON.stringify("get comment error"));
+    res.status(404).send(("get comment error"));
   }
 });
 
@@ -211,11 +211,11 @@ router.delete("/comment", async function (req, res) {
 
     console.log(deleteComment.rowCount);
     if (deleteComment.rowCount > 0)
-      res.status(200).json(JSON.stringify("comment Delete Success"));
-    else res.status(202).json(JSON.stringify("comment Delete Fail"));
+      res.status(200).send(("comment Delete Success"));
+    else res.status(202).send(("comment Delete Fail"));
   } catch (err) {
     console.log(err.message);
-    res.status(404).json(JSON.stringify("comment Delete Error"));
+    res.status(404).send(("comment Delete Error"));
   }
 });
 
@@ -231,11 +231,11 @@ router.put("/editUser", async function (req, res) {
     );
 
     console.log(JSON.stringify(req.body));
-    if (updateUser.rowCount > 0) res.status(200).json("Post Update Success");
-    else res.status(202).json("Post Update Fail");
+    if (updateUser.rowCount > 0) res.status(200).send("Post Update Success");
+    else res.status(202).send("Post Update Fail");
   } catch (err) {
     console.log(err.message);
-    res.status(404).json("Post Update Error");
+    res.status(404).send("Post Update Error");
   }
 
 });
@@ -253,15 +253,30 @@ router.put("/activity", async function (req, res) {
     if (activityUpdate.rowCount > 0) {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(JSON.stringify(activityUpdate.rows));
-    } else res.status(202).json(JSON.stringify("activity update fail"));
+    } else res.status(202).send(("activity update fail"));
   } catch (err) {
     console.log(err.message);
-    res.status(404).json(JSON.stringify("activity update error"));
+    res.status(404).send(("activity update error"));
+  }
+});
+
+router.post("/activity", async function (req, res) {
+  console.log("this is get activity data");
+  try {
+    const userId = req.body.userId;
+    const getActivity = await pool.query("SELECT * FROM activityTable Inner JOIN userTable On userTable.userid = activityTable.userid Where activityTable.userid = $1", [userId]);
+    if (getActivity.rows.length > 0) {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(JSON.stringify(getActivity.rows));
+    } else res.status(202).send("get all Activity fail");
+  } catch (err) {
+    console.log(err.message);
+    res.status(404).send("get all Activity error");
   }
 });
 
 ////////////////////////add to fav//////////////////////////
-router.post("/addToFav", async function (req, res) {
+router.post("/Fav", async function (req, res) {
   console.log("this is adding to fav");
 
   try {
@@ -281,7 +296,7 @@ router.post("/addToFav", async function (req, res) {
 });
 
 ///////////////////////////////remove from fav/////////////////////////////
-router.post("/delFav", async function (req, res) {
+router.delete("/Fav", async function (req, res) {
   console.log("this is del to fav");
 
   try {
@@ -299,10 +314,8 @@ router.post("/delFav", async function (req, res) {
   }
 });
 
-
-
 /////////////////////////check if fav////////////////////
-router.post("/checkIfFav", async function (req, res) {
+router.put("/Fav", async function (req, res) {
   //console.log("this is checking to fav");
 
   try {
@@ -329,19 +342,6 @@ router.post("/checkIfFav", async function (req, res) {
 });
 
 
-router.post("/activity", async function (req, res) {
-  console.log("this is get activity data");
-  try {
-    const userId = req.body.userId;
-    const getActivity = await pool.query("SELECT * FROM activityTable Inner JOIN userTable On userTable.userid = activityTable.userid Where activityTable.userid = $1", [userId]);
-    if (getActivity.rows.length > 0) {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(JSON.stringify(getActivity.rows));
-    } else res.status(202).json("get all Activity fail");
-  } catch (err) {
-    console.log(err.message);
-    res.status(404).json("get all Activity error");
-  }
-});
-//SELECT * FROM activityTable Inner JOIN userTable On userTable.userid = activityTable.userid Where userid = 40;
+
+
 module.exports = router;

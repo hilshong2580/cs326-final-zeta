@@ -6,12 +6,12 @@
     grid-auto-rows: minmax(20px, auto);
   }
   .Destination {
-    grid-column: 1/2;
+    grid-column: 1;
     grid-row: 1;
   }
   .picture {
     grid-column: 3;
-    grid-row: 1/10;
+    grid-row: 1;
   }
   .Outset {
     grid-column: 1;
@@ -23,21 +23,21 @@
   }
   .endTime {
     grid-column: 1.2;
-    grid-row: 3;
-  }
-  .numberOfPeople {
-    grid-column: 1;
     grid-row: 4;
   }
-
-  .Date{
+  .numberOfPeople {
     grid-column: 1;
     grid-row: 5;
   }
 
+  .Date{
+    grid-column: 1;
+    grid-row: 6;
+  }
+
   .Description{
     grid-column: 1;
-    grid-row: 7;
+    grid-row: 8;
   }
 
   .comment{
@@ -62,4 +62,17 @@
   .EditPostBtr{
     grid-column: 4;
     grid-row: 3;
+  }
+
+  .renderTitle{
+    color: #7c795d; 
+    font-family: 'Trocchi', serif; 
+    font-size: 45px; 
+    font-weight: normal; 
+    line-height: 48px; 
+    margin: 0;
+  }
+
+  .renderContent{
+    color: #333333; font-family: Georgia, serif; font-size: 18px; line-height: 28px; margin: 0 0 28px;
   }

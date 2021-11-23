@@ -33,8 +33,8 @@ async function getUserInfo() {
     },
     body: JSON.stringify({ userId: thisUserID }),
   }).then(async (response) => {
-    const data = JSON.parse(await response.json());
     if (response.status === 200) {
+      const data = JSON.parse(await response.json());
       document.getElementById("mainUserName").innerHTML = data.name;
       document.getElementById("mainUserEmail").innerHTML = data.email;
       document.getElementById("mainUserPhone").innerHTML = data.phone;
@@ -45,10 +45,12 @@ async function getUserInfo() {
       document.getElementById("EditUserInfoPhone").value = data.phone;
       document.getElementById("EditUserInfoAbout").value = data.about;
     }
+    else{
+      const data = (await response.text());
+      console.log(data);
+    }
   });
 }
-
-console.log(document.getElementById("mainUserName").innerHTML);
 
 //GET: all post by fetch http://localhost:3000/main/getPost , then render the post
 async function getRenderPost() {
@@ -59,6 +61,7 @@ async function getRenderPost() {
   if (response.status === 200) {
     let data = JSON.parse(await response.json());
     document.getElementById("accordion").innerHTML = "";
+    let toggleId = "";
     for (let i in data) {
       let dataTemp = {
         userId: data[i].userid,
@@ -74,7 +77,11 @@ async function getRenderPost() {
       };
 
       renderPost(document.getElementById("accordion"), i, dataTemp);
+      toggleId += "collapse"+i.toString()+" ";
     }
+
+    document.getElementById("toggleAll").setAttribute("aria-controls", toggleId);
+
   } else if (response.status === 202) {
     document.getElementById("accordion").innerHTML = "";
     console.log("not post exist");
@@ -91,7 +98,8 @@ async function editExistPost(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) getRenderPost();
+    if (response.status === 200) 
+    console.log("edit post success");
   });
 }
 
@@ -105,7 +113,8 @@ async function deleteExistPost(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) getRenderPost();
+    if (response.status === 200) 
+    console.log("post delete success");
   });
 }
 
@@ -119,7 +128,8 @@ async function postNewPost(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) getRenderPost();
+    if (response.status === 200) 
+    console.log("create new post success");
   });
 }
 
@@ -130,7 +140,7 @@ async function addtoFav(userId, postId, html, tag) {
     postid: postId,
     postTag: tag
   };
-  fetch("/main/addToFav", {
+  fetch("/main/Fav", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -152,8 +162,8 @@ async function DelFav(userId, postId, html, tag) {
     postid: postId,
     postTag: tag
   };
-  fetch("/main/delFav", {
-    method: "POST",
+  fetch("/main/Fav", {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
@@ -167,15 +177,14 @@ async function DelFav(userId, postId, html, tag) {
   });
 }
 
-
 /////////////////////check fav function////////////////
 async function checkFav(userId, postId, html) {
   let jsonObj = {
     userid: userId,
     postid: postId
   };
-  fetch("/main/checkIfFav", {
-    method: "POST",
+  fetch("/main/Fav", {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
@@ -183,21 +192,14 @@ async function checkFav(userId, postId, html) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) {
-      //alert("THIS IS : "+data);
-      // console.log("THHHHHHHIIIII:" +data);
-      //alert(data==="true");
       if (data === "true") {
         html.innerHTML = "Remove From Favour";
-        //alert("Remove From Favourkkkk");
       } else {
         html.innerHTML = "Add to favour";
-        //alert("data: "+JSON.stringify(data));
       }
     }
   });
 }
-
-
 
 
 //a fetch to upload the new comment from the post, it used to update the content of data
@@ -212,7 +214,8 @@ async function pushComment(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) getRenderPost();
+    if (response.status === 200) 
+    console.log("push comment success");
   });
 }
 
@@ -227,8 +230,9 @@ async function getComment(postId, html) {
     },
     body: JSON.stringify({ postId: postId }),
   }).then(async (response) => {
-    const data = JSON.parse(await response.json());
+    
     if (response.status === 200) {
+      const data = JSON.parse(await response.json());
       for (let com in data) {
         const content = document.createElement("div");
         content.innerHTML = data[com].name + ": " + data[com].comment;
@@ -278,8 +282,15 @@ async function updateActivity(jsonObj) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    const data = await response.text();
-    if (response.status === 200) getRenderPost();
+    if (response.status === 200){
+      const data = JSON.parse(await response.json());
+      console.log("update activity success");
+    } 
+    else{
+      const data = await response.text();
+      console.log(data);
+    }
+    
   });
 }
 
@@ -292,28 +303,28 @@ async function getActivity(jsonObj, html) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    const data = JSON.parse(await response.json());
-    if (response.status === 200)
+    if (response.status === 200){
+      const data = JSON.parse(await response.json());
       console.log(data[0]);
+      let favoriteNum = document.createElement("div");
+      favoriteNum.innerHTML = "<h4 class = "+"renderContent"+">" + data[0].favorite_num+"'s Favorites</h4>";
 
-    let favoriteDiv = document.createElement("div");
-    let favoriteLab = document.createElement("div").innerHTML = "Favorite Num: ";
-    let favoriteNum = document.createElement("div").innerHTML = data[0].favorite_num;
-    favoriteDiv.prepend(favoriteLab, favoriteNum);
+      let postNum = document.createElement("div");
+      postNum.innerHTML = "<h4 class = "+"renderContent"+">"+data[0].post_num+"'s Posts</h4>";
 
-    let postDiv = document.createElement("div");
-    let postLab = document.createElement("div").innerHTML = "Post Num: ";
-    let postNum = document.createElement("div").innerHTML = data[0].post_num;
-    postDiv.prepend(postLab, postNum);
+      let commentNum = document.createElement("div");
+      commentNum.innerHTML = "<h4 class = "+"renderContent"+">"+data[0].comment_num+"'s Comments</h4>";
 
-    let commentDiv = document.createElement("div");
-    let commentLab = document.createElement("div").innerHTML = "Comment Num: ";
-    let commentNum = document.createElement("div").innerHTML = data[0].comment_num;
-    commentDiv.prepend(commentLab, commentNum);
+      let userDiv = document.createElement("div")
+      userDiv.innerHTML ="<h4 class = "+"renderContent"+">Post Owner: "+data[0].name+"</h4>";
+      html.prepend(userDiv, commentNum, postNum, favoriteNum);
+    }
+    else{
+      const data = await response.text();
+      console.log(data);
+    }
 
-    let userDiv = document.createElement("div").innerHTML = data[0].name + " activity's record:";
 
-    html.prepend(userDiv, commentDiv, postDiv, favoriteDiv)
   });
 }
 
@@ -328,8 +339,7 @@ document.getElementById("createPost").addEventListener("click", function (e) {
     dateTimeStart: document.getElementById("createDateTimeStart").value,
     dateTimeEnd: document.getElementById("createDateTimeEnd").value,
     numOfPeople: document.getElementById("createNumOfPeople").value,
-    description: document.getElementById("createDescription").value,
-    photo: "https://cdn.fakercloud.com/avatars/abotap_128.jpg",
+    description: document.getElementById("createDescription").value
   };
   //console.log(newPost);
   postNewPost(newPost);
@@ -352,9 +362,7 @@ document.getElementById("LogoutButton").addEventListener("click", function (e) {
 // a button listener to pop-up a window to display the user information
 document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
 
-document
-  .getElementById("editUserInfoBtr")
-  .addEventListener("click", function (e) {
+document.getElementById("editUserInfoBtr").addEventListener("click", function (e) {
     console.log("button was editUserInfo");
     // alert("ABC");
     let body = {
@@ -366,19 +374,23 @@ document
     };
 
     editUser(body);
+    getRenderPost();
+
   });
 
 //a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {
   const idString = id.toString();
   const postButton = document.createElement("button");
-  postButton.classList.add("btn", "btn-link");
+  postButton.classList.add("btn");
   postButton.setAttribute("data-toggle", "collapse");
   postButton.setAttribute("data-target", "#collapse" + idString);
   postButton.setAttribute("aria-expanded", "true");
   postButton.setAttribute("aria-controls", "collapse" + idString);
   postButton.setAttribute("id", "postitle" + idString);
-  postButton.innerText = jsonObj.title;
+  postButton.innerHTML = "<h3 class = "+"renderTitle"+">"+jsonObj.title+"</h3>";
+  
+  //jsonObj.title;
 
   const h5 = document.createElement("h5");
   h5.classList.add("mb-0");
@@ -393,10 +405,8 @@ function renderPost(HTML, id, jsonObj) {
   const destination = document.createElement("div");
   destination.classList.add("Destination");
   destination.setAttribute("id", "Destination" + idString);
-  destination.innerHTML =
-    "<input class='form-control' type='text' value='Destination: " +
-    jsonObj.destination +
-    "' aria-label='Disabled input example' disabled readonly>";
+  destination.innerHTML = "<h4 class = "+"renderContent"+">Destination: "+jsonObj.destination+"</h4>";
+  //"Destination: " + jsonObj.destination;
 
   const picture = document.createElement("div");
   picture.classList.add("picture");
@@ -408,46 +418,31 @@ function renderPost(HTML, id, jsonObj) {
   const outset = document.createElement("div");
   outset.classList.add("Outset");
   outset.setAttribute("id", "Outset" + idString);
-  outset.innerHTML =
-    "<input class='form-control' type='text' value='Outset: " +
-    jsonObj.outset +
-    "' aria-label='Disabled input example' disabled readonly>";
+  outset.innerHTML = "<h4 class = "+"renderContent"+">Outset: "+jsonObj.outset+"</h4>";
   //"Outset: " + jsonObj.outset;
 
   const startTime = document.createElement("div");
   startTime.classList.add("startTime");
   startTime.setAttribute("id", "startTime" + idString);
-  startTime.innerHTML =
-    "<input class='form-control' type='text' value='Start: " +
-    jsonObj.dateTimeStart +
-    "' aria-label='Disabled input example' disabled readonly>";
+  startTime.innerHTML ="<h4 class = "+"renderContent"+">Start: "+jsonObj.dateTimeStart+"</h4>";
   //"Start: " + jsonObj.dateTimeStart;
 
   const endTime = document.createElement("div");
   endTime.classList.add("endTime");
   endTime.setAttribute("id", "endTime" + idString);
-  endTime.innerHTML =
-    "<input class='form-control' type='text' value='End: " +
-    jsonObj.dateTimeEnd +
-    "' aria-label='Disabled input example' disabled readonly>";
+  endTime.innerHTML ="<h4 class = "+"renderContent"+">End: "+jsonObj.dateTimeEnd+"</h4>";
   //"End: " + jsonObj.dateTimeEnd;
 
   const numberOfPeople = document.createElement("div");
   numberOfPeople.classList.add("numberOfPeople");
   numberOfPeople.setAttribute("id", "numberOfPeople" + idString);
-  numberOfPeople.innerHTML =
-    "<input class='form-control' type='text' value='Num of People: " +
-    jsonObj.numOfPeople +
-    "' aria-label='Disabled input example' disabled readonly>";
+  numberOfPeople.innerHTML = "<h4 class = "+"renderContent"+">People Num: "+jsonObj.numOfPeople+"</h4>";
   //"People Num: " + jsonObj.numOfPeople;
 
   const Description = document.createElement("div");
   Description.classList.add("Description");
   Description.setAttribute("id", "Description" + idString);
-  Description.innerHTML =
-    "<div class='mb-3'><label for='exampleFormControlTextarea1' class='form-label'><input class='form-control' type='text' value='Description: ' aria-label='Disabled input example' disabled readonly></label><textarea class='form-control' id='exampleFormControlTextarea1' rows='3' disabled readonly  placeholder = '<font color='black'>" +
-    jsonObj.description +
-    "</textarea></div>";
+  Description.innerHTML = "<h4 class = "+"renderContent"+">Description: "+jsonObj.description+"</h4>";
   //"Description: " + jsonObj.description;
 
   const DeletePostBtr = document.createElement("div");
@@ -465,6 +460,7 @@ function renderPost(HTML, id, jsonObj) {
   deleteButton.addEventListener("click", function (e) {
     deleteExistPost({ postId: jsonObj.postId, userId: thisUserID });
     deleteComment(jsonObj.postId);
+    getRenderPost();
   });
 
   const edBtn = document.createElement("button");
@@ -514,7 +510,7 @@ function renderPost(HTML, id, jsonObj) {
     }
 
 
-    // alert("fav");
+    getRenderPost();
   });
   DeletePostBtr.prepend(favButton);
   ///////////////////////////////////////////////////////////////
@@ -590,6 +586,8 @@ function renderPost(HTML, id, jsonObj) {
       post: 0,
       comment: 1,
     });
+
+    getRenderPost();
   });
 
   const comment = document.createElement("div");
@@ -612,7 +610,7 @@ function renderPost(HTML, id, jsonObj) {
 
   const collapsePost = document.createElement("div");
   collapsePost.setAttribute("id", "collapse" + idString);
-  collapsePost.classList.add("collapse", "show");
+  collapsePost.classList.add("collapse", "show", "multi-collapse");
   collapsePost.setAttribute("aria-labelledby", "heading" + idString);
   collapsePost.setAttribute("data-bs-parent", "#accordion");
   collapsePost.prepend(cardBody);
@@ -760,6 +758,8 @@ function renderForm(html, idString, jsonObj) {
       numOfPeople: inputPeople.value,
       description: inputDescription.value,
     });
+
+    getRenderPost();
   });
 
   const closeBtn = document.createElement("button");
