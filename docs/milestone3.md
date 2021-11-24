@@ -158,6 +158,7 @@ Wai Kin Yu:
 * Group working on deploying on heroku with heroku database.
 * Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
 * Adjust milestone3.md and create release.
+* Connect to both local database and heroku database.
 
 
 Shing Hong Lau:
