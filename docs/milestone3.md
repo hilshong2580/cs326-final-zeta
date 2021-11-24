@@ -157,6 +157,7 @@ Wai Kin Yu:
 * Add up to build filter.
 * Group working on deploying on heroku with heroku database.
 * Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
+* Adjust milestone3.md and create release.
 
 
 Shing Hong Lau:
