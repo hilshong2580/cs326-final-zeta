@@ -117,3 +117,4 @@ Tingshuo Miao:
 * Finish with building up activityTable with post, put, backend method.
 * Build two fetch function to count the number of fav, post, comment. 
 * Display the post owner activity record on post page
+* Re-build and add the favicon to the website
