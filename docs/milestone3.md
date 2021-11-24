@@ -108,6 +108,12 @@ Then, we have a secrets.json file to store Local PostgreSQL credentials
 And then we have those functions to get into the PostgreSQL and the Heroku database:
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/way.png)
 
+
+## Part 3: Deployment on Heroku
+___________________________________________________________________
+
+This is the link Deployed on Heroku: [https://u-car-326.herokuapp.com/]
+
 ## Division of labor
 
 Tingshuo Miao: 
