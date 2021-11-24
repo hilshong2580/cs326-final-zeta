@@ -109,7 +109,7 @@ And then we have those functions to get into the PostgreSQL and the Heroku datab
 ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot3/way.png)
 
 
-## Part 3: Deployment on Heroku
+## Deployment on Heroku
 ___________________________________________________________________
 
 This is the link Deployed on Heroku: [https://u-car-326.herokuapp.com/]
