@@ -14,6 +14,7 @@ router.post("/UserInfo", async function (req, res) {
     const { userId } = req.body;
     console.log(userId);
 
+    //Obtain user table
     const userInfo = await pool.query(
       "SELECT * FROM userTable WHERE userid = $1",
       [userId]
@@ -22,7 +23,7 @@ router.post("/UserInfo", async function (req, res) {
     if (userInfo.rows.length > 0)
       res.status(200).json(JSON.stringify(userInfo.rows[0]));
     else res.status(202).send(("Find user info fail, not match"));
-  } catch (err) {
+  } catch (err) { //throw error if cannot find error
     console.log(err.message);
     res.status(404).send(("Find user info error"));
   }
@@ -34,7 +35,6 @@ router.post("/UserInfo", async function (req, res) {
 router.post("/UserFav", async function (req, res) {
   try {
     const { userId } = req.body;
-    //console.log(userId);
 
     const userInfo = await pool.query(
       "SELECT * FROM favTable WHERE userid = $1",
