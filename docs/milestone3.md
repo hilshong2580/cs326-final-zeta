@@ -113,3 +113,5 @@ And then we have those functions to get into the PostgreSQL and the Heroku datab
 Tingshuo Miao: 
 * Re-adjust the layout of main page-main.html
 * Collect and analysis all the information and make Milestone3.md file.
+* Group working on with connecting into heroku database.
+* Created acticity table
