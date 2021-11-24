@@ -118,3 +118,27 @@ Tingshuo Miao:
 * Build two fetch function to count the number of fav, post, comment. 
 * Display the post owner activity record on post page.
 * Re-build and add the favicon to the website.
+
+Wai Kin Yu:
+* Create new database table favTable if there are no such a table exists. That table will store all information for all the user and their liked post.
+* Create end-point "/Fav" (post) for inserting data to favTable.
+* Create end-point "/Fav" (del) for deleting data to favTable.
+* Create end-point "/Fav" (put) for searching all data from favTable.
+* Render "add to my favour"/"remove from my favour" button to each post.
+* Create on-click listener to the button.
+* Create addtoFav function on button which is the function for on-click listener on "add to my favour" button.
+* Create DelFav function on button which is the function for on-click listener on "remove from my favour" button.
+* Create checkFav function on button which check which button and it's corresponding function should be rendered.
+* Implement end-point "/Fav" (post) to addtoFav function to fetch required data.
+* Implement end-point "/Fav" (del) to DelFav function to fetch required data..
+* Implement end-point "/Fav" (put) to checkFav function to fetch required data..
+* Rerender "add to my favour"/"remove from my favour" button inside the post when user click the button.
+* Render "my favour" button which display all the user's favour post.
+* Create myFav.js which is used to implement the search and filter function for user's favour post.
+* Create hideAll function to hide all the html element for all the post.
+* Create getUserFav functino to show all the html element for user's favour post.
+* Implement end-point "/Fav" (put) to getUserFav functino to fetch all favour post for the user who loged-in.
+* Render "allPost" button which is used to show all the post.
+* Create on-click listener to that button.
+* Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
+* Group working on deploying on heroku with heroku database.
