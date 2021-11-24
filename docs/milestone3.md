@@ -170,10 +170,10 @@ Shing Hong Lau:
 * Remove the fake data of post info from mainRoute.js because it is not necessary for mileStone3
 * Remove all the not necessary methods of check.
 * Update the method of POST: "/UserInfo" with sql.query of SELECT to get user info from database
-* Update the method of GET: "/main" with sql sql.query of SELECT for getting all post data as json object.
-* Update the method of POST: "/main" with sql sql.query of INSERT for storage a new post data to database.
-* Update the method of PUT: "/main" with sql sql.query of UPDATE to edit exist post's content
-* Update the method of DELETE: "/main" with sql sql.query of DELETE to remove exist post from database
+* Update the method of GET: "/" with sql sql.query of SELECT for getting all post data as json object.
+* Update the method of POST: "/" with sql sql.query of INSERT for storage a new post data to database.
+* Update the method of PUT: "/" with sql sql.query of UPDATE to edit exist post's content
+* Update the method of DELETE: "/" with sql sql.query of DELETE to remove exist post from database
 * Update the method of POST: "/comment" with sql sql.query of INSERT for storage user's comment with user id and post id.
 * Update the method of PUT: "/comment" with sql sql.query of SELECT to get specific post comment.
 * Update the method of DELETE: "/comment" with sql sql.query of DELETE to remove all of comment from a specific post when that post delete.
