@@ -120,10 +120,17 @@ Tingshuo Miao:
 * Re-adjust the layout of main page-main.html
 * Collect and analysis all the information and make Milestone3.md file.
 * Group working on with connecting into heroku database.
-* Finish with building up activityTable with post, put, backend method.
-* Build two fetch function to count the number of fav, post, comment. 
-* Display the post owner activity record on post page.
+* Create activityTable to record user activity if not exist on server.js when program start.
+* Add method of POST: "/activity", to get the user activity record which include user's num of favorite, num of post, num of comment from database.
+* Add method of PUT: "/activity", to update the user activity record on database when create post, add favorite post, push a comment in post.
+* Create a method of updateActivity() with fetch to push the new record to Backend's mainRoute.js
+* Create a method of getActivity() with fetch to get the user activity record from Backend's mainRoute.js
+* Render the post owner activity record on post page that include the number of post owner created, num of comment owner push, num of favorite post owner followed.
 * Re-build and add the favicon to the website.
+* Add many comment above the methods to explain how to use, why it exist.
+* Fix bug on the project.
+* Assist teammate to write the project/code.
+* Remove the not necessary html, js, folder from project.
 
 Wai Kin Yu:
 * Create new database table favTable if there are no such a table exists. That table will store all information for all the user and their liked post.
@@ -148,3 +155,42 @@ Wai Kin Yu:
 * Create on-click listener to that button.
 * Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
 * Group working on deploying on heroku with heroku database.
+
+Shing Hong Lau:
+1. Update README.md to add the necessary requirement pg for other classmate to set up the environment.
+2. Create db.js file for connect the local postgres sql database.
+3. Create secrets.js file to login in the local database, share the js file on Slack.
+4. Update .gitignore file to add the secrets.js for the prevention of another classmate upload that file to Github.
+5. For the loginRoute.js on Backend:
+* Remove the fake data from loginRoute.js without any error because it is not necessary for mileStone3
+* Remove all the not necessary methods of check such as user exists check, password check, login check etc.
+* Update methods of POST: "/Registration", use the sql.query of INSERT to store account data to database instead of push account data to local json object's array.
+* Update methods of POST: "/Account", use  the sql.query of SELECT to get username and password from database instead of use find function to get username and password from local json object's array.
+6. For the mainRoute.js on Backend: 
+* Remove the fake data of post info from mainRoute.js because it is not necessary for mileStone3
+* Remove all the not necessary methods of check.
+* Update the method of POST: "/UserInfo" with sql.query of SELECT to get user info from database
+* Update the method of GET: "/main" with sql sql.query of SELECT for getting all post data as json object.
+* Update the method of POST: "/main" with sql sql.query of INSERT for storage a new post data to database.
+* Update the method of PUT: "/main" with sql sql.query of UPDATE to edit exist post's content
+* Update the method of DELETE: "/main" with sql sql.query of DELETE to remove exist post from database
+* Update the method of POST: "/comment" with sql sql.query of INSERT for storage user's comment with user id and post id.
+* Update the method of PUT: "/comment" with sql sql.query of SELECT to get specific post comment.
+* Update the method of DELETE: "/comment" with sql sql.query of DELETE to remove all of comment from a specific post when that post delete.
+7. For the server.js on Backend:
+* Use methods of createUserTable, createPostTable, createCommentTable when the server.js has been called.
+* Create a method of createUserTable, this use to create userTable to store the user account info if table is not exist.
+* Create a method of createPostTable, this use to create postTable to store the post info if table is not exist.
+* Create a method of createCommentTable, this use to create commentTable to store the user comment in each post if table is not exist.
+8. Update login.js, send the user id to main page when login successful.
+9. Update regis.js, add an input column to store user name
+10. For the main.js on Frontend:
+* Update the method of "window.onload" to get the user id.
+* Update the previous exist method of getUserInfo(), getRenderPost() editExistPost(), deleteExistPost(), postNewPost(), pushComment(), getComment(), deleteComment() the json object content's name should match to database's column name.
+* Update the new fields of button on getRenderPost(), this user to expand the collapsed or collapse the expanded post.
+11. Update the main.html, add a button of "toggleAll" to expand or collapse the post.
+12. Update the db.js again, successfully using the connection method from Heroku.com to connect the Heroku's postgres database.
+13. Update the main.css and post.css, Change the font design on post page to make the UI more comfortable.
+14. Apply the heroku's postgres, set tup the environment data in HeroKu website.
+15. Debug the program in this project, fix many bug.
+16. Group working on project and help teammate solve problem.
