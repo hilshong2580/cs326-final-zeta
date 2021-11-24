@@ -154,7 +154,10 @@ Wai Kin Yu:
 * Render "allPost" button which is used to show all the post.
 * Create on-click listener to that button.
 * Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
+* Add up to build filter.
 * Group working on deploying on heroku with heroku database.
+* Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
+
 
 Shing Hong Lau:
 1. Update README.md to add the necessary requirement pg for other classmate to set up the environment.
