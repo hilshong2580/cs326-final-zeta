@@ -15,6 +15,7 @@ app.use(cors({
 }));
 app.use(express.static('./FrontEnd', { index: 'login.html' }));
 
+//listen to heroku database or local database
 app.listen(process.env.PORT || port);
 //app.listen(process.env.PORT);
 
