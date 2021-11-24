@@ -23,7 +23,7 @@ router.post("/UserInfo", async function (req, res) {
     if (userInfo.rows.length > 0)
       res.status(200).json(JSON.stringify(userInfo.rows[0]));
     else res.status(202).send(("Find user info fail, not match"));
-  } catch (err) { //throw error if cannot find error
+  } catch (err) { //throw error if cannot find user
     console.log(err.message);
     res.status(404).send(("Find user info error"));
   }
