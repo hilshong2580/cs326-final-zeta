@@ -148,3 +148,4 @@ Wai Kin Yu:
 * Create on-click listener to that button.
 * Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
 * Group working on deploying on heroku with heroku database.
+* Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
