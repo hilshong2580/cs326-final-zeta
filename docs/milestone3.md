@@ -130,7 +130,7 @@ Tingshuo Miao:
 * Add many comment above the methods to explain how to use, why it exist.
 * Fix bug on the project.
 * Assist teammate to write the project/code.
-* Remove the not necessary html, js, folder from project.
+
 
 Wai Kin Yu:
 * Create new database table favTable if there are no such a table exists. That table will store all information for all the user and their liked post.
@@ -199,3 +199,4 @@ Shing Hong Lau:
 14. Apply the heroku's postgres, set tup the environment data in HeroKu website.
 15. Debug the program in this project, fix many bug.
 16. Group working on project and help teammate solve problem.
+17. Remove the not necessary html, js, folder from project.
