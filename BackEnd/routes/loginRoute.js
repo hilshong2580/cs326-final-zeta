@@ -1,9 +1,9 @@
-const express = require('express');                 // express routing
+const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 require('dotenv').config();
 
-
+const express = require('express');                 // express routing
 const minicrypt = require('../miniCrypt');
 
 const mc = new minicrypt();
@@ -22,7 +22,7 @@ router.post("/Registration", async function (req, res) {
     const { password, name, email, phone, about } = req.body;
     const [salt, hash] = mc.hash(password);
     const createAccount = await pool.query(
-      "INSERT INTO userTable (salt, hash, name, email, phone, about) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+      "INSERT INTO userTable (salt, hash, name, email, phone, about) VALUES ($1, $2, $3, $4, $5, y$6) RETURNING *",
       [salt, hash, name, email, phone, about]
     );
     console.log(createAccount.rows);
@@ -56,7 +56,7 @@ router.post("/Account", async function (req, res) {
     );
     //console.log(loginAccount.rows);
 
-    if (loginAccount.rows.length > 0 && mc.check(password, loginAccount.rows[1], loginAccount.rows[2])){
+    if (loginAccount.rows.length > 0 && mc.check(password, loginAccount.rows[0].salt, loginAccount.rows[0].hash)){
       console.log("Login successful");
       console.log(loginAccount.rows);
       res.status(200).json(JSON.stringify(loginAccount.rows[0]));
