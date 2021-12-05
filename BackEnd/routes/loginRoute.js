@@ -22,7 +22,7 @@ router.post("/Registration", async function (req, res) {
     const { password, name, email, phone, about } = req.body;
     const [salt, hash] = mc.hash(password);
     const createAccount = await pool.query(
-      "INSERT INTO userTable (salt, hash, name, email, phone, about) VALUES ($1, $2, $3, $4, $5, y$6) RETURNING *",
+      "INSERT INTO userTable (salt, hash, name, email, phone, about) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
       [salt, hash, name, email, phone, about]
     );
     console.log(createAccount.rows);
