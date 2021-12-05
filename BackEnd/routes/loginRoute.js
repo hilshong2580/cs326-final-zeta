@@ -1,8 +1,9 @@
+const express = require('express');                 // express routing
 const router = express.Router();
 const pool = require("../db");
 require('dotenv').config();
 
-const express = require('express');                 // express routing
+
 const minicrypt = require('../miniCrypt');
 
 const mc = new minicrypt();
