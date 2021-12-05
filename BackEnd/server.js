@@ -39,7 +39,8 @@ app.use("/main", mainRouter);
 async function createUserTable() {
     const userTable = await pool.query(`CREATE TABLE IF NOT EXISTS userTable(
             userId serial PRIMARY KEY,
-            password varchar(255) NOT NULL,
+            salt varchar(255) NOT NULL,
+            hash varchar(255) NOT NULL,
             name varchar(255),
             email varchar(255) NOT NULL UNIQUE,
             phone varchar(255),
