@@ -713,6 +713,7 @@ function renderForm(html, idString, jsonObj) {
   const inputPeople = document.createElement("input");
   inputPeople.setAttribute("id", "People");
   inputPeople.setAttribute("type", "number");
+  inputPeople.setAttribute("min", "0");
   inputPeople.classList.add("form-control");
   inputPeople.value = jsonObj.numOfPeople;
 
