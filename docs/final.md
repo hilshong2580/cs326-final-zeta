@@ -19,3 +19,7 @@ ___________________________________________________________________
 - Wai Kin Yu
 - Shing Hong Lau
 - Tingshuo Miao
+
+## User Interface
+___________________________________________________________________
+- Login Page: This is a login page which needs two values to be inserted - Email and Password. Once click on the login buttom on the left side with the condotions that email and the password math the data in database, it will lead the page into main page. Otherwise, stays on the same page. Or the user can click on the "No account? Sign up!" which will lead the user into the registration page.
