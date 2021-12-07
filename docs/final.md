@@ -36,4 +36,10 @@ ___________________________________________________________________
 
 -Post Page: This page will show all the information that the user entered in the create post page like the title, Destination, Outset, Time: Start, Time: End, Num of people, Description. The tile will be on the top-left corner. And the other will be in obivous positions. There are three bottoms on the right side corner. The Add to favour will mark the post as the user's favour post and save into the database. The Delete Post will delete the post form the main page and the database. The Edit Bottom will allow the user to eidt the posted post. There is a bottom part about comment at the end of the page. User can insert the comment into the box and click on the Submit bottom to submit the comment and the comment will show up with user name who wrote the comment.
    ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/post.png)
+   
+- Comment Example:
    ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/comment.png)
+   
+-UserInfo Page: This page will show the informations of the user only after logging in. It will show the Email, Phone, Name, and About. There is an edit bottom allows the user to edit the user's information.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/user.png)
+
