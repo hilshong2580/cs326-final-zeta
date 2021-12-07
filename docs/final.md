@@ -24,4 +24,7 @@ ___________________________________________________________________
 ___________________________________________________________________
 - Login Page: This is a login page which needs two values to be inserted - Email and Password. Once click on the login buttom on the left side with the condotions that email and the password math the data in database, it will lead the page into main page. Otherwise, stays on the same page. Or the user can click on the "No account? Sign up!" which will lead the user into the registration page.
   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/login.png)
+  
+ - Registration Page: This page is where user registes their own account. Here the user needs to enter six values -Email, Password, Confirm Password, Phone, About. The account will be registed if and only if the email that the user entered does not exist in the database. And the password must equal with the confirm password. Once click on the registration buttom, all the data will be added into the database and lead the page into login page. Or click on "Already have a account? Login!" which will lead the user to thte login page if the user has an account.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/regis.png)
 
