@@ -8,8 +8,11 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
   let about = document.getElementById("aboutmeRegister").value;
   let name = document.getElementById("userNameRegister").value;
 
-  if (password === repPassword && email.endsWith(emailEnd)) {
-
+  if(!isNaN(phone))
+    alert("Phone is a number!");
+  else if(Math.floor(Number(phone)) < 0){
+    alert("Phone number is invalid!");
+  } else if (password === repPassword && email.endsWith(emailEnd)) {
     createAccount({
       name: name,
       password: password,
