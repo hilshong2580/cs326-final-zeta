@@ -10,7 +10,7 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
 
   if(!isNaN(phone))
     alert("Phone is a number!");
-  else if(Math.floor(Number(phone)) < 0){
+  else if(Math.floor(Number(phone)) < 0 || phone.length < 10){
     alert("Phone number is invalid!");
   } else if (password === repPassword && email.endsWith(emailEnd)) {
     createAccount({
