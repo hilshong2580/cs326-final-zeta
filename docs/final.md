@@ -1,6 +1,6 @@
 # Team Name
-___________________________________________________________________
 Team-zeta
+___________________________________________________________________
 ## Application Name
 U-Car
 ___________________________________________________________________
@@ -19,3 +19,30 @@ ___________________________________________________________________
 - Wai Kin Yu
 - Shing Hong Lau
 - Tingshuo Miao
+
+## User Interface
+___________________________________________________________________
+- Login Page: This is a login page which needs two values to be inserted - Email and Password. Once click on the login buttom on the left side with the condotions that email and the password math the data in database, it will lead the page into main page. Otherwise, stays on the same page. Or the user can click on the "No account? Sign up!" which will lead the user into the registration page.
+  ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/login.png)
+  
+ - Registration Page: This page is where user registes their own account. Here the user needs to enter six values -Email, Password, Confirm Password, Phone, About. The account will be registed if and only if the email that the user entered does not exist in the database. And the password must equal with the confirm password. Once click on the registration buttom, all the data will be added into the database and lead the page into login page. Or click on "Already have a account? Login!" which will lead the user to thte login page if the user has an account.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/regis.png)
+
+- Main Page: This is the main page for the user after logging in. There is a search bar above the page which let the users to seach for the keywords as they want after clicking on the search bottom. Two bottoms on the right side of the page. Clicking with User Info bottom will jump out a page which shows the user informamtion, clicking on the Log Out bottom will log out the user and lead the user to the login page. And there are four bottoms below the search bar. Clicking on the All post will show all posts to the user. Clicking on My Favour Post will show user's favour post. Toggle All post will toggle all posts. Clicking on create Post will jump out a create post page which needs the user to insert all the information as needed.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/main.png)
+
+- Create Post Page: This page will jump out after clicking the Create Post buttom in the main page. User needs to insert title, Destination, Outset, Time: Start, Time: End, Num of people, Description in this page. And clicking on the Save the changes bottom at the end of the page will create a post which save all the infomation that the user inserted into the database. Meanwhile, a new post will be created and showed in the main page. Clicking on the Close bottom will jumo out of the Create Post Page and be back to the main page.
+  ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/create.png)
+
+-Post Page: This page will show all the information that the user entered in the create post page like the title, Destination, Outset, Time: Start, Time: End, Num of people, Description. The tile will be on the top-left corner. And the other will be in obivous positions. There are three bottoms on the right side corner. The Add to favour will mark the post as the user's favour post and save into the database. The Delete Post will delete the post form the main page and the database. The Edit Bottom will allow the user to eidt the posted post. There is a bottom part about comment at the end of the page. User can insert the comment into the box and click on the Submit bottom to submit the comment and the comment will show up with user name who wrote the comment.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/post.png)
+   
+- Comment Example:
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/comment.png)
+   
+-UserInfo Page: This page will show the informations of the user only after logging in. It will show the Email, Phone, Name, and About. There is an edit bottom allows the user to edit the user's information.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/user.png)
+   
+## Authentication/Authorization
+___________________________________________________________________
+-Used the miniCrypt from the class material which we can use .hash() function to make the password into hash and salt. Once an account is registed in the reagistration page. The password will turn into a hash value and a salt value. Then save them into the database. For login page, the authorization is used for veryfing yhe password. It will turn into the user inserted password into salt and hash and then compare them with the value in the database.
