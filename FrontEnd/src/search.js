@@ -1,40 +1,28 @@
 
 searchFunction();
 
-function searchFunction(){
-const searchbtr=document.getElementById("searchbtr");
+////////////////////////////function/////////////////////////
 
-const input=document.getElementById("searchinput").value;
-const searchInput=document.getElementById("searchinput");
-
-searchbtr.addEventListener("click", function (e) {
-
-    render();
-   });
-
+//add functino to search button
+function searchFunction() {
+    const searchbtr = document.getElementById("searchbtr");
+    searchbtr.addEventListener("click", function (e) {
+        render();
+    });
 }
 
-function render(){
- 
-    const searchInput=document.getElementById("searchinput");
-    let i=0;
-    while(document.getElementById("post"+JSON.stringify(i))!==null){
-      // console.log(i);
+//hide all post and show related post
+function render() {
+    const searchInput = document.getElementById("searchinput");
+    let i = 0;
+    while (document.getElementById("post" + JSON.stringify(i)) !== null) {
         i++;
     }
-
-// console.log(document.getElementById("postitle"+JSON.stringify(1)).innerText);
-    
-    for(let j=0;j<i;j++){
-        //if(JSON.stringify(searchInput.value)===(JSON.stringify(document.getElementById("postitle"+JSON.stringify(j)).innerText))){
-        // if((JSON.stringify(document.getElementById("postitle"+JSON.stringify(j)).innerText)).includes(JSON.stringify(searchInput.value))){ 
-        if(((document.getElementById("postitle"+JSON.stringify(j)).innerText).toLowerCase()).includes((searchInput.value).toLowerCase())){ 
-        document.getElementById("post"+JSON.stringify(j)).hidden= false;
-         //   console.log(document.getElementById("postitle"+JSON.stringify(j)).innerText+"not hide");
-        }else{
-            document.getElementById("post"+JSON.stringify(j)).hidden= true;
-           // console.log(document.getElementById("postitle"+JSON.stringify(j)).innerText+" hide");
+    for (let j = 0; j < i; j++) {
+        if (((document.getElementById("postitle" + JSON.stringify(j)).innerText).toLowerCase()).includes((searchInput.value).toLowerCase())) {
+            document.getElementById("post" + JSON.stringify(j)).hidden = false;
+        } else {
+            document.getElementById("post" + JSON.stringify(j)).hidden = true;
         }
-
     }
 }
