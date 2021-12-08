@@ -5,7 +5,7 @@ searchFunction();
 
 //add functino to search button
 function searchFunction() {
-    const searchbtr = document.getElementById("searchbtr");
+    const searchbtr = document.getElementById("searchBtr");
     searchbtr.addEventListener("click", function (e) {
         render();
     });
@@ -13,7 +13,7 @@ function searchFunction() {
 
 //hide all post and show related post
 function render() {
-    const searchInput = document.getElementById("searchinput");
+    const searchInput = document.getElementById("searchInput");
     let i = 0;
     while (document.getElementById("post" + JSON.stringify(i)) !== null) {
         i++;
