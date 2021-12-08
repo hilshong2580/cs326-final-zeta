@@ -52,7 +52,6 @@ router.post("/UserFav", async function (req, res) {
 
 // GET method route to get all post
 router.get("/", async function (req, res) {
-  console.log("this is get all post in backend main");
   try {
     const getPost = await pool.query("SELECT * FROM postTable");
 
@@ -69,8 +68,6 @@ router.get("/", async function (req, res) {
 // a POST method for user to create a new account
 //it push the input data to json array
 router.post("/", async function (req, res) {
-  console.log("this is create post in backend main");
-
   try {
     console.log(req.body);
     const {
@@ -108,7 +105,6 @@ router.post("/", async function (req, res) {
 // PUT method route to update the post
 // post owner can edit the post information
 router.put("/", async function (req, res) {
-  console.log("this is update/edit post");
   try {
     const {
       title,
@@ -124,7 +120,6 @@ router.put("/", async function (req, res) {
       [title, destination, outset, numOfPeople, description, userId, postId]
     );
 
-    console.log(updatePost);
     if (updatePost.rowCount > 0) res.status(200).send("Post Update Success");
     else res.status(202).send("Post Update Fail");
   } catch (err) {
@@ -136,7 +131,6 @@ router.put("/", async function (req, res) {
 
 // DELETE method route for the post owner to delete the post
 router.delete("/", async function (req, res) {
-  console.log("this is delete post");
 
   try {
     const { userId, postId } = req.body;
@@ -145,7 +139,6 @@ router.delete("/", async function (req, res) {
       [userId, postId]
     );
 
-    console.log(deletePost.rowCount);
     if (deletePost.rowCount > 0) res.status(200).send("Post Delete Success");
     else res.status(202).send("Post Delete Fail");
   } catch (err) {
@@ -158,7 +151,6 @@ router.delete("/", async function (req, res) {
 //a put method to update the comment from post
 //push the comment into correct postion comment column
 router.post("/comment", async function (req, res) {
-  console.log("this is Comment Text");
 
   try {
     console.log(req.body);
@@ -177,17 +169,15 @@ router.post("/comment", async function (req, res) {
 
 // PUT method route to get all post
 router.put("/comment", async function (req, res) {
-  console.log("this is get comment in backend main");
+
   try {
     const { postId } = req.body;
-    console.log(postId);
 
     const getComment = await pool.query(
       "SELECT * FROM commentTable WHERE postid = $1",
       [postId]
     );
 
-    console.log(getComment.rows);
     if (getComment.rows.length > 0) {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(JSON.stringify(getComment.rows));
@@ -200,7 +190,6 @@ router.put("/comment", async function (req, res) {
 
 // DELETE method route for the post owner to delete the post
 router.delete("/comment", async function (req, res) {
-  console.log("this is delete comment");
 
   try {
     const { postId } = req.body;
@@ -221,7 +210,7 @@ router.delete("/comment", async function (req, res) {
 
 ////////////////////////////edit user info///////////////////////
 router.put("/editUser", async function (req, res) {
-  console.log("this is update/edit User");
+
   try {
     const { userid, name, email, phone, about } = req.body;
     const updateUser = await pool.query(
@@ -230,7 +219,6 @@ router.put("/editUser", async function (req, res) {
 
     );
 
-    console.log(JSON.stringify(req.body));
     if (updateUser.rowCount > 0) res.status(200).send("Post Update Success");
     else res.status(202).send("Post Update Fail");
   } catch (err) {
@@ -242,7 +230,7 @@ router.put("/editUser", async function (req, res) {
 
 ////////////////////////////user activity///////////////////////
 router.put("/activity", async function (req, res) {
-  console.log("this is update User activity");
+
   try {
     const { userId, favorite, post, comment } = req.body;
     const activityUpdate = await pool.query(
@@ -261,7 +249,7 @@ router.put("/activity", async function (req, res) {
 });
 
 router.post("/activity", async function (req, res) {
-  console.log("this is get activity data");
+
   try {
     const userId = req.body.userId;
     const getActivity = await pool.query("SELECT * FROM activityTable Inner JOIN userTable On userTable.userid = activityTable.userid Where activityTable.userid = $1", [userId]);
@@ -277,36 +265,30 @@ router.post("/activity", async function (req, res) {
 
 ////////////////////////add to fav//////////////////////////
 router.post("/Fav", async function (req, res) {
-  console.log("this is adding to fav");
 
   try {
-    // console.log(req.body);
     const { userid, postid, postTag } = req.body;
     const addfav = await pool.query(
       "INSERT INTO favTable (userid, postid, postTag) VALUES ($1, $2, $3) RETURNING *",
       [userid, postid, postTag]
     );
-    //console.log(req.body);
+
     res.status(200).send("Add fav to table Successful");
   } catch (err) {
     console.log(err.message);
     res.status(202).send("Add fav to table Fail");
   }
-
 });
 
 ///////////////////////////////remove from fav/////////////////////////////
 router.delete("/Fav", async function (req, res) {
-  console.log("this is del to fav");
 
   try {
-    // console.log(req.body);
     const { userid, postid } = req.body;
     const delfav = await pool.query(
       "DELETE FROM favTable WHERE userid=$1 AND postid = $2",
       [userid, postid]
     );
-    //console.log("252");
     res.status(200).send("Del fav to table Successful");
   } catch (err) {
     console.log(err.message);
@@ -316,10 +298,8 @@ router.delete("/Fav", async function (req, res) {
 
 /////////////////////////check if fav////////////////////
 router.put("/Fav", async function (req, res) {
-  //console.log("this is checking to fav");
 
   try {
-    //console.log(req.body);
     const { userid, postid } = req.body;
     const ckeckfav = await pool.query(
       "SELECT * FROM favTable WHERE userid=$1 AND postid = $2",
@@ -327,20 +307,16 @@ router.put("/Fav", async function (req, res) {
     );
 
     if (ckeckfav.rowCount > 0) {
-      console.log("T");
       res.status(200).send("true");
     }
     else {
-      console.log("F");
       res.status(200).send("false");
     }
   } catch (err) {
     console.log(err.message);
     res.status(202).send("check fav to table Fail");
-
   }
 });
-
 
 
 
