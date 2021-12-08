@@ -9,7 +9,7 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
   let about = document.getElementById("aboutmeRegister").value;
   let name = document.getElementById("userNameRegister").value;
 
-  if(!isNaN(phone))
+  if(isNaN(phone))
     alert("Phone is a number!");
   else if(Math.floor(Number(phone)) < 0 || phone.length < 10){
     alert("Phone number is invalid!");

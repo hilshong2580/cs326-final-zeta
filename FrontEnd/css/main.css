@@ -79,3 +79,18 @@
   margin-right: 5px;
 }
 
+#allPost{
+  text-align: right;
+  vertical-align: middle;
+}
+
+#createPopUp{
+  text-align: right;
+  vertical-align: middle;
+}
+
+#MyFavPost{
+  text-align: right;
+  vertical-align: middle;
+}
+

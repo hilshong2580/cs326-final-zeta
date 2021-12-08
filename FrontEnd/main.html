@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="module" src="./src/main.js" defer></script>
-  <script type="module" src="./src/search.js" defer></script>
-  <script type="module" src="./src/myFav.js" defer></script>
+  <script src="./src/main.js" defer></script>
+  <script src="./src/search.js" defer></script>
+  <script src="./src/myFav.js" defer></script>
   <link rel="stylesheet" href="./css/main.css" />
   <link rel="stylesheet" href="./css/post.css" />
 
@@ -50,9 +50,9 @@
 
         <!-- the search bar -->
         <div class="d-flex md-form form-group w-50">
-          <input class="form-control me-2 " id="searchinput" type="search" placeholder="Search" aria-label="Search"
-            id="seabar">
-          <button class="btn btn-outline-success" id="searchbtr">Search</button>
+          <input class="form-control me-2 " id="searchInput" type="search" placeholder="Search" aria-label="Search"
+            >
+          <button class="btn btn-outline-success" id="searchBtr">Search</button>
         </div>
 
         <div>
@@ -79,12 +79,12 @@
           <!-- Button trigger modal, this is use on create post -->
           <div class="text-center">
 
-            <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm"
+            <button type="button" class="btn btn-primary btn-sm"
               data-toggle="modal" id="allPost">
               All Post
             </button>
 
-            <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm"
+            <button type="button" class="btn btn-primary btn-sm"
               data-toggle="modal" id="MyFavPost">
               My Favour Post
             </button>
@@ -92,7 +92,7 @@
             <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target=".multi-collapse"
               aria-expanded="false" id="toggleAll">Toggle All Post</button>
 
-            <button type="button" style="text-align:right vertical-align=center" class="btn btn-primary btn-sm"
+            <button type="button"  class="btn btn-primary btn-sm"
               data-toggle="modal" data-target="#exampleModal" id="createPopUp">
               Create Post
             </button>
@@ -110,7 +110,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" id="modal-body">
+              <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label class="form-label">Name:</label>
@@ -136,17 +136,17 @@
           </div>
         </div>
 
-        <div class="modal fade" id="editUSIFO" tabindex="-1" role="dialog" aria-labelledby="UserModalLabel"
+        <div class="modal fade" id="editUSIFO" tabindex="-1" role="dialog" aria-labelledby="UserModalLabelEdit"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="UserModalLabel">UserInfo</h5>
+                <h5 class="modal-title" id="UserModalLabelEdit">UserInfo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" id="modal-body">
+              <div class="modal-body" >
                 <form>
                   <div class="mb-3">
                     <label class="form-label">Name:</label>
@@ -185,7 +185,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" id="modal-body">
+              <div class="modal-body" >
                 <form>
                   <div class="mb-3">
                     <label class="form-label required">Title</label>
