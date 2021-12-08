@@ -42,4 +42,7 @@ ___________________________________________________________________
    
 -UserInfo Page: This page will show the informations of the user only after logging in. It will show the Email, Phone, Name, and About. There is an edit bottom allows the user to edit the user's information.
    ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/user.png)
-
+   
+## Authentication/Authorization
+___________________________________________________________________
+-Used the miniCrypt from the class material which we can use .hash() function to make the password into hash and salt. Once an account is registed in the reagistration page. The password will turn into a hash value and a salt value. Then save them into the database. For login page, the authorization is used for veryfing yhe password. It will turn into the user inserted password into salt and hash and then compare them with the value in the database.
