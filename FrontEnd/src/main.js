@@ -45,7 +45,7 @@ async function getUserInfo() {
       document.getElementById("EditUserInfoPhone").value = data.phone;
       document.getElementById("EditUserInfoAbout").value = data.about;
     }
-    else{
+    else {
       const data = (await response.text());
       console.log(data);
     }
@@ -77,7 +77,7 @@ async function getRenderPost() {
       };
 
       renderPost(document.getElementById("accordion"), i, dataTemp);
-      toggleId += "collapse"+i.toString()+" ";
+      toggleId += "collapse" + i.toString() + " ";
     }
 
     document.getElementById("toggleAll").setAttribute("aria-controls", toggleId);
@@ -98,8 +98,8 @@ async function editExistPost(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) 
-    console.log("edit post success");
+    if (response.status === 200)
+      console.log("edit post success");
   });
 }
 
@@ -113,8 +113,8 @@ async function deleteExistPost(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) 
-    console.log("post delete success");
+    if (response.status === 200)
+      console.log("post delete success");
   });
 }
 
@@ -128,8 +128,8 @@ async function postNewPost(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) 
-    console.log("create new post success");
+    if (response.status === 200)
+      console.log("create new post success");
   });
 }
 
@@ -147,9 +147,7 @@ async function addtoFav(userId, postId, html, tag) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    //const data = await response.text();
     if (response.status === 200) {
-      console.log("added");
       checkFav(userId, postId, html);
     }
   });
@@ -169,9 +167,7 @@ async function DelFav(userId, postId, html, tag) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    //const data = await response.text();
     if (response.status === 200) {
-      console.log("deled");
       checkFav(userId, postId, html);
     }
   });
@@ -204,8 +200,6 @@ async function checkFav(userId, postId, html) {
 
 //a fetch to upload the new comment from the post, it used to update the content of data
 async function pushComment(jsonObj) {
-  console.log("this is insert comment based on post");
-
   fetch("/main/comment", {
     method: "POST",
     headers: {
@@ -214,15 +208,13 @@ async function pushComment(jsonObj) {
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
     const data = await response.text();
-    if (response.status === 200) 
-    console.log("push comment success");
+    if (response.status === 200)
+      console.log("push comment success");
   });
 }
 
 //PUT: get the comment based on the post id
 async function getComment(postId, html) {
-  console.log("this is get comment based on post");
-
   fetch("/main/comment", {
     method: "PUT",
     headers: {
@@ -230,7 +222,7 @@ async function getComment(postId, html) {
     },
     body: JSON.stringify({ postId: postId }),
   }).then(async (response) => {
-    
+
     if (response.status === 200) {
       const data = JSON.parse(await response.json());
       for (let com in data) {
@@ -244,8 +236,6 @@ async function getComment(postId, html) {
 
 //PUT: get the comment based on the post id
 async function deleteComment(postId) {
-  console.log("this is delete comment based on post");
-
   fetch("/main/comment", {
     method: "DELETE",
     headers: {
@@ -282,15 +272,14 @@ async function updateActivity(jsonObj) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    if (response.status === 200){
+    if (response.status === 200) {
       const data = JSON.parse(await response.json());
       console.log("update activity success");
-    } 
-    else{
+    }
+    else {
       const data = await response.text();
       console.log(data);
     }
-    
   });
 }
 
@@ -303,34 +292,31 @@ async function getActivity(jsonObj, html) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    if (response.status === 200){
+    if (response.status === 200) {
       const data = JSON.parse(await response.json());
       console.log(data[0]);
       let favoriteNum = document.createElement("div");
-      favoriteNum.innerHTML = "<h4 class = "+"renderContent"+">" + data[0].favorite_num+"'s Favorites</h4>";
+      favoriteNum.innerHTML = "<h4 class = " + "renderContent" + ">" + data[0].favorite_num + "'s Favorites</h4>";
 
       let postNum = document.createElement("div");
-      postNum.innerHTML = "<h4 class = "+"renderContent"+">"+data[0].post_num+"'s Posts</h4>";
+      postNum.innerHTML = "<h4 class = " + "renderContent" + ">" + data[0].post_num + "'s Posts</h4>";
 
       let commentNum = document.createElement("div");
-      commentNum.innerHTML = "<h4 class = "+"renderContent"+">"+data[0].comment_num+"'s Comments</h4>";
+      commentNum.innerHTML = "<h4 class = " + "renderContent" + ">" + data[0].comment_num + "'s Comments</h4>";
 
       let userDiv = document.createElement("div")
-      userDiv.innerHTML ="<h4 class = "+"renderContent"+">Post Owner: "+data[0].name+"</h4>";
+      userDiv.innerHTML = "<h4 class = " + "renderContent" + ">Post Owner: " + data[0].name + "</h4>";
       html.prepend(userDiv, commentNum, postNum, favoriteNum);
     }
-    else{
+    else {
       const data = await response.text();
       console.log(data);
     }
-
-
   });
 }
 
 // a button listener to create a new post
 document.getElementById("createPost").addEventListener("click", function (e) {
-  console.log("button was createPost");
   let newPost = {
     userId: thisUserID,
     title: document.getElementById("createTitle").value,
@@ -341,7 +327,7 @@ document.getElementById("createPost").addEventListener("click", function (e) {
     numOfPeople: document.getElementById("createNumOfPeople").value,
     description: document.getElementById("createDescription").value
   };
-  //console.log(newPost);
+
   postNewPost(newPost);
   updateActivity({
     userId: thisUserID,
@@ -363,20 +349,19 @@ document.getElementById("LogoutButton").addEventListener("click", function (e) {
 document.getElementById("UserPopUp").addEventListener("click", getUserInfo);
 
 document.getElementById("editUserInfoBtr").addEventListener("click", function (e) {
-    console.log("button was editUserInfo");
-    // alert("ABC");
-    let body = {
-      userid: thisUserID,
-      name: document.getElementById("EditUserInfoName").value,
-      email: document.getElementById("EditUserInfoEmail").value,
-      phone: document.getElementById("EditUserInfoPhone").value,
-      about: document.getElementById("EditUserInfoAbout").value,
-    };
+  console.log("button was editUserInfo");
+  let body = {
+    userid: thisUserID,
+    name: document.getElementById("EditUserInfoName").value,
+    email: document.getElementById("EditUserInfoEmail").value,
+    phone: document.getElementById("EditUserInfoPhone").value,
+    about: document.getElementById("EditUserInfoAbout").value,
+  };
 
-    editUser(body);
-    getRenderPost();
+  editUser(body);
+  getRenderPost();
 
-  });
+});
 
 //a render function to render all the post to main page based on the server's data base
 function renderPost(HTML, id, jsonObj) {
@@ -388,9 +373,7 @@ function renderPost(HTML, id, jsonObj) {
   postButton.setAttribute("aria-expanded", "true");
   postButton.setAttribute("aria-controls", "collapse" + idString);
   postButton.setAttribute("id", "postitle" + idString);
-  postButton.innerHTML = "<h3 class = "+"renderTitle"+">"+jsonObj.title+"</h3>";
-  
-  //jsonObj.title;
+  postButton.innerHTML = "<h3 class = " + "renderTitle" + ">" + jsonObj.title + "</h3>";
 
   const h5 = document.createElement("h5");
   h5.classList.add("mb-0");
@@ -405,7 +388,7 @@ function renderPost(HTML, id, jsonObj) {
   const destination = document.createElement("div");
   destination.classList.add("Destination");
   destination.setAttribute("id", "Destination" + idString);
-  destination.innerHTML = "<h4 class = "+"renderContent"+">Destination: "+jsonObj.destination+"</h4>";
+  destination.innerHTML = "<h4 class = " + "renderContent" + ">Destination: " + jsonObj.destination + "</h4>";
   //"Destination: " + jsonObj.destination;
 
   const picture = document.createElement("div");
@@ -414,36 +397,30 @@ function renderPost(HTML, id, jsonObj) {
 
   getActivity({ userId: jsonObj.userId }, picture);
 
-
   const outset = document.createElement("div");
   outset.classList.add("Outset");
   outset.setAttribute("id", "Outset" + idString);
-  outset.innerHTML = "<h4 class = "+"renderContent"+">Outset: "+jsonObj.outset+"</h4>";
-  //"Outset: " + jsonObj.outset;
+  outset.innerHTML = "<h4 class = " + "renderContent" + ">Outset: " + jsonObj.outset + "</h4>";
 
   const startTime = document.createElement("div");
   startTime.classList.add("startTime");
   startTime.setAttribute("id", "startTime" + idString);
-  startTime.innerHTML ="<h4 class = "+"renderContent"+">Start: "+jsonObj.dateTimeStart+"</h4>";
-  //"Start: " + jsonObj.dateTimeStart;
+  startTime.innerHTML = "<h4 class = " + "renderContent" + ">Start: " + jsonObj.dateTimeStart + "</h4>";
 
   const endTime = document.createElement("div");
   endTime.classList.add("endTime");
   endTime.setAttribute("id", "endTime" + idString);
-  endTime.innerHTML ="<h4 class = "+"renderContent"+">End: "+jsonObj.dateTimeEnd+"</h4>";
-  //"End: " + jsonObj.dateTimeEnd;
+  endTime.innerHTML = "<h4 class = " + "renderContent" + ">End: " + jsonObj.dateTimeEnd + "</h4>";
 
   const numberOfPeople = document.createElement("div");
   numberOfPeople.classList.add("numberOfPeople");
   numberOfPeople.setAttribute("id", "numberOfPeople" + idString);
-  numberOfPeople.innerHTML = "<h4 class = "+"renderContent"+">People Num: "+jsonObj.numOfPeople+"</h4>";
-  //"People Num: " + jsonObj.numOfPeople;
+  numberOfPeople.innerHTML = "<h4 class = " + "renderContent" + ">People Num: " + jsonObj.numOfPeople + "</h4>";
 
   const Description = document.createElement("div");
   Description.classList.add("Description");
   Description.setAttribute("id", "Description" + idString);
-  Description.innerHTML = "<h4 class = "+"renderContent"+">Description: "+jsonObj.description+"</h4>";
-  //"Description: " + jsonObj.description;
+  Description.innerHTML = "<h4 class = " + "renderContent" + ">Description: " + jsonObj.description + "</h4>";
 
   const DeletePostBtr = document.createElement("div");
   DeletePostBtr.classList.add("DeletePostBtr");
@@ -470,25 +447,20 @@ function renderPost(HTML, id, jsonObj) {
   edBtn.setAttribute("type", "button");
   edBtn.innerHTML = "Edit Button";
 
-  ///////////////////only user can have edit post////////////////////////
+  //only user can have edit post
   if (JSON.stringify(jsonObj.userId) === JSON.stringify(thisUserID)) {
     DeletePostBtr.prepend(deleteButton, edBtn);
   }
 
-  //////////////////////Add to Fav//////////////////////////
-
+  //Add to Fav
   const favButton = document.createElement("button");
-
   favButton.classList.add("btn", "btn-outline-primary");
-
   favButton.setAttribute("type", "button");
   favButton.setAttribute("id", "b1");
-  // favButton.innerHTML = "Add to favour";
 
   checkFav(thisUserID, jsonObj.postId, favButton);
 
   favButton.addEventListener("click", function (e) {
-    //alert(favButton.innerHTML==="Remove From Favour");
     if (favButton.innerHTML === "Remove From Favour") {
       DelFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
       updateActivity({
@@ -497,9 +469,7 @@ function renderPost(HTML, id, jsonObj) {
         post: 0,
         comment: 0,
       });
-
     } else {
-
       addtoFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
       updateActivity({
         userId: thisUserID,
@@ -509,11 +479,9 @@ function renderPost(HTML, id, jsonObj) {
       });
     }
 
-
     getRenderPost();
   });
   DeletePostBtr.prepend(favButton);
-  ///////////////////////////////////////////////////////////////
 
   const accordionDetail = document.createElement("div");
   accordionDetail.classList.add("detail");
@@ -535,13 +503,6 @@ function renderPost(HTML, id, jsonObj) {
 
   getComment(jsonObj.postId, commentDetail);
 
-  // for (let com in jsonObj.comment) {
-  //   const contentaa = document.createElement("div");
-  //   contentaa.innerHTML =
-  //     jsonObj.comment[com].name + ": " + jsonObj.comment[com].comment;
-  //   commentDetail.prepend(contentaa);
-  // }
-
   const overFlow = document.createElement("div");
   overFlow.classList.add(
     "overflow-auto",
@@ -561,8 +522,6 @@ function renderPost(HTML, id, jsonObj) {
   textarea.classList.add("form-control");
   textarea.setAttribute("row", "3");
   textarea.setAttribute("id", "exampleFormControlTextarea1");
-
-  //textarea.innerText = thisUserEmail + ": ";
 
   const formGroup = document.createElement("div");
   formGroup.classList.add("form-group");
@@ -586,7 +545,6 @@ function renderPost(HTML, id, jsonObj) {
       post: 0,
       comment: 1,
     });
-
     getRenderPost();
   });
 
@@ -604,7 +562,6 @@ function renderPost(HTML, id, jsonObj) {
   renderForm(modal, idString, jsonObj);
 
   const cardBody = document.createElement("div");
-  //cardBody.innerHTML = "this is " + idString;
   cardBody.prepend(modal, comment);
   cardBody.prepend(accordionDetail);
 
@@ -618,16 +575,8 @@ function renderPost(HTML, id, jsonObj) {
   const card = document.createElement("div");
   card.classList.add("card");
   card.setAttribute("id", "post" + idString);
-  //card.setAttribute("tag", "postid"+jsonObj.postId);
-  //card.innerText="WTF"+idString;
-  //const pid = document.createElement("div");
-  //pid.setAttribute("id", "postid:"+jsonObj.postId);
-  //console.log("This post's is :"+ "postid:"+jsonObj.postId);
-
-  // card.prepend(pid);
   card.prepend(collapsePost);
   card.prepend(cardHeader);
-
 
   HTML.prepend(card);
 }
