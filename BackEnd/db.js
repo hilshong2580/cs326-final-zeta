@@ -1,8 +1,6 @@
-//const Pool = require("pg").Pool;
-const { Pool, Client } = require("pg");
-const { readFileSync, existsSync } = require("fs");
+const { Client } = require("pg");
 
-let secrets, user, password, database, host, post;
+let secrets;
 let url, pool;
 
 if (!process.env.DATABASE_URL) {
@@ -11,22 +9,14 @@ if (!process.env.DATABASE_URL) {
   pool = new Client({
     connectionString: url
   });
-  } else {
-    pool = new Client({
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false
-      }
-    });
-  }
-  
-// pool = new Client({
-//   connectionString: url,
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
-
+} else {
+  pool = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+}
 
 pool.connect();
 
