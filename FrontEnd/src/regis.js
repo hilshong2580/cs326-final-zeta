@@ -1,3 +1,4 @@
+//add function to regist button
 document.getElementById("btn_regis").addEventListener("click", function (e) {
   console.log("This is create account: ");
   let emailEnd = "@umass.edu";
@@ -20,6 +21,7 @@ document.getElementById("btn_regis").addEventListener("click", function (e) {
   } else alert("password/email incorrect");
 });
 
+//conncect to end point, send user info to database or denied as it is already exist
 async function createAccount(jsonObj) {
   fetch("/login/Registration", {
     method: "POST",
@@ -30,6 +32,6 @@ async function createAccount(jsonObj) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) window.location.href = "./login.html";
-    else alert("email already exist"+response.status);
+    else alert("email already exist" + response.status);
   });
 }
