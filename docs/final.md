@@ -149,7 +149,8 @@ User Table:
 | about | varchar(255) | User's self-description |
 
 This table is used to store the user information when the user registers a new account. It contains a serial userId as the primary key, name, email, phone, self-description, secure password by salt & hash.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/UserTable.png)
+
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/UserTable.png)
 
 POST Table:
 | Column | Data Type | Description |
@@ -165,7 +166,8 @@ POST Table:
 | description | varchar(255) | activity's description |
 
 This table is used to store new posts created by users. It contains a serial postId as the primary key, userId based on login user, and the purpose information.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/PostTable.png)
+
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/PostTable.png)
 
 Comment table
 | Column | Data Type | Description |
@@ -175,7 +177,8 @@ Comment table
 | comment | varchar(255) NOT NULL | The content of the comment |
 
 This table is used to store the comment that is the conversation by a different user in a different post. It contains a postId based on the specific post that adds the comment, user's name and he/she's comments.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/CommentTable.png)
+
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/CommentTable.png)
 
 Activity table
 | Column | Data Type | Description |
@@ -186,7 +189,8 @@ Activity table
 | comment_Num | INT NOT NULL | Total number of User's comment in post |
 
 This table is used to store the user's activity record. For example, the number of posts, number of comments, number of Favorite added. This data will save and display on the post. All users can see this record to measure the post's owner is reliable, or not. This table can be interacted with the user table by userId.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/ActivityTable.png)
+
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/ActivityTable.png)
 
 Favorite table
 | Column | Data Type | Description |
@@ -196,7 +200,8 @@ Favorite table
 | postTag | varchar(255) NOT NULL | To record the post title for search |
 
 This table is used to store the user's following post. Users can record some posts that they really like. Using the button to display the table record post and hide the not related post.
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/FavouriteTable.png)
+
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/FavouriteTable.png)
 
 ## URL Routes/Mappings
 
