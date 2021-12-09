@@ -145,9 +145,17 @@ Tingshuo Miao:
 * Remove unused and unnecessary code.
 * Remove unnecessary command and console log.
 * Modified the miniCrypt from the class lecture and add into the project.
-* Build up the authentication for user's  registration
-* Build up the authentication for login information and comparing with database.
+* Build up the authentication for user's registration.
+* Delete the password row in the database and create two new row- hash and salt.
+* Update POST:/"Registration" in the loginRoutin with sql sql.query of INSERT.
+* Update POST:/"Account" in the loginRoutin with sql sql.query of SELECT.
+* Update  createUserTable() method in the server.js for an adaptable database.
+* Build up the authentication for login information which comparing with database data.
+* Updated package.json file to set up the environment.
 * Collect and analysis the information and make final.md file.
   -Build the Title, Subtitle, Semester, Overview, Team Members, User Interface, Authentication/Authorization, Conclusion sections.
+  -Wrote all things, texts, describetions as needed.
   -Collect and upload all the images as needed
-* Group working on deploying on heroku with heroku database.
+  -Adjust some other sections.
+* Working on deploying on heroku with heroku database.
+* Update the heroku's postgres, set tup the environment data in HeroKu website.
