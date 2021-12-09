@@ -4,7 +4,6 @@ console.log("Server-side code running");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const faker = require("faker");
 const pool = require("./db");
 const port = 5000;
 
@@ -67,8 +66,7 @@ async function createPostTable() {
     console.log("postTable created");
 }
 
-
-//create user's Post table
+//create user's Comment table
 async function createCommentTable() {
     const commentTable = await pool.query(`CREATE TABLE IF NOT EXISTS commentTable(
     postId INT NOT NULL,
@@ -78,7 +76,7 @@ async function createCommentTable() {
     console.log("commentTable created");
 }
 
-//create user's Post table
+//create user's Activity table
 async function createActivityTable() {
     const commentTable = await pool.query(`CREATE TABLE IF NOT EXISTS activityTable(
     userId INT PRIMARY KEY,
@@ -89,6 +87,7 @@ async function createActivityTable() {
     console.log("activityTable created");
 }
 
+//create user's Favorite table
 async function createFavTable() {
     const favTable = await pool.query(`CREATE TABLE IF NOT EXISTS favTable(
     userId INT NOT NULL,
