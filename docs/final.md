@@ -69,4 +69,51 @@ ___________________________________________________________________
    
 ## Authentication/Authorization
 ___________________________________________________________________
+
 - Used the miniCrypt from the class material which we can use .hash() function to make the password into hash and salt. Once an account is registered on the registration page. The password will turn into a hash value and a salt value. Then save them into the database. For the login page, the authorization is used for verifying the password. It will turn into the user inserted password into salt and hash and then compare them with the value in the database.
+
+## Division of Labor
+___________________________________________________________________
+Wai Kin Yu:
+* Communicate with teamate, assembly information to keep track on the project/mileston1.md.
+* Create Post detail in main page and UI design(part of CSS & HTML).
+* Check and fix the bug with milestone 1 version.
+* Create release milestone1.
+* Collect and analysis all the information and make Milestone2.md file.
+* Debug and remove part of warnings.
+* Build up search function for main page.
+* Filter all html element in title post with related search word.
+* Create a rander create button, create form, edit button, edit form on main page.
+* Debug and Deployed test on Heroku with milestone 2 version.
+* Create release milestone2.
+* Create new database table favTable if there are no such a table exists. That table will store all information for all the user and their liked post.
+* Create end-point "/Fav" (post) for inserting data to favTable.
+* Create end-point "/Fav" (del) for deleting data to favTable.
+* Create end-point "/Fav" (put) for searching all data from favTable.
+* Render "add to my favour"/"remove from my favour" button to each post.
+* Create on-click listener to the button.
+* Create addtoFav function on button which is the function for on-click listener on "add to my favour" button.
+* Create DelFav function on button which is the function for on-click listener on "remove from my favour" button.
+* Create checkFav function on button which check which button and it's corresponding function should be rendered.
+* Implement end-point "/Fav" (post) to addtoFav function to fetch required data.
+* Implement end-point "/Fav" (del) to DelFav function to fetch required data..
+* Implement end-point "/Fav" (put) to checkFav function to fetch required data..
+* Rerender "add to my favour"/"remove from my favour" button inside the post when user click the button.
+* Render "my favour" button which display all the user's favour post.
+* Create myFav.js which is used to implement the search and filter function for user's favour post.
+* Create hideAll function to hide all the html element for all the post.
+* Create getUserFav functino to show all the html element for user's favour post.
+* Implement end-point "/Fav" (put) to getUserFav functino to fetch all favour post for the user who loged-in.
+* Render "allPost" button which is used to show all the post.
+* Create on-click listener to that button.
+* Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
+* Add up to build filter.
+* Group working on deploying on heroku with heroku database.
+* Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
+* Adjust milestone3.md and create release.
+* Connect to both local database and heroku database.
+* Clean up code.
+* Reformatting all js file.
+* Remove all unused and unnecessary code.
+* Remove all unnecessary command and console log.
+* Design rubric for final version.
