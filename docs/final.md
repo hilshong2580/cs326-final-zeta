@@ -117,3 +117,37 @@ Wai Kin Yu:
 * Remove all unused and unnecessary code.
 * Remove all unnecessary command and console log.
 * Design rubric for final version.
+
+Tingshuo Miao: 
+* Create a wireframe for login/registration page.
+* CSS & HTML for login and registration page.
+* Adjust login.html
+* Adjust regis.html
+* Catch up with backend API
+* Re-adjust the layout of main page-main.html
+* Debug and remove part of warnings.
+* Collect and analysis all the information and make Milestone3.md file.
+* Group working on with connecting into heroku database.
+* Create activityTable to record user activity if not exist on server.js when program start.
+* Add method of POST: "/activity"
+  -to get the user activity record which include user's num of favorite, num of post, num of comment from database.
+* Add method of PUT: "/activity"
+  -to update the user activity record on database when create post, add favorite post, push a comment in post.
+* Create a method of updateActivity() with fetch to push the new record to Backend's mainRoute.js
+* Create a method of getActivity() with fetch to get the user activity record from Backend's mainRoute.js
+* Render the post owner activity record on post page that include the number of post owner created, num of comment owner push, num of favorite post owner followed.
+* Re-build and add the favicon to the website.
+* Add many comment above the methods to explain how to use, why it exist.
+* Fix bug on the project.
+* Assist teammate to write the project/code.
+* Check and fix the bug with milestone 3 version.
+* Clean up code.
+* Remove unused and unnecessary code.
+* Remove unnecessary command and console log.
+* Modified the miniCrypt from the class lecture and add into the project.
+* Build up the authentication for user's  registration
+* Build up the authentication for login information and comparing with database.
+* Collect and analysis the information and make final.md file.
+  -Build the Title, Subtitle, Semester, Overview, Team Members, User Interface, Authentication/Authorization, Conclusion sections.
+  -Collect and upload all the images as needed
+* Group working on deploying on heroku with heroku database.
