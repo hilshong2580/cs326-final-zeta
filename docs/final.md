@@ -50,19 +50,19 @@ ___________________________________________________________________
 The project uses the Postgres SQL database. It generates and exists on heroku.com. In our project, we create five tables in the database that works for different features.
 
 - user table: This table is used to store the user information when the user registers a new account. It contains a serial userId as the primary key, name, email, phone, self-description,  secure password by salt & hash. 
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/UserTable.png)
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/UserTable.png)
 
-- post table:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/PostTable.png)
+- post table: This table is used to store new posts created by users. It contains a serial postId as the primary key, userId based on login user, and the purpose information.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/PostTable.png)
 
-- Comment table:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/CommentTable.png)
+- Comment table: This table is used to store the comment that is the conversation by a different user in a different post. It contains a postId based on the specific post that adds the comment, user's name and he/she's comments.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/CommentTable.png)
 
-- Activity table:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/ActivityTable.png)
-
-- Favorite table:
-![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/FavouriteTable.png)
+- Activity table: This table is used to store the user's activity record. For example, the number of posts, number of comments, number of Favorite added. This data will save and display on the post. All users can see this record to measure the post's owner is reliable, or not. This table can be interacted with the user table by userId.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/ActivityTable.png)
+   
+- Favorite table: This table is used to store the user's following post. Users can record some posts that they really like. Using the button to display the table record post and hide the not related post.
+   ![alt text](https://github.com/hilshong2580/cs326-final-zeta/blob/main/docs/screenShot4/FavouriteTable.png)
 
 ## URL Routes/Mappings
 ___________________________________________________________________
