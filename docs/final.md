@@ -222,51 +222,95 @@ Used the miniCrypt from the class material which we can use .hash() function to 
 
 For existing Post content, Post's owner can change their posts by editing and deleting. To prevent another user to change the post owner's post, We will compare the post owner's id and login user's id. If the is matching, the button of delete and edit will appear. Otherwise, the button will disappear and another user cannot change it.
 
+
 ## Division of Labor
 
 ---
 
 Wai Kin Yu:
 
-- Communicate with teamate, assembly information to keep track on the project/mileston1.md.
-- Create Post detail in main page and UI design(part of CSS & HTML).
-- Check and fix the bug with milestone 1 version.
-- Create release milestone1.
-- Collect and analysis all the information and make Milestone2.md file.
-- Debug and remove part of warnings.
-- Build up search function for main page.
-- Filter all html element in title post with related search word.
-- Create a rander create button, create form, edit button, edit form on main page.
-- Debug and Deployed test on Heroku with milestone 2 version.
-- Create release milestone2.
-- Create new database table favTable if there are no such a table exists. That table will store all information for all the user and their liked post.
-- Create end-point "/Fav" (post) for inserting data to favTable.
-- Create end-point "/Fav" (del) for deleting data to favTable.
-- Create end-point "/Fav" (put) for searching all data from favTable.
-- Render "add to my favour"/"remove from my favour" button to each post.
-- Create on-click listener to the button.
-- Create addtoFav function on button which is the function for on-click listener on "add to my favour" button.
-- Create DelFav function on button which is the function for on-click listener on "remove from my favour" button.
-- Create checkFav function on button which check which button and it's corresponding function should be rendered.
-- Implement end-point "/Fav" (post) to addtoFav function to fetch required data.
-- Implement end-point "/Fav" (del) to DelFav function to fetch required data..
-- Implement end-point "/Fav" (put) to checkFav function to fetch required data..
-- Rerender "add to my favour"/"remove from my favour" button inside the post when user click the button.
-- Render "my favour" button which display all the user's favour post.
-- Create myFav.js which is used to implement the search and filter function for user's favour post.
-- Create hideAll function to hide all the html element for all the post.
-- Create getUserFav functino to show all the html element for user's favour post.
-- Implement end-point "/Fav" (put) to getUserFav functino to fetch all favour post for the user who loged-in.
-- Render "allPost" button which is used to show all the post.
-- Create on-click listener to that button.
-- Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
-- Add up to build filter.
-- Group working on deploying on heroku with heroku database.
-- Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
-- Adjust milestone3.md and create release.
-- Connect to both local database and heroku database.
-- Clean up code.
-- Reformatting all js file.
-- Remove all unused and unnecessary code.
-- Remove all unnecessary command and console log.
-- Design rubric for final version.
+* Communicate with teamate, assembly information to keep track on the project/mileston1.md.
+* Create Post detail in main page and UI design(part of CSS & HTML).
+* Check and fix the bug with milestone 1 version.
+* Create release milestone1.
+* Collect and analysis all the information and make Milestone2.md file.
+* Debug and remove part of warnings.
+* Build up search function for main page.
+* Filter all html element in title post with related search word.
+* Create a rander create button, create form, edit button, edit form on main page.
+* Debug and Deployed test on Heroku with milestone 2 version.
+* Create release milestone2.
+* Create new database table favTable if there are no such a table exists. That table will store all information for all the user and their liked post.
+* Create end-point "/Fav" (post) for inserting data to favTable.
+* Create end-point "/Fav" (del) for deleting data to favTable.
+* Create end-point "/Fav" (put) for searching all data from favTable.
+* Render "add to my favour"/"remove from my favour" button to each post.
+* Create on-click listener to the button.
+* Create addtoFav function on button which is the function for on-click listener on "add to my favour" button.
+* Create DelFav function on button which is the function for on-click listener on "remove from my favour" button.
+* Create checkFav function on button which check which button and it's corresponding function should be rendered.
+* Implement end-point "/Fav" (post) to addtoFav function to fetch required data.
+* Implement end-point "/Fav" (del) to DelFav function to fetch required data..
+* Implement end-point "/Fav" (put) to checkFav function to fetch required data..
+* Rerender "add to my favour"/"remove from my favour" button inside the post when user click the button.
+* Render "my favour" button which display all the user's favour post.
+* Create myFav.js which is used to implement the search and filter function for user's favour post.
+* Create hideAll function to hide all the html element for all the post.
+* Create getUserFav functino to show all the html element for user's favour post.
+* Implement end-point "/Fav" (put) to getUserFav functino to fetch all favour post for the user who loged-in.
+* Render "allPost" button which is used to show all the post.
+* Create on-click listener to that button.
+* Create allPostFunction which is the function for on-click listener on "allPost" button and show all the html element for the post.
+* Add up to build filter.
+* Group working on deploying on heroku with heroku database.
+* Adjust CSS for All Post, My Favour Post, Toggle All Post, Creste Post button.
+* Adjust milestone3.md and create release.
+* Connect to both local database and heroku database.
+* Clean up code.
+* Reformatting all js file.
+* Remove all unused and unnecessary code.
+* Remove all unnecessary command and console log.
+* Design rubric for final version.
+
+Tingshuo Miao: 
+* Create a wireframe for login/registration page.
+* CSS & HTML for login and registration page.
+* Adjust login.html
+* Adjust regis.html
+* Catch up with backend API
+* Re-adjust the layout of main page-main.html
+* Debug and remove part of warnings.
+* Collect and analysis all the information and make Milestone3.md file.
+* Group working on with connecting into heroku database.
+* Create activityTable to record user activity if not exist on server.js when program start.
+* Add method of POST: "/activity"
+  -to get the user activity record which include user's num of favorite, num of post, num of comment from database.
+* Add method of PUT: "/activity"
+  -to update the user activity record on database when create post, add favorite post, push a comment in post.
+* Create a method of updateActivity() with fetch to push the new record to Backend's mainRoute.js
+* Create a method of getActivity() with fetch to get the user activity record from Backend's mainRoute.js
+* Render the post owner activity record on post page that include the number of post owner created, num of comment owner push, num of favorite post owner followed.
+* Re-build and add the favicon to the website.
+* Add many comment above the methods to explain how to use, why it exist.
+* Fix bug on the project.
+* Assist teammate to write the project/code.
+* Check and fix the bug with milestone 3 version.
+* Clean up code.
+* Remove unused and unnecessary code.
+* Remove unnecessary command and console log.
+* Modified the miniCrypt from the class lecture and add into the project.
+* Build up the authentication for user's registration.
+* Delete the password row in the database and create two new row- hash and salt.
+* Update POST:/"Registration" in the loginRoutin with sql sql.query of INSERT.
+* Update POST:/"Account" in the loginRoutin with sql sql.query of SELECT.
+* Update  createUserTable() method in the server.js for an adaptable database.
+* Build up the authentication for login information which comparing with database data.
+* Updated package.json file to set up the environment.
+* Collect and analysis the information and make final.md file.
+  -Build the Title, Subtitle, Semester, Overview, Team Members, User Interface, Authentication/Authorization, Conclusion sections.
+  -Wrote all things, texts, describetions as needed.
+  -Collect and upload all the images as needed
+  -Adjust some other sections.
+* Working on deploying on heroku with heroku database.
+* Update the heroku's postgres, set tup the environment data in HeroKu website.
+
