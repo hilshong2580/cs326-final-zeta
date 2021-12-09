@@ -70,7 +70,7 @@ ___________________________________________________________________
 ## Authentication/Authorization
 ___________________________________________________________________
 
-- Used the miniCrypt from the class material which we can use .hash() function to make the password into hash and salt. Once an account is registered on the registration page. The password will turn into a hash value and a salt value. Then save them into the database. For the login page, the authorization is used for verifying the password. It will turn into the user inserted password into salt and hash and then compare them with the value in the database.
+- Used the miniCrypt from the class material which we can use .hash() function to make the password into hash and salt. Once an account is registered on the registration page. The password will turn into a hash value and a salt value. Then save them into the database so that the password will never show up in the database or anywhere as a record. For the login page, the authorization is used for verifying the password. It will turn into the user inserted password into salt and hash and then compare them with the value in the database.
 
 ## Division of Labor
 ___________________________________________________________________
