@@ -394,12 +394,18 @@ Wai Kin Yu:
 
 Tingshuo Miao:
 
-- Create a wireframe for login/registration page.
-- CSS & HTML for login and registration page.
+- Create a wireframe for loginpage
+- Create a wireframe for  registration page.
+- Build CSS & HTML for login page.
+- Build CSS & HTML forregistration page.
 - Adjust login.html
 - Adjust regis.html
 - Catch up with backend API
 - Re-adjust the layout of main page-main.html
+   -The UserInfo bottom location.
+   -The Create Post, Edit bottom's locations.
+   -The All Post, Add to Myfacour bottom's locations.
+   -Some more CSS details.
 - Debug and remove part of warnings.
 - Collect and analysis all the information and make Milestone3.md file.
 - Group working on with connecting into heroku database.
@@ -445,4 +451,4 @@ We tried to separate the workflow by n-tier architecture. This can make the code
 
 As the project aims to run in heroku.com, we design to use Postgres SQL as our database. It is able to install the Postgres SQL to test locally. We can learn about the skill on use the database. Also, update the database connection that can apply to the Heroku Postgres database perfectly.
 
-In conclusion, this is a meaningful and excellent experience, and we believe that is a necessary process to become better engineers.
+In conclusion, this is a meaningful and excellent experience. At the same time, we realized the importance and enthusiasm of teamwork during the whole process. After all, everyone in the team has a different division of labor, so timely communication between team members can also make the progress of the project easier. We believe this expertience is a necessary process to become better engineers.
