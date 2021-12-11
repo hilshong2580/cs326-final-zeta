@@ -1,5 +1,7 @@
 .filterBar {
-  padding-top: 100px;
+
+  padding-top: 150px;
+
 }
 
 .mainBtrBar {
@@ -21,7 +23,7 @@
 .DeletePostBtr{
   margin-top: 10px;
   margin-right: 5px;
-}
+}e
 
 #b1{
   margin-right: 20px;
@@ -31,6 +33,17 @@
   margin-top: 30px;
 }
 
+#allPost{
+  margin-top: 13px;
+}
+
+#toggleAll{
+  margin-top: 13px;
+}
+
+#MyFavPost{
+  margin-top: 13px;
+}
 
 #createPopUp{
   margin-top: 13px;
@@ -41,7 +54,7 @@
 }
 .Description{
   margin-top: -60px;
-  width: 300px;
+  width: 400px;
   height: 400px;
 }
 
@@ -61,8 +74,23 @@
   
 }
 
-
 .AddToFBtr{
   margin-top: 10px;
   margin-right: 5px;
 }
+
+#allPost{
+  text-align: right;
+  vertical-align: middle;
+}
+
+#createPopUp{
+  text-align: right;
+  vertical-align: middle;
+}
+
+#MyFavPost{
+  text-align: right;
+  vertical-align: middle;
+}
+

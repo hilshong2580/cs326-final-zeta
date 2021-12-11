@@ -4,7 +4,6 @@ console.log("Server-side code running");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const faker = require("faker");
 const pool = require("./db");
 const port = 5000;
 
@@ -13,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({
     origin: '*'
 }));
-app.use(express.static('./FrontEnd', {index: 'login.html'}));
+app.use(express.static('./FrontEnd', { index: 'login.html' }));
 
 app.listen(process.env.PORT || port);
 //app.listen(process.env.PORT);
@@ -23,6 +22,7 @@ app.listen(process.env.PORT || port);
 createUserTable();
 createPostTable();
 createCommentTable();
+createActivityTable();
 createFavTable();
 
 //import login router
@@ -35,22 +35,23 @@ app.use("/main", mainRouter);
 
 
 //create user account table
-async function createUserTable(){
-        const userTable = await pool.query(`CREATE TABLE IF NOT EXISTS userTable(
+async function createUserTable() {
+    const userTable = await pool.query(`CREATE TABLE IF NOT EXISTS userTable(
             userId serial PRIMARY KEY,
-            password varchar(255) NOT NULL,
+            salt varchar(255) NOT NULL,
+            hash varchar(255) NOT NULL,
             name varchar(255),
             email varchar(255) NOT NULL UNIQUE,
             phone varchar(255),
             about varchar(255)
         )`);
-        console.log("userTable created");
+    console.log("userTable created");
 
 }
 
 //create user's Post table
-async function createPostTable(){
-            const postTable = await pool.query(`CREATE TABLE IF NOT EXISTS postTable(
+async function createPostTable() {
+    const postTable = await pool.query(`CREATE TABLE IF NOT EXISTS postTable(
             postId serial PRIMARY KEY,
             userId INT NOT NULL,
             title varchar(255),
@@ -62,25 +63,37 @@ async function createPostTable(){
             description varchar(255),
             photo varchar(255)
         )`);
-        console.log("postTable created");
+    console.log("postTable created");
 }
 
-
-//create user's Post table
-async function createCommentTable(){
+//create user's Comment table
+async function createCommentTable() {
     const commentTable = await pool.query(`CREATE TABLE IF NOT EXISTS commentTable(
     postId INT NOT NULL,
     name varchar(255) NOT NULL,
     comment varchar(255) NOT NULL
 )`);
-console.log("commentTable created");
+    console.log("commentTable created");
 }
 
-async function createFavTable(){
+//create user's Activity table
+async function createActivityTable() {
+    const commentTable = await pool.query(`CREATE TABLE IF NOT EXISTS activityTable(
+    userId INT PRIMARY KEY,
+    favorite_Num INT NOT NULL,
+    post_Num INT NOT NULL,
+    comment_Num INT NOT NULL
+)`);
+    console.log("activityTable created");
+}
+
+//create user's Favorite table
+async function createFavTable() {
     const favTable = await pool.query(`CREATE TABLE IF NOT EXISTS favTable(
     userId INT NOT NULL,
     postId INT NOT NULL,
     postTag varchar(255) NOT NULL
 )`);
-console.log("favTable created");
+    console.log("favTable created");
+
 }

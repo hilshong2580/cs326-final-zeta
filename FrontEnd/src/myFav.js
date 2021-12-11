@@ -2,11 +2,13 @@
 myFavFunction();
 allPostFunction();
 
-let thisUserID = 0;
+let favUserID = 0;
 
 getID();
 
-////////////////////////////////Get corresponding user ID//////////////////////////////
+///////////////////////functions/////////////////////////
+
+//get user ID
 function getID() {
   let url = document.location.href,
     params = url.split("?")[1].split("&"),
@@ -16,17 +18,19 @@ function getID() {
     tmp = params[i].split("=");
     data[tmp[0]] = tmp[1];
   }
-  thisUserID = parseInt(data.userId);
+  favUserID = parseInt(data.userId);
 }
 
-///////////////////////////////Display all the post/////////////////////////////////
+//assign all post button and call show all post function
 function allPostFunction() {
   const searchbtr = document.getElementById("allPost");
   searchbtr.addEventListener("click", function (e) {
     renderall();
   });
+
 }
 
+//show all post
 function renderall() {
   const searchInput = document.getElementById("searchinput");
   let i = 0;
@@ -43,24 +47,24 @@ function renderall() {
 
 /////////////////////////////filter/////////////////////////////
 
-
+//hide all post first, then show the post that is set with user favour
 function myFavFunction() {
   const searchbtr = document.getElementById("MyFavPost");
   searchbtr.addEventListener("click", function (e) {
     hideAll();
     getUserFav();
   });
+
 }
 
-
+//connect end-point and get data of all favour post wiht specific user id
 async function getUserFav() {
-  console.log("this is get user fav with id:" + thisUserID);
   fetch("/main/UserFav", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId: thisUserID }),
+    body: JSON.stringify({ userId: favUserID }),
   }).then(async (response) => {
     const data = JSON.parse(await response.json());
     if (response.status === 200) {
@@ -75,8 +79,9 @@ async function getUserFav() {
   });
 }
 
-
+//hide all post
 function hideAll() {
+
   const searchInput = document.getElementById("searchinput");
   let i = 0;
   while (document.getElementById("post" + JSON.stringify(i)) !== null) {
