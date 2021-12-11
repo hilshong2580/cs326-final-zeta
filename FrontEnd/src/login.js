@@ -17,8 +17,9 @@ async function loginAccount(jsonObj) {
     },
     body: JSON.stringify(jsonObj),
   }).then(async (response) => {
-    const data = JSON.parse(await response.json());
+    
     if (response.status === 200) {
+      const data = JSON.parse(await response.json());
       console.log("this is front end login status 200");
       console.log(data.userid);
       window.location.href =
