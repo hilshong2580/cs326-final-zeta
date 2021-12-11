@@ -134,7 +134,7 @@ async function postNewPost(jsonObj) {
 }
 
 ////////////////////add fav function///////////////////
-async function addoFav(userId, postId, html, tag) {
+async function addToFav(userId, postId, html, tag) {
   let jsonObj = {
     userid: userId,
     postid: postId,
