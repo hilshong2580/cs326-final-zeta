@@ -134,7 +134,7 @@ async function postNewPost(jsonObj) {
 }
 
 ////////////////////add fav function///////////////////
-async function addToFav(userId, postId, html, tag) {
+async function addoFav(userId, postId, html, tag) {
   let jsonObj = {
     userid: userId,
     postid: postId,
@@ -464,7 +464,7 @@ function renderPost(HTML, id, jsonObj) {
     if (favButton.innerHTML === "Remove From Favour") {
       DelFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
       updateActivity({
-        userId: thisUserID,
+        userId: jsonObj.userId,
         favorite: -1,
         post: 0,
         comment: 0,
