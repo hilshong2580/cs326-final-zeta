@@ -229,6 +229,12 @@ Used the miniCrypt from the class material which we can use .hash() function to 
 
 For existing Post content, Post's owner can change their posts by editing and deleting. To prevent another user to change the post owner's post, We will compare the post owner's id and login user's id. If the is matching, the button of delete and edit will appear. Otherwise, the button will disappear and another user cannot change it.
 
+
+## Deployment
+___________________________________________________________________
+
+This is the link Deployed on Heroku: [https://u-car-326.herokuapp.com/]
+
 ## Division of Labor
 
 ---
