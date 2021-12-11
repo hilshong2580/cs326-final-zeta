@@ -134,7 +134,7 @@ async function postNewPost(jsonObj) {
 }
 
 ////////////////////add fav function///////////////////
-async function addtoFav(userId, postId, html, tag) {
+async function addToFav(userId, postId, html, tag) {
   let jsonObj = {
     userid: userId,
     postid: postId,
@@ -470,9 +470,9 @@ function renderPost(HTML, id, jsonObj) {
         comment: 0,
       });
     } else {
-      addtoFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
+      addToFav(thisUserID, jsonObj.postId, favButton, "post" + idString);
       updateActivity({
-        userId: thisUserID,
+        userId: jsonObj.userId,
         favorite: 1,
         post: 0,
         comment: 0,
