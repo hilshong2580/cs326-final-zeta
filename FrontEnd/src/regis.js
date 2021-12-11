@@ -35,6 +35,6 @@ async function createAccount(jsonObj) {
   }).then(async (response) => {
     const data = await response.text();
     if (response.status === 200) window.location.href = "./login.html";
-    else alert("email already exist" + response.status);
+    else alert("Account already exist ");
   });
 }

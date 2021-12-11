@@ -2,7 +2,7 @@
 myFavFunction();
 allPostFunction();
 
-let thisUserID = 0;
+let favUserID = 0;
 
 getID();
 
@@ -18,7 +18,7 @@ function getID() {
     tmp = params[i].split("=");
     data[tmp[0]] = tmp[1];
   }
-  thisUserID = parseInt(data.userId);
+  favUserID = parseInt(data.userId);
 }
 
 //assign all post button and call show all post function
@@ -64,7 +64,7 @@ async function getUserFav() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ userId: thisUserID }),
+    body: JSON.stringify({ userId: favUserID }),
   }).then(async (response) => {
     const data = JSON.parse(await response.json());
     if (response.status === 200) {
