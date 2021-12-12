@@ -397,6 +397,8 @@ Wai Kin Yu:
 - Remove all unused and unnecessary code.
 - Remove all unnecessary command and console log.
 - Design rubric for final version.
+- Help final debug.
+- Create setup.md.
 
 Tingshuo Miao:
 
