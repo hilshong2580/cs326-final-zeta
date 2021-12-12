@@ -399,6 +399,7 @@ Wai Kin Yu:
 - Design rubric for final version.
 - Help final debug.
 - Create setup.md.
+- Create final release version.
 
 Tingshuo Miao:
 
