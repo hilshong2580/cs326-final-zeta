@@ -242,39 +242,39 @@ ___________________________________________________________________
 Total: 100
 
 innovative idea:(1)
-    different idea from other group: +1
+different idea from other group: +1
 
 user interface:(9)
-    built using HTML and CSS: +5
-    use of Bootstrap: +4
+built using HTML and CSS: +5
+use of Bootstrap: +4
 
 support a JavaScript-based server:(5)
-    Use of NodeJS backend(PostgreSQL): +5
+Use of NodeJS backend(PostgreSQL): +5
 
 CRUD (creation, reading, updating, and deletion) of data:(40)
-    Create post: +10
-    Reading post: +10
-    Updating post: +10
-    Delete post: +10
+Create post: +10
+Reading post: +10
+Updating post: +10
+Delete post: +10
 
 User interactivity(ability to interact with other users & include an element of in-place HTML modification:):(10)
-    add post comment in textarea of the post with different users: +5
-    users add to favourite post by userFav button which will change the number of favourite rating of post owner: +5
+add post comment in textarea of the post with different users: +5
+users add to favourite post by userFav button which will change the number of favourite rating of post owner: +5
 
 deployed to Heroku: (5)
-    successfully deploy to Heroku: +5
+successfully deploy to Heroku: +5
 
 
 login/logout functionality:(10)
-    basic login/logout: +5
-    user authentication and authorization: +5
+basic login/logout: +5
+user authentication and authorization: +5
 
 Five reasonable table on database:(10)
-    favTable： +2
-    activityTable: +2
-    commentTable: +2
-    postTable: +2
-    userTable: +2
+favTable： +2
+activityTable: +2
+commentTable: +2
+postTable: +2
+userTable: +2
 
 Code Cleanup: (3)
 
