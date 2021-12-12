@@ -241,44 +241,44 @@ ___________________________________________________________________
 
 Total: 100
 
-- innovative idea:(1)
-1. different idea from other group: +1
+1. innovative idea:(1)
+- different idea from other group: +1
 
-- user interface:(9)
-1. built using HTML and CSS: +5
-2. use of Bootstrap: +4
+2. user interface:(9)
+- built using HTML and CSS: +5
+- use of Bootstrap: +4
 
-- support a JavaScript-based server:(5)
-1. Use of NodeJS backend(PostgreSQL): +5
+3. support a JavaScript-based server:(5)
+- Use of NodeJS backend(PostgreSQL): +5
 
-- CRUD (creation, reading, updating, and deletion) of data:(40)
-1. Create post: +10
-2. Reading post: +10
-3. Updating post: +10
-4. Delete post: +10
+4. CRUD (creation, reading, updating, and deletion) of data:(40)
+- Create post: +10
+- Reading post: +10
+- Updating post: +10
+- Delete post: +10
 
-- User interactivity(ability to interact with other users & include an element of in-place HTML modification:):(10)
-1. add post comment in textarea of the post with different users: +5
-2. users add to favourite post by userFav button which will change the number of favourite rating of post owner: +5
+5. User interactivity(ability to interact with other users & include an element of in-place HTML modification:):(10)
+- add post comment in textarea of the post with different users: +5
+- users add to favourite post by userFav button which will change the number of favourite rating of post owner: +5
 
-- deployed to Heroku: (5)
-1. successfully deploy to Heroku: +5
+6. deployed to Heroku: (5)
+- successfully deploy to Heroku: +5
 
 
-- login/logout functionality:(10)
-1. basic login/logout: +5
-2. user authentication and authorization: +5
+7. login/logout functionality:(10)
+- basic login/logout: +5
+- user authentication and authorization: +5
 
-- Five reasonable table on database:(10)
-1. favTable： +2
-2. activityTable: +2
-3. commentTable: +2
-4. postTable: +2
-5. userTable: +2
+8. Five reasonable table on database:(10)
+- favTable： +2
+- activityTable: +2
+- commentTable: +2
+- postTable: +2
+- userTable: +2
 
-- Code Cleanup: (3)
+9. Code Cleanup: (3)
 
-- Video Demo:(7)
+10. Video Demo:(7)
 
 
 
